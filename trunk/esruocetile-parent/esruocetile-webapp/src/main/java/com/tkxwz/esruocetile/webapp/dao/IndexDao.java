@@ -14,7 +14,18 @@ import org.springframework.stereotype.Repository;
  * @since 2012-5-10 下午4:48:35
  */
 @Repository
-public class IndexDao extends JdbcDaoSupport {
+public class IndexDao {
+
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+
+	public JdbcTemplate getJdbcTemplate() {
+		return jdbcTemplate;
+	}
+
+	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	public String index() {
 		this.test();
