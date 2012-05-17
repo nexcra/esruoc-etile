@@ -85,6 +85,7 @@
 		$("#pageloading").hide();
 
 	});
+	
 	function f_heightChanged(options) {
 		if (tab)
 			tab.addHeight(options.diff);
