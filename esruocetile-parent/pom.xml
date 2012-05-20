@@ -33,6 +33,7 @@
 	</properties>
 
 	<!-- 依赖管理 -->
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -85,7 +86,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.slf4j</groupId>
-				<artifactId>slf4j-simple</artifactId>
+				<artifactId>slf4j-log4j12</artifactId>
 				<version>1.6.4</version>
 			</dependency>
 			<dependency>
@@ -113,6 +114,7 @@
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 
