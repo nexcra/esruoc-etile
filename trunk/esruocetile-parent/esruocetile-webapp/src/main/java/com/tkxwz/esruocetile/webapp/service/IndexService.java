@@ -23,4 +23,8 @@ public class IndexService {
 		logger.info("测试一下slf4j");
 		return this.indexDao.index();
 	}
+	public static void main(String[] args) {
+		IndexService i = new IndexService();
+		i.index();
+	}
 }
