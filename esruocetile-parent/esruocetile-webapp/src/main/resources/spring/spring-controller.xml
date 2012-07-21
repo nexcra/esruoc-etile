@@ -7,14 +7,16 @@
 	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-3.1.xsd
 	
 	">
-	<context:component-scan base-package="com.tkxwz.esruocetile.webapp.controller"></context:component-scan>
+	<context:annotation-config />
 
+	<context:component-scan base-package="com.tkxwz.esruocetile.webapp.controller"
+		name-generator="com.tkxwz.esruocetile.core.common.CustomAnnotationBeanNameGenerator" />
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView"></property>
 		<property name="prefix" value="/WEB-INF/jsp/"></property>
-		<property name="suffix" value=".jsp"></property>
+		<property name="suffix" value=""></property>
 	</bean>
 
 

@@ -1,25 +1,30 @@
 package com.tkxwz.esruocetile.test;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
- * @author 孔沛洪
+ * @author Po Kong 
  * @since 2012-5-10 下午5:51:58
  */
 public class Test {
 
-	final Logger logger = LoggerFactory.getLogger(Test.class);
-
-	public void hello() {
-		logger.info("testdfdfdfdsd");
-	}
-
 	public static void main(String[] args) {
-		Test t = new Test();
-		t.hello();
-		
-		Logger logger = LoggerFactory.getLogger(Test.class);
-	   // logger.info("Hello World");
+		List valueTypesList = new ArrayList();
+
+		valueTypesList.add(1);
+		valueTypesList.add(2);
+		int valueTypesSize = valueTypesList.size();
+		int[] valueTypes = new int[valueTypesSize];
+		for (int i = 0; i < valueTypesSize; i++) {
+			valueTypes[i] = (Integer) valueTypesList.get(i);
+		}
+		for (int a : valueTypes) {
+			System.out.println(a);
+		}
+
 	}
 }

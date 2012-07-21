@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author 孔沛洪
+ * @author Po Kong 
  * @since 2012-5-10 下午4:48:35
  */
 @Repository

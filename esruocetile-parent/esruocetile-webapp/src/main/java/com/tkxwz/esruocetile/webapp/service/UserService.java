@@ -5,11 +5,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.webapp.dao.UserDao;
 import com.tkxwz.esruocetile.webapp.entity.User;
 
 /**
- * @author 孔沛洪
+ * @author Po Kong 
  * @since 2012-5-20 上午11:37:56
  */
 @Service
@@ -27,5 +28,9 @@ public class UserService {
 
 		return user;
 
+	}
+	
+	public Page listUser(Page page) {
+		return this.userDao.listStaff(page);
 	}
 }
