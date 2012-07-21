@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.tkxwz.esruocetile.webapp.service.IndexService;
 
 /**
- * @author 孔沛洪
+ * @author Po Kong 
  * @since 2012-5-9 下午5:26:14
  */
 @Controller(value = "/index.html")

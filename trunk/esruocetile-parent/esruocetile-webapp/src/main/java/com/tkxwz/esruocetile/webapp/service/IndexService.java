@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.tkxwz.esruocetile.webapp.dao.IndexDao;
 
 /**
- * @author 孔沛洪
+ * @author Po Kong 
  * @since 2012-5-10 下午4:48:18
  */
 @Service

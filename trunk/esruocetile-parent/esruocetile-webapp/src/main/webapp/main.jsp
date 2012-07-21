@@ -20,8 +20,8 @@
 			url : "listPerson.htm",
 			text : "员工管理"
 		}, {
-			url : "listUnit.html",
-			text : "机构管理"
+			url : "data.html?action=toImport",
+			text : "导入excel数据"
 		} ]
 
 	}

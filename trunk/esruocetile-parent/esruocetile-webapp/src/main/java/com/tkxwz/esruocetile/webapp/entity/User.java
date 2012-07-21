@@ -1,7 +1,7 @@
 package com.tkxwz.esruocetile.webapp.entity;
 
 /**
- * @author 孔沛洪
+ * @author Po Kong 
  * @since 2012-5-20 上午11:29:11
  */
 public class User {

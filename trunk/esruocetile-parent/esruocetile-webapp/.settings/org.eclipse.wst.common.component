@@ -5,6 +5,9 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <dependent-module archiveName="esruocetile-core.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/esruocetile-core/esruocetile-core">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="java-output-path" value="/esruocetile-webapp/target/classes"/>
         <property name="context-root" value="esruocetile"/>
     </wb-module>
