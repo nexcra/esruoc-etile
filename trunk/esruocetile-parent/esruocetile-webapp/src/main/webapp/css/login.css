@@ -1,0 +1,79 @@
+@charset "utf-8";
+
+@import url("cssreset.css");
+
+body {
+	background: #c9dfff;
+}
+
+#wrapper {
+	width: 570px;
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+#loginTitle {
+	margin-top: 80px;
+}
+
+#loginFrame {
+	background: url(../images/skin/default/login/loginFrameBg.jpg) repeat-y;
+}
+
+.loginInput {
+	text-align: center;
+	height: 50px;
+}
+
+.usernameIcon,.passwordIcon {
+	width: 72px;
+	height: 45px;
+	display: block;
+	float: left;
+	margin-left: 150px;
+	display: inline;
+}
+
+.passwordIcon {
+	background: url(../images/skin/default/login/password.jpg) no-repeat;
+}
+
+.usernameInput,.passwordInput {
+	float: left;
+	margin-top: 10px;
+	margin-left: 5px;
+}
+
+.username,.password {
+	border: 1px solid #ccc;
+	height: 20px;
+	width: 180px;
+	line-height: 25px;
+	font-size: 13px;
+	vertical-align: middle;
+	padding-left: 3px;
+	padding-top: 3px;
+	padding-bottom: 2px;
+}
+
+.loginButton {
+	text-align: center;
+	height: 60px;
+}
+
+.loginSubmitButton,.loginResetButton {
+	width: 83px;
+	height: 40px;
+	border: none;
+	cursor: pointer;
+}
+
+.loginSubmitButton,.loginResetButton {
+	background: url(../images/skin/default/login/loginSubmitButton.jpg)
+		no-repeat;
+}
+
+.loginResetButton {
+	background: url(../images/skin/default/login/loginResetButton.jpg)
+		no-repeat;
+}

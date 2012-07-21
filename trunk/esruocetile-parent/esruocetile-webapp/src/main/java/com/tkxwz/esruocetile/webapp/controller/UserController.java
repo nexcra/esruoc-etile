@@ -1,6 +1,10 @@
 package com.tkxwz.esruocetile.webapp.controller;
 
+import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.core.util.PageUtil;
+import com.tkxwz.esruocetile.webapp.entity.User;
 import com.tkxwz.esruocetile.webapp.service.UserService;
 
 /**
@@ -21,22 +26,74 @@ public class UserController {
 	private UserService userService;
 
 	/**
-	 * display the user list paged
-	 * 
 	 * @author Po Kong
-	 * @since 2012-7-20 下午11:52:43
+	 * @since 21 Jul 2012 12:49:38
 	 * @param request
 	 * @param currentPageNum
-	 * @return the page to display the user list
+	 * @return
 	 */
-
 	@RequestMapping(params = "action=listUser")
 	public String listUser(HttpServletRequest request, String currentPageNum) {
 		Page page = new Page();
 		page = new Page(PageUtil.getPageNum(currentPageNum));
 		this.userService.listUser(page);
 		request.setAttribute("page", page);
-		System.out.println(page);
-		return "/user/list.jsp";
+		return "/user/listUser.jsp";
+	}
+
+	/**
+	 * to add a user
+	 * 
+	 * @author Po Kong
+	 * @since 21 Jul 2012 12:41:27
+	 * @return the page to add user
+	 */
+
+	@RequestMapping(params = "action=toAddUser")
+	public String toAddUser() {
+		return "/user/addUser.jsp";
+	}
+
+	/**
+	 * add a user and then forward to the list page
+	 * 
+	 * @author Po Kong
+	 * @since 21 Jul 2012 12:48:53
+	 * @return the page to list the users
+	 */
+	@RequestMapping(params = "action=addUser")
+	public String addUser(String name, String password, String rePassword) {
+		User user = new User();
+		user.setName(name);
+		user.setPassword(password);
+
+		int result = this.userService.addUser(user);
+		return "redirect:user.do?action=listUser";
+	}
+
+	@RequestMapping(params = "action=deleteUser")
+	public String deleteUser(HttpServletRequest request,
+			HttpServletResponse response, String id) throws IOException {
+		String[] ids = id.split(",");
+		int result = this.userService.batchDeleteUser(ids);
+		response.getWriter().write(" 成功删除 " + result + "条记录");
+		return null;
+	}
+
+	@RequestMapping(params = "action=toUpdateUser")
+	public String toUpdateUser(HttpServletRequest request, String id) {
+		Map map = this.userService.getUserById(id);
+		request.setAttribute("map", map);
+		return "/user/updateUser.jsp";
+	}
+
+	@RequestMapping(params = "action=updateUser")
+	public String updateUser(int id, String name, String password) {
+		User user = new User();
+		user.setId(id);
+		user.setName(name);
+		user.setPassword(password);
+		int result = this.userService.updateUser(user);
+		return "redirect:user.do?action=listUser";
 	}
 }

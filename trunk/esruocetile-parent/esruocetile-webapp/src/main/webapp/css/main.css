@@ -1,7 +1,12 @@
-@CHARSET "UTF-8";
+@charset "utf-8";
+
+@import url("cssreset.css");
+
+@import url("table.css");
 
 body,html {
-	height: 100%;
+	font-size: 13px;
+	font-family: "宋体";
 }
 
 body {
@@ -102,5 +107,121 @@ body {
 
 .l-topmenu-welcome a {
 	color: #E7E7E7;
-	text-decoration: underline
+	text-decoration: underline;
+}
+
+.functionList {
+	border: 1px solid;
+	height: 23px;
+	line-height: 23px;
+	margin: 2px;
+	background: url(../images/skin/default/panel-toolbar.gif) repeat-x 1px
+		1px;
+	border-color: #EFF7F7 #9CBAE7 #9CBAE7 #bed5f3;
+	border-color: #9cbae7;
+	padding-left: 20px;
+	border: 1px solid #9CBAE7;
+	padding-top: 1px;
+}
+
+/*  两到四个字的按纽 */
+.button1 {
+	height: 22px;
+	width: 60px;
+	text-align: center;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	float: left;
+}
+
+/* 五到八个字的按纽 */
+.button2 {
+	height: 22px;
+	width: 120px;
+	text-align: center;
+	border: none;
+	position: relative;
+	cursor: pointer;
+	float: left;
+}
+
+.button1Over {
+	background: #E0EDFF url(../images/skin/default/panel-btn.gif) repeat-x;
+}
+
+.button1Left {
+	position: absolute;
+	width: 3px;
+	left: 0px;
+	top: 0px;
+	height: 22px;
+	background: #E0EDFF url(../images/skin/default/panel-btn-l.gif)
+		no-repeat;
+	display: none;
+}
+
+.button1Right {
+	position: absolute;
+	width: 3px;
+	right: 0px;
+	top: 0px;
+	height: 22px;
+	background: #E0EDFF url(../images/skin/default/panel-btn-r.gif)
+		no-repeat;
+	display: none;
+}
+
+.pageBar {
+	height: 32px;
+	background: #C9DFFF url(../images/skin/default//bar-bg.gif ) repeat-x
+		left bottom;
+	overflow: hidden;
+	border-top: 1px solid #84A0C4;
+	line-height: 32px;
+	padding-left: 20px;
+	margin: 2px;
+	border: 1px solid #84a0c4;
+	text-align: right;
+	padding-right: 30px;
+}
+
+.formTable {
+	margin: 2px;
+}
+
+.formTable td {
+	padding: 2px 10px;
+	border: 1px solid #cad9ea;
+	padding: 2px 10px;
+}
+
+.fieldName {
+	text-align: right;
+	font-size: 12px;
+	background: #f5fafe;
+}
+
+.fieldForm {
+	text-align: left;
+	font-size: 12px;
+}
+
+.inputText {
+	border: 1px solid #ccc;
+	height: 20px;
+	line-height: 20px;
+}
+
+.submitButton,.resetButton {
+	background: url(../images/skin/default/button-bg.gif) repeat-x;
+	height: 21px;
+	border: none;
+	width: 60px;
+	border: 1px solid #a3c0e8;
+	cursor: pointer;
+}
+
+.asterisk {
+	color:red;
 }

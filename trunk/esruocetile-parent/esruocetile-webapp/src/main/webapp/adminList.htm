@@ -1,0 +1,92 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>列表页</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+<script src="js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="widget/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(
+	function(){
+		//按纽样式
+		$(".button1").hover(
+			function(){
+				$(this).addClass("button1Over");
+				$(".button1Left",$(this)).show();
+				$(".button1Right",$(this)).show();
+			},function(){
+				$(this).removeClass("button1Over");
+				$(".button1Left",$(this)).hide();
+				$(".button1Right",$(this)).hide();
+			}
+		
+		);
+		//全选,反选
+		$("#checkAll").click (
+			function(){
+				$(".checkList").attr("checked",!$(".checkList").attr("checked"));
+			}
+		);
+		
+		
+	}
+
+);
+</script>
+</head>
+<body>
+<div class="functionList">
+	 
+	<div class="button1" >
+		<div class="button1Left"></div>
+		新增
+		<div class="button1Right"></div>
+	</div>
+	
+	<div class="button1" >
+		<div class="button1Left"></div>
+		修改
+		<div class="button1Right"></div>
+	</div>
+	<div class="button1"  >
+		<div class="button1Left"></div>
+		删除
+		<div class="button1Right"></div>
+	</div>
+	
+	<div class="button1"  >
+		<div class="button1Left"></div>
+		修改密码
+		<div class="button1Right"></div>
+	</div>
+	 
+</div>
+ 
+<table width="90%" id="mytab"  border="1" class="t1">
+	<thead>
+		<tr>
+			<th   ><input type="checkbox"  id="checkAll"/></th>
+			<th  >管理员</th>
+			<th >添加时间</th>
+			 
+			 
+	</thead>
+	</tr>
+	
+	<tr >
+		<td><input type="checkbox" class="checkList"/></td>
+		<td>admin</td>
+		<td>2012-10-08</td>
+	 
+	</tr>
+	<tr >
+		<td><input type="checkbox" class="checkList"/></td>
+		<td>scnu</td>
+		<td>2012-10-09</td>
+	 
+	</tr>
+	 
+	 
+</table>
+<div class="pageBar"> 每页显示10条记录 首页 上一页 下一页 末页 第1页/共100页</div>
+</body>
+</html>

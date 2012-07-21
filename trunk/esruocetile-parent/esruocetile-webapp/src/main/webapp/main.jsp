@@ -17,8 +17,8 @@
 		isexpand : "true",
 		text : "系统管理",
 		children : [ {
-			url : "listPerson.htm",
-			text : "员工管理"
+			url : "user.do?action=listUser",
+			text : "管理员管理"
 		}, {
 			url : "data.html?action=toImport",
 			text : "导入excel数据"
@@ -85,19 +85,40 @@
 		$("#pageloading").hide();
 
 	});
-	
+
 	function f_heightChanged(options) {
 		if (tab)
 			tab.addHeight(options.diff);
 		if (accordion && options.middleHeight - 24 > 0)
 			accordion.setHeight(options.middleHeight - 24);
 	}
+
+	/**
+	 *  打开新的tab
+	 * @param tabid tab的ID
+	 * @param text 要显示的文本
+	 * @param url 打开的url地址
+	 */
 	function f_addTab(tabid, text, url) {
+		//tab.removeTabItem(tabid);
 		tab.addTabItem({
 			tabid : tabid,
 			text : text,
 			url : url
 		});
+	}
+	/**
+	 *  override 本tab
+	 * @param tabid tab的ID
+	 * @param text 要显示的文本
+	 * @param url 打开的url地址
+	 */
+	function overrideSelectedTab(tabid, text, url) {
+		tab.overrideTabItem(tab.getSelectedTabItemID(), {
+			text : text,
+			url : url
+		});
+
 	}
 </script>
 
@@ -105,9 +126,9 @@
 <body style="padding: 0px; background: #EAEEF5;">
 	<div id="pageloading"></div>
 	<div id="topmenu" class="l-topmenu">
-		<div class="l-topmenu-logo">esruocetile后台演示主页</div>
+		<div class="l-topmenu-logo">后台主页</div>
 		<div class="l-topmenu-welcome">
-			<a href="#" class="l-link2">搜索</a> <span class="space">|</span> <a
+			<a href="#" class="l-link2">刷新</a> <span class="space">|</span> <a
 				href="#" class="l-link2">注销</a>
 		</div>
 	</div>
@@ -126,7 +147,7 @@
 
 	</div>
 	<div style="height: 32px; line-height: 32px; text-align: center;">
-		Copyright © 2011-2012 www.esruocetile.com</div>
+		Copyright © 2012-2013</div>
 	<div style="display: none"></div>
 </body>
 </html>
