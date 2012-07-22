@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="/common/common.jsp"%>
+<c:if test="${ adminId ==null }">
+	<c:redirect url="login.do?action=toLogin"></c:redirect>
+</c:if>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -118,18 +122,28 @@
 			text : text,
 			url : url
 		});
-
 	}
+
+	$(function() {
+		$("#toUpdatePersonalPassword").click(
+				function() {
+					overrideSelectedTab("updatePersonalPassword", "修改个人密码",
+							"${ctx }/user.do?action=toUpdatePersonalPassword");
+				});
+	});
 </script>
 
 </head>
 <body style="padding: 0px; background: #EAEEF5;">
+
 	<div id="pageloading"></div>
 	<div id="topmenu" class="l-topmenu">
 		<div class="l-topmenu-logo">后台主页</div>
 		<div class="l-topmenu-welcome">
-			<a href="#" class="l-link2">刷新</a> <span class="space">|</span> <a
-				href="#" class="l-link2">注销</a>
+			<span style="color: white;">欢迎您:${adminName }</span> <a href="#"
+				id="toUpdatePersonalPassword" class="l-link2">修改个人密码</a> <a href="#"
+				class="l-link2">刷新</a> <span class="space">|</span> <a
+				href="${ctx }/login.do?action=logoutForAdmin" class="l-link2">注销</a>
 		</div>
 	</div>
 	<div id="layout" style="width: 99.2%; margin: 0 auto; margin-top: 4px;">
@@ -141,7 +155,7 @@
 		</div>
 		<div position="center" id="framecenter">
 			<div tabid="home" title="我的主页" style="height: 300px">
-				<iframe frameborder="0" name="home" id="home" src="welcome.htm"></iframe>
+				<iframe frameborder="0" name="home" id="home" src="${ctx }/main.do?action=toWelcome"></iframe>
 			</div>
 		</div>
 

@@ -96,4 +96,23 @@ public class UserController {
 		int result = this.userService.updateUser(user);
 		return "redirect:user.do?action=listUser";
 	}
+
+	@RequestMapping(params = "action=toUpdatePersonalPassword")
+	public String toUpdatePersonalPassword() {
+		return "/user/updatePersonalPassword.jsp";
+	}
+
+	@RequestMapping(params = "action=checkLastPassword")
+	public String checkLastPassword(HttpServletRequest request,
+			HttpServletResponse response, int id, String lastPassword)
+			throws IOException {
+		String result = "false";
+		boolean isValidPassword = this.userService.checkLastPassword(id,
+				lastPassword);
+		if (isValidPassword) {
+			result = "true";
+		}
+		response.getWriter().write(result);
+		return null;
+	}
 }

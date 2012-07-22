@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
+<title>${title }>>用户列表</title>
 <link rel="stylesheet" type="text/css" href="${ctx }/css/main.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript"
@@ -94,10 +94,10 @@
 						});
 
 		//修改个人密码
-		$("#updatePersonPassword").click(
+		$("#updatePersonalPassword").click(
 				function() {
-					overrideSelectedTab('updatePersonPassword', '修改个人密码',
-							'user.do?action=updatePersonPassword');
+					window.parent.f_addTab('updatePersonalPassword', '修改个人密码',
+							'user.do?action=toUpdatePersonalPassword');
 				});
 
 	});
@@ -134,7 +134,7 @@
 			<div class="button1Right"></div>
 		</div>
 
-		<div class="button2" id="updatePersonPassword">
+		<div class="button2" id="updatePersonalPassword">
 			<div class="button1Left"></div>
 			修改个人密码
 			<div class="button1Right"></div>
