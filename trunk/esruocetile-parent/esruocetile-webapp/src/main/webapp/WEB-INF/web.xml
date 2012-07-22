@@ -68,32 +68,25 @@
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 
+	<!-- 验证码 -->
+	<servlet>
+		<servlet-name>checkCode</servlet-name>
+		<servlet-class>com.tkxwz.esruocetile.core.servlet.CheckCodeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>checkCode</servlet-name>
+		<url-pattern>/checkCode</url-pattern>
+	</servlet-mapping>
 	<!-- session 配置 -->
 	<session-config>
 		<session-timeout>30</session-timeout>
 	</session-config>
 
-	<!-- 错误页面
-	<error-page>
-		<exception-type>java.lang.Throwable</exception-type>
-		<location>/common/500.jsp</location>
-	</error-page>
-
-	<error-page>
-		<error-code>403</error-code>
-		<location>/common/403.jsp</location>
-	</error-page>
-
-	<error-page>
-		<error-code>404</error-code>
-		<location>/common/404.jsp</location>
-	</error-page>
-
-	<error-page>
-		<error-code>500</error-code>
-		<location>/common/500.jsp</location>
-	</error-page>
- -->
+	<!-- 错误页面 <error-page> <exception-type>java.lang.Throwable</exception-type> 
+		<location>/common/500.jsp</location> </error-page> <error-page> <error-code>403</error-code> 
+		<location>/common/403.jsp</location> </error-page> <error-page> <error-code>404</error-code> 
+		<location>/common/404.jsp</location> </error-page> <error-page> <error-code>500</error-code> 
+		<location>/common/500.jsp</location> </error-page> -->
 	<!-- 默认首页 -->
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

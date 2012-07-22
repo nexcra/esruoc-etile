@@ -38,9 +38,9 @@ public class UserDao extends BaseDao<User> {
 	public int addUser(User user) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" insert into t_user ");
-		sql.append(" ( name, password ) ");
+		sql.append(" ( name, password ,insert_time) ");
 		sql.append(" values ");
-		sql.append(" ( ?, ? ) ");
+		sql.append(" ( ?, ? ,now()) ");
 		Object[] values = { user.getName(), user.getPassword() };
 		int[] valueTypes = { Types.VARCHAR, Types.VARCHAR };
 		return this.insert(sql.toString(), values, valueTypes);
@@ -91,5 +91,21 @@ public class UserDao extends BaseDao<User> {
 		Object[] values = { user.getName(), user.getPassword(), user.getId() };
 		int[] valueTypes = { Types.VARCHAR, Types.VARCHAR, Types.INTEGER };
 		return this.update(sql.toString(), values, valueTypes);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 22 Jul 2012 22:23:31
+	 * @param lastPassword
+	 * @return
+	 */
+	public int checkLastPassword(int id, String lastPassword) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select count(1) from t_user t");
+		sql.append(" where t.id = ? ");
+		sql.append("  and  t.password = ? ");
+		Object[] values = { id, lastPassword };
+		int[] valueTypes = { Types.INTEGER, Types.VARCHAR };
+		return this.queryForInt(sql.toString(), values, valueTypes);
 	}
 }

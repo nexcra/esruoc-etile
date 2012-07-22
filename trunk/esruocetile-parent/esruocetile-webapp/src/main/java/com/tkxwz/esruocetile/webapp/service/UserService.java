@@ -79,15 +79,25 @@ public class UserService {
 
 	}
 
-	 /**
-	 * 
-	 * 
+	/**
 	 * @author Po Kong
 	 * @since 21 Jul 2012 23:25:01
 	 * @param user
 	 */
 	public int updateUser(User user) {
 		return this.userDao.updateUser(user);
-		
+
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 22 Jul 2012 22:23:13
+	 * @param lastPassword
+	 * @return
+	 */
+	public boolean checkLastPassword(int id, String lastPassword) {
+
+		int result = this.userDao.checkLastPassword(id, lastPassword);
+		return result == 0 ? false : true;
 	}
 }

@@ -2,6 +2,8 @@
 
 @import url("cssreset.css");
 
+@import url("validate.css");
+
 body {
 	background: #c9dfff;
 }
@@ -10,6 +12,11 @@ body {
 	width: 570px;
 	margin: 0 auto;
 	overflow: hidden;
+}
+
+#loginTop img{
+	height:63px;
+	display:block;
 }
 
 #loginTitle {
@@ -25,17 +32,24 @@ body {
 	height: 50px;
 }
 
-.usernameIcon,.passwordIcon {
+.usernameIcon,.passwordIcon,.checkCodeIcon {
 	width: 72px;
+	line-height:45px;
 	height: 45px;
 	display: block;
 	float: left;
 	margin-left: 150px;
-	display: inline;
+	display: inline; 
+}
+.usernameIcon{
+	
+}
+.passwordIcon {
+	/*background: url(../images/skin/default/login/password.jpg) no-repeat;*/
 }
 
-.passwordIcon {
-	background: url(../images/skin/default/login/password.jpg) no-repeat;
+.checkCodeIcon {
+	 
 }
 
 .usernameInput,.passwordInput {
@@ -44,16 +58,38 @@ body {
 	margin-left: 5px;
 }
 
-.username,.password {
+.username,.password,.checkCode {
 	border: 1px solid #ccc;
 	height: 20px;
-	width: 180px;
+	width: 150px;
 	line-height: 25px;
 	font-size: 13px;
 	vertical-align: middle;
 	padding-left: 3px;
 	padding-top: 3px;
 	padding-bottom: 2px;
+	float:left;
+}
+.checkCode {
+	width: 73px;
+	margin-right:5px;
+	vertical-align:middle;
+}
+.checkCodeImg {
+	cursor: pointer;
+	vertical-align:middle;
+	float:left;
+	width:70px;
+	height:25px;
+	
+}
+.loginError {
+	color:red;
+	text-align: center;
+	font-size:13px;
+	font-weight:bold;
+	height:25px;
+	line-height:25px;
 }
 
 .loginButton {
