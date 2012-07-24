@@ -4,6 +4,8 @@
 
 @import url("table.css");
 
+@import url("validate.css");
+
 body,html {
 	font-size: 13px;
 	font-family: "宋体";
