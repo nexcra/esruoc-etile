@@ -19,19 +19,8 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 
-	public User getUserDetail(int id) {
-		User user = new User();
-		user.setId(id);
-		Map<String, Object> map = this.userDao.queryForMap(user);
-
-		user.setName((String) map.get("name"));
-
-		return user;
-
-	}
-
 	public Page listUser(Page page) {
-		return this.userDao.listStaff(page);
+		return this.userDao.listUser(page);
 	}
 
 	/**

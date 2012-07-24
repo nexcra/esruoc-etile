@@ -15,15 +15,7 @@ import com.tkxwz.esruocetile.webapp.entity.User;
 @Repository
 public class UserDao extends BaseDao<User> {
 
-	public Map<String, Object> queryForMap(User user) {
-		StringBuilder sql = new StringBuilder();
-		sql.append("select * from t_user t where t.id = ? ");
-		Object[] values = { user.getId() };
-		int[] valueTypes = { Types.INTEGER };
-		return this.queryForMap(sql.toString(), values, valueTypes);
-	}
-
-	public Page listStaff(Page page) {
+	public Page listUser(Page page) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select t.id, t.name, t.password ");
 		sql.append(" from t_user t ");
