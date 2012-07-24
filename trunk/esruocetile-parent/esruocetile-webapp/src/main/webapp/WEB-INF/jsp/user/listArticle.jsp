@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>${title }>>用户列表</title>
+<title>${title }>>文章列表</title>
 <link rel="stylesheet" type="text/css" href="${ctx }/css/main.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript"
@@ -30,13 +30,15 @@
 			$(".checkList").attr("checked", !!$("#checkAll").attr("checked"));
 		});
 
-		//添加用户
-		$("#newUser").click(function() {
-			overrideSelectedTab('newUser', '新增用户', 'user.do?action=toAddUser');
-		});
+		//添加文章
+		$("#newArticle").click(
+				function() {
+					overrideSelectedTab('newArticle', '新增文章',
+							'article.do?action=toAddArticle');
+				});
 
-		//删除用户
-		$("#deleteUser")
+		//删除文章
+		$("#deleteArticle")
 				.click(
 						function() {
 							var checkListArr = "";
@@ -59,23 +61,26 @@
 																+ $(this).val();
 											});
 
-							$.ajax({
-								type : "POST",
-								url : "user.do?action=deleteUser&randomNum="
-										+ new Date().getTime() + Math.random(),
-								cache : false,
-								data : "id=" + checkListArr,
-								dataType : "text",
-								success : function(data) {
-									alert(data);
-									overrideSelectedTab('listUser', '用户管理',
-											'user.do?action=listUser');
-								}
-							});
+							$
+									.ajax({
+										type : "POST",
+										url : "article.do?action=deleteArticle&randomNum="
+												+ new Date().getTime()
+												+ Math.random(),
+										cache : false,
+										data : "id=" + checkListArr,
+										dataType : "text",
+										success : function(data) {
+											alert(data);
+											overrideSelectedTab('listArticle',
+													'文章管理',
+													'article.do?action=listArticle');
+										}
+									});
 						});
 
-		//修改用户
-		$("#updateUser")
+		//修改文章
+		$("#updateArticle")
 				.click(
 						function() {
 							var checkList = $(".checkList:checked"), checkListLength = checkList.length, checkListValue = checkList
@@ -87,18 +92,11 @@
 								alert("对不起，只能选择一项进行修改");
 								return false;
 							}
-							overrideSelectedTab('updateUser', '修改用户',
-									'user.do?action=toUpdateUser&id='
+							overrideSelectedTab('updateArticle', '修改文章',
+									'article.do?action=toUpdateArticle&id='
 											+ checkListValue);
 
 						});
-
-		//修改个人密码
-		$("#updatePersonalPassword").click(
-				function() {
-					window.parent.f_addTab('updatePersonalPassword', '修改个人密码',
-							'user.do?action=toUpdatePersonalPassword');
-				});
 
 	});
 
@@ -117,28 +115,23 @@
 
 	<div class="functionList">
 
-		<div class="button1" id="newUser">
+		<div class="button1" id="newArticle">
 			<div class="button1Left"></div>
 			新增
 			<div class="button1Right"></div>
 		</div>
 
-		<div class="button1" id="updateUser">
+		<div class="button1" id="updateArticle">
 			<div class="button1Left"></div>
 			修改
 			<div class="button1Right"></div>
 		</div>
-		<div class="button1" id="deleteUser">
+		<div class="button1" id="deleteArticle">
 			<div class="button1Left"></div>
 			删除
 			<div class="button1Right"></div>
 		</div>
 
-		<div class="button2" id="updatePersonalPassword">
-			<div class="button1Left"></div>
-			修改个人密码
-			<div class="button1Right"></div>
-		</div>
 
 	</div>
 
@@ -146,7 +139,8 @@
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
-				<th>用户</th>
+				<th>文章名称</th>
+				<!-- 	<th>是否单页面</th> -->
 		</thead>
 		</tr>
 
@@ -154,13 +148,18 @@
 			<tr>
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
-				<td>${list.name }</td>
+				<td>${list.title }</td>
+				<!-- 	<td><c:choose>
+						<c:when test="${list.article_type==1 }">是</c:when>
+						<c:otherwise>否 </c:otherwise>
+					</c:choose></td> -->
 			</tr>
 		</c:forEach>
 
 	</table>
 	<div class="pageBar">
-		<tkxwz:page url="${ctx }/user.do?action=listUser" page="${page }" />
+		<tkxwz:page url="${ctx }/article.do?action=listArticle"
+			page="${page }" />
 	</div>
 </body>
 </html>
