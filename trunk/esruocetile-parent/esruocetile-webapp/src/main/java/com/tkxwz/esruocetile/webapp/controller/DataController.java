@@ -24,10 +24,10 @@ import com.tkxwz.esruocetile.webapp.service.DataService;
 import com.tkxwz.esruocetile.webapp.service.DictService;
 
 /**
- * @author Po Kong 
+ * @author Po Kong
  * @since 2012-7-5 上午10:11:57
  */
-@Controller(value = "/data.html")
+@Controller(value = "/data.do")
 public class DataController {
 
 	@Autowired
@@ -38,7 +38,7 @@ public class DataController {
 
 	@RequestMapping(params = "action=toImport")
 	public String toImportStudentData() {
-		return "importData";
+		return "importData.jsp";
 	}
 
 	@RequestMapping(params = "action=import")
@@ -100,6 +100,6 @@ public class DataController {
 				e.printStackTrace();
 			}
 		}
-		return "importData";
+		return "redirect:/student.do?action=listStudent";
 	}
 }

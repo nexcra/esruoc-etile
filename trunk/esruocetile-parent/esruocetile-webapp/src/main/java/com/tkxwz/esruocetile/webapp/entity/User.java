@@ -1,10 +1,14 @@
 package com.tkxwz.esruocetile.webapp.entity;
 
+import java.io.Serializable;
+
 /**
- * @author Po Kong 
+ * @author Po Kong
  * @since 2012-5-20 上午11:29:11
  */
-public class User {
+public class User implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private int id;
 
