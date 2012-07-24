@@ -21,10 +21,16 @@
 		isexpand : "true",
 		text : "系统管理",
 		children : [ {
+			url : "article.do?action=listArticle",
+			text : "文章管理"
+		},{
+			url : "column.do?action=listColumn",
+			text : "栏目管理"
+		},{
 			url : "user.do?action=listUser",
 			text : "管理员管理"
 		}, {
-			url : "data.html?action=toImport",
+			url : "data.do?action=toImport",
 			text : "导入excel数据"
 		} ]
 
@@ -155,7 +161,8 @@
 		</div>
 		<div position="center" id="framecenter">
 			<div tabid="home" title="我的主页" style="height: 300px">
-				<iframe frameborder="0" name="home" id="home" src="${ctx }/main.do?action=toWelcome"></iframe>
+				<iframe frameborder="0" name="home" id="home"
+					src="${ctx }/main.do?action=toWelcome"></iframe>
 			</div>
 		</div>
 
