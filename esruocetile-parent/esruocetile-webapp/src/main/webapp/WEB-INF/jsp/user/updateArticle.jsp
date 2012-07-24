@@ -13,31 +13,12 @@
 <script type="text/javascript"
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
 <script type="text/javascript">
-	jQuery.validator.addMethod("regex", //addMethod第1个参数:方法名称
-	function(value, element, params) { //addMethod第2个参数:验证方法，参数（被验证元素的值，被验证元素，参数）
-		var exp = new RegExp(params); //实例化正则对象，参数为传入的正则表达式
-		return exp.test(value); //测试是否匹配
-	}, "格式错误"); //addMethod第3个参数:默认错误信息
-
 	$(function() {
 		$("#addForm").validate({
 			rules : {
-				name : {
-					required : true,
-					regex : "^[a-zA-Z_]{5,15}\s*$"
-
-				},
-				password : {
+				title : {
 					required : true
-				},
-				rePassword : {
-					required : true,
-					equalTo : "#password"
-				}
-			},
-			messages : {
-				name : {
-					regex : "请输入以字母、下划线组成的5-30个字符"
+
 				}
 			}
 		});
@@ -45,27 +26,37 @@
 </script>
 </head>
 <body>
-	<div class="functionList">您正在操作：增加用户</div>
-	<form action="${ctx }/user.do?action=addUser" name="addForm"
+	<div class="functionList">您正在操作：修改文章</div>
+	<form action="${ctx }/article.do?action=updateArticle" name="updateForm"
 		id="addForm" method="post">
+		<input type="hidden" name="id" value="${map.id }" /> <input
+			type="hidden" name="orderNum" value="2" /> <input type="hidden"
+			name="hitCount" value="2" />
 		<table width="100%" border="1" class="formTable">
 			<tr>
-				<td class="fieldName" width="40%">用户名:</td>
+				<td class="fieldName" width="40%">标题:</td>
 				<td class="fieldForm" width="60%"><input type="text"
-					name="name" id="name" /><span class="asterisk">*</span></td>
+					name="title" id="title" value="${map.title }" /><span
+					class="asterisk">*</span></td>
 			</tr>
 
 			<tr>
-				<td class="fieldName">密码:</td>
-				<td class="fieldForm"><input type="password" name="password"
-					id="password" /><span class="asterisk">*</span></td>
+				<td class="fieldName" width="40%">栏目:</td>
+				<td class="fieldForm" width="60%"><select name="columnId"
+					id="columnId">
+						<option value="1" selected="selected">栏目1</option>
+				</select></td>
 			</tr>
 
 			<tr>
-				<td class="fieldName">重复密码:</td>
-				<td class="fieldForm"><input type="password" name="rePassword"
-					id="rePassword" /><span class="asterisk">*</span></td>
+				<td class="fieldName">内容:</td>
+				<td class="fieldForm"><textarea cols="40" rows="5"
+						name="content" id="content">
+					 ${map.content } 
+					
+					</textarea></td>
 			</tr>
+
 
 			<tr>
 				<td class="fieldName"></td>
@@ -77,3 +68,4 @@
 	</form>
 </body>
 </html>
+
