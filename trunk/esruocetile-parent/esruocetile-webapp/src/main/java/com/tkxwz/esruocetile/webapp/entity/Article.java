@@ -16,6 +16,16 @@ public class Article implements Serializable {
 	private Integer columnId;
 
 	private String title;
+	private String subTitle;
+	
+	public String getSubTitle() {
+		return subTitle;
+	}
+
+	
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
+	}
 
 	private String content;
 

@@ -1,5 +1,6 @@
 package com.tkxwz.esruocetile.webapp.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,15 @@ public class ColumnService {
 	 */
 	public int updateColumn(Column column) {
 		return this.columnDao.updateColumn(column);
+
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 24 Jul 2012 22:21:51
+	 */
+	public List<Column> listAllColumn() {
+		return this.columnDao.listAllColumn();
 
 	}
 

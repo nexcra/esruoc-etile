@@ -19,6 +19,7 @@ public class ArticleDao extends BaseDao<Article> {
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT a.id, ");
 		sql.append(" a.title, ");
+		sql.append(" a.sub_title, ");
 		sql.append(" b.column_name, ");
 		sql.append(" a.insert_time, ");
 		sql.append(" a.hit_count ");
@@ -31,10 +32,10 @@ public class ArticleDao extends BaseDao<Article> {
 	public int addArticle(Article article) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" insert into t_article  ");
-		sql.append(" ( title, column_id, content,author, keywords, hit_count,insert_time) ");
+		sql.append(" ( title, sub_title, column_id, content,author, keywords, hit_count,insert_time) ");
 		sql.append(" values ");
 		sql.append(" ( ?, ?, ?, ?, ?, ? ,now()) ");
-		Object[] values = { article.getTitle(), article.getColumnId(),
+		Object[] values = { article.getTitle(), article.getSubTitle(), article.getColumnId(),
 				article.getContent(), article.getAuthor(),
 				article.getKeywords(), article.getHitCount() };
 		int[] valueTypes = { Types.VARCHAR, Types.INTEGER, Types.VARCHAR,

@@ -1,7 +1,7 @@
 package com.tkxwz.esruocetile.webapp.controller;
 
 import java.io.IOException;
-import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.core.util.PageUtil;
 import com.tkxwz.esruocetile.webapp.entity.Article;
+import com.tkxwz.esruocetile.webapp.entity.Column;
 import com.tkxwz.esruocetile.webapp.service.ArticleService;
+import com.tkxwz.esruocetile.webapp.service.ColumnService;
 
 /**
  * @author Po Kong
@@ -25,6 +27,9 @@ public class ArticleController {
 
 	@Autowired
 	private ArticleService articleService;
+
+	@Autowired
+	private ColumnService columnService;
 
 	@RequestMapping(params = "action=listArticle")
 	public String listArticle(HttpServletRequest request, String currentPageNum) {
@@ -44,7 +49,9 @@ public class ArticleController {
 	 */
 
 	@RequestMapping(params = "action=toAddArticle")
-	public String toAddArticle() {
+	public String toAddArticle(HttpServletRequest request) {
+		List<Column> list = this.columnService.listAllColumn();
+		request.setAttribute("list", list);
 		return "/article/addArticle.jsp";
 	}
 
@@ -56,10 +63,12 @@ public class ArticleController {
 	 * @return the page to list the Articles
 	 */
 	@RequestMapping(params = "action=addArticle")
-	public String addArticle(String title, Integer columnId,String content, String author,
-			String keywords, String copyFrom, Integer source, Integer hitCount) {
+	public String addArticle(String title, String subTitle, Integer columnId,
+			String content, String author, String keywords, String copyFrom,
+			Integer source, Integer hitCount) {
 		Article article = new Article();
 		article.setTitle(title);
+		article.setSubTitle(subTitle);
 		article.setColumnId(columnId);
 		article.setContent(content);
 		article.setAuthor(author);
