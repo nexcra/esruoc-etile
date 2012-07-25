@@ -1,8 +1,12 @@
 package com.tkxwz.esruocetile.webapp.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Types;
+import java.util.List;
 import java.util.Map;
 
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.tkxwz.esruocetile.core.page.Page;
@@ -85,10 +89,33 @@ public class ColumnDao extends BaseDao<Column> {
 
 		Object[] values = { column.getColumnName(), column.getColumnType(),
 				column.getColumnContent(), column.getDescription(),
-				column.getOrderNum(),column.getId()};
+				column.getOrderNum(), column.getId() };
 		int[] valueTypes = { Types.VARCHAR, Types.INTEGER, Types.VARCHAR,
 				Types.VARCHAR, Types.INTEGER, Types.VARCHAR };
 		return this.update(sql.toString(), values, valueTypes);
 	}
 
+	/**
+	 * @author Po Kong
+	 * @since 24 Jul 2012 22:22:30
+	 * @return
+	 */
+	public List<Column> listAllColumn() {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select t.id, t.column_name ");
+		sql.append(" from t_column t ");
+		sql.append(" where t.column_type <> 1 ");
+
+		return this.queryForList(sql.toString(), new RowMapper<Column>() {
+
+			public Column mapRow(ResultSet rs, int rowNum) throws SQLException {
+				Column column = new Column();
+				column.setId(rs.getInt("id"));
+				column.setColumnName(rs.getString("column_name"));
+				return column;
+			}
+
+		});
+	}
 }

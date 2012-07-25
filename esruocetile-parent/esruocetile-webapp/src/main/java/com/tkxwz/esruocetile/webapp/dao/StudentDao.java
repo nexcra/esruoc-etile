@@ -15,7 +15,7 @@ import com.tkxwz.esruocetile.core.util.ListUtil;
 import com.tkxwz.esruocetile.webapp.entity.Student;
 
 /**
- * @author Po Kong 
+ * @author Po Kong
  * @since 2012-7-6 下午4:46:56
  */
 @Repository
@@ -49,7 +49,6 @@ public class StudentDao extends BaseDao<Student> {
 		return this.queryForObject(sql.toString(), values, valueTypes,
 				new RowMapper<Student>() {
 
-					@Override
 					public Student mapRow(ResultSet rs, int rowNum)
 							throws SQLException {
 						Student student = new Student();
@@ -59,6 +58,7 @@ public class StudentDao extends BaseDao<Student> {
 						student.setIdNo(rs.getString("id_no"));
 						return student;
 					}
+
 				});
 	}
 

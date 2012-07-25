@@ -79,7 +79,7 @@ public class CheckCodeServlet extends HttpServlet {
 			sRand += tmp;
 			g.setColor(new Color(20 + random.nextInt(110), 20 + random
 					.nextInt(110), 20 + random.nextInt(110)));
-			g.drawString(tmp, 10 * i + 10, 15);
+			g.drawString(tmp, 10 * i + 10, 18);
 		}
 		HttpSession session = request.getSession(true);
 		session.setAttribute("checkCodeInSession", sRand);
