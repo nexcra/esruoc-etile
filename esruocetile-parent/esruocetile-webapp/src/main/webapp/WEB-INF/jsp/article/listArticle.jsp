@@ -11,7 +11,6 @@
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript"
 	src="${ctx }/widget/My97DatePicker/WdatePicker.js"></script>
-
 <script type="text/javascript">
 	$(function() {
 		//按纽样式
@@ -97,6 +96,12 @@
 											+ checkListValue);
 
 						});
+		$(".view").click(
+				function() {
+					overrideSelectedTab('viewArticle', '查看文章',
+							'article.do?action=viewArticle&id='
+									+ $(this).attr("value"));
+				});
 
 	});
 
@@ -143,6 +148,7 @@
 				<th>所属栏目</th>
 				<th>状态</th>
 				<th>添加时间</th>
+				<th>操作</th>
 		</thead>
 		</tr>
 
@@ -160,6 +166,9 @@
 					</c:choose></td>
 				<td><fmt:formatDate value="${list.insert_time }"
 						pattern="yyyy-MM-dd hh:ss:mm" /></td>
+				<td>
+					<div class="view operationButton" value="${list.id }">查看</div>
+				</td>
 		</c:forEach>
 
 	</table>
