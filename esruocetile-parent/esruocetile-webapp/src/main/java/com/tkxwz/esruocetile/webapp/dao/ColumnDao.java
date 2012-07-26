@@ -23,6 +23,7 @@ public class ColumnDao extends BaseDao<Column> {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select t.id, t.column_name, t.column_type, t.show_on_nav, t.show_on_index_page,  t.order_num ");
 		sql.append(" from t_column t ");
+		sql.append(" order by t.order_num desc, t.id desc ");
 		return this.queryForPage(sql.toString(), page);
 	}
 
@@ -106,6 +107,7 @@ public class ColumnDao extends BaseDao<Column> {
 		sql.append(" select t.id, t.column_name ");
 		sql.append(" from t_column t ");
 		sql.append(" where t.column_type <> 1 ");
+		sql.append(" order by t.order_num desc, t.id desc ");
 
 		return this.queryForList(sql.toString(), new RowMapper<Column>() {
 

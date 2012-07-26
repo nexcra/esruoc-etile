@@ -26,7 +26,7 @@
 </script>
 </head>
 <body>
-	<div class="functionList">您正在操作：增加栏目</div>
+	<!-- <div class="functionList">您正在操作：增加栏目</div>-->
 	<form action="${ctx }/column.do?action=addColumn" name="addForm"
 		id="addForm" method="post">
 		<input type="hidden" name="orderNum" value="2" />
@@ -47,10 +47,7 @@
 			<tr>
 				<td class="fieldName">说明:</td>
 				<td class="fieldForm"><textarea cols="40" rows="5"
-						name="description" id="description">
-					
-					
-					</textarea></td>
+						name="description" id="description"></textarea></td>
 			</tr>
 
 

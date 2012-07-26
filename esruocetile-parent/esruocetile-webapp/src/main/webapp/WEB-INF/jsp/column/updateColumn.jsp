@@ -25,7 +25,7 @@ $(function() {
 </script>
 </head>
 <body>
-	<div class="functionList">您正在操作：修改栏目</div>
+	<!-- <div class="functionList">您正在操作：修改栏目</div>-->
 	<form action="${ctx }/column.do?action=updateColumn" name="updateForm"
 		id="updateForm" method="post">
 		<input type="hidden" name="id" id="id" value="${map.id }" />
@@ -47,10 +47,7 @@ $(function() {
 			<tr>
 				<td class="fieldName">说明:</td>
 				<td class="fieldForm"><textarea cols="40" rows="5"
-						name="description" id="description" >
-					 ${map.description } 
-					
-					</textarea></td>
+						name="description" id="description" >${map.description }</textarea></td>
 			</tr>
 			<tr>
 				<td class="fieldName"></td>

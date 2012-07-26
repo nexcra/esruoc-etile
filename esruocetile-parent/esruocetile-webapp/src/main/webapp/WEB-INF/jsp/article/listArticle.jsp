@@ -141,16 +141,25 @@
 				<th><input type="checkbox" id="checkAll" /></th>
 				<th>文章名称</th>
 				<th>所属栏目</th>
+				<th>状态</th>
+				<th>添加时间</th>
 		</thead>
 		</tr>
 
 		<c:forEach items="${page.pageDatas }" var="list">
-			<tr>
+			<tr title="${list.title }
+			">
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
 				<td>${list.title }</td>
 				<td>${list.column_name }</td>
-			</tr>
+				<td><c:choose>
+						<c:when test="${list.status ==1 }">已发布</c:when>
+						<c:when test="${list.status ==2 }">待发布</c:when>
+						<c:otherwise>未知状态 </c:otherwise>
+					</c:choose></td>
+				<td><fmt:formatDate value="${list.insert_time }"
+						pattern="yyyy-MM-dd hh:ss:mm" /></td>
 		</c:forEach>
 
 	</table>
