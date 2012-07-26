@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx }/css/validate.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${ctx }/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
 <script type="text/javascript">
@@ -27,7 +28,7 @@
 		if ($("#copyFrom").val() != "") {
 			$("#copyFromRow").show();
 		}
-		
+
 		//展开收缩文章来源为转载时的"转载地址"
 		$("#source").change(function() {
 			if ($(this).val() == 2) {
@@ -134,8 +135,12 @@
 			</tr>
 		</table>
 	</form>
-	<ckeditor:replace replace="content" basePath="${ctx }/ckeditor/" />
+	<script type="text/javascript">
+		CKEDITOR.replace('content', {
+			filebrowserUploadUrl : 'ckeditor/uploader?Type=File',
+			filebrowserImageUploadUrl : 'ckeditor/uploader?Type=Image',
+			filebrowserFlashUploadUrl : 'ckeditor/uploader?Type=Flash'
+		});
+	</script>
 </body>
 </html>
-
-
