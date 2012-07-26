@@ -13,6 +13,27 @@
 <script type="text/javascript"
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
 <script type="text/javascript">
+		if ( typeof CKEDITOR == 'undefined' )
+		{
+		  document.write('加载失败') ;
+		}
+		else
+		{
+		  //var editor = CKEDITOR.replace( 'editor1',
+		  //     {
+			//		customConfig: "news_ck_config.js"
+		//		});
+		 
+		  var editor = CKEDITOR.replace( 'editor1');
+				
+		  CKEDITOR.on('instanceReady', function(evt){
+	         var editor = evt.editor;
+	         editor.execCommand('maximize');
+	      });
+		}
+
+</script>
+<script type="text/javascript">
 	$(function() {
 		$("#addForm").validate({
 			rules : {
@@ -23,6 +44,7 @@
 			}
 		});
 
+		//展开收缩文章来源为转载时的"转载地址"
 		$("#source").change(function() {
 			if ($(this).val() == 2) {
 				$("#copyFromRow").show();
@@ -34,7 +56,7 @@
 </script>
 </head>
 <body>
-	<div class="functionList">您正在操作：增加文章</div>
+	<!-- <div class="functionList">您正在操作：添加文章</div>-->
 	<form action="${ctx }/article.do?action=addArticle" name="addForm"
 		id="addForm" method="post">
 		<input type="hidden" name="orderNum" value="2" /> <input
@@ -42,14 +64,14 @@
 		<table width="100%" border="1" class="formTable">
 			<tr>
 				<td class="fieldName" width="100">标题:</td>
-				<td class="fieldForm" width="900"><input type="text"  style="length:200px;"
-					name="title" id="title"  /><span class="asterisk">*</span></td>
+				<td class="fieldForm" width="900"><input type="text"
+					class="width400" name="title" id="title" /><span class="asterisk">*</span></td>
 			</tr>
 
 			<tr>
 				<td class="fieldName" width="100">副标题:</td>
 				<td class="fieldForm" width="900"><input type="text"
-					name="subTitle" id="subTitle" /></td>
+					class="width400" name="subTitle" id="subTitle" /></td>
 			</tr>
 
 			<tr>
@@ -58,20 +80,27 @@
 					id="source">
 						<option value="1" selected="selected">本站原创</option>
 						<option value="2" id="copyFromOption">转载</option>
-				</select></td>
+				</select><span class="asterisk">*</span></td>
 			</tr>
 			<tr id="copyFromRow" style="display: none;">
 				<td class="fieldName" width="100">转载地址:</td>
 				<td class="fieldForm" width="900"><input type="text"
-					name="copyFrom" id="copyFrom" /></td>
+					class="width400" name="copyFrom" id="copyFrom" /></td>
 			</tr>
 
-
+			<tr>
+				<td class="fieldName" width="100">状态:</td>
+				<td class="fieldForm" width="900"><select id="status"
+					name="status">
+						<option value="1" selected="selected">正式发布</option>
+						<option value="2">待发布</option>
+				</select></td>
+			</tr>
 
 			<tr>
 				<td class="fieldName" width="100">关键字:</td>
 				<td class="fieldForm" width="900"><input type="text"
-					name="keywords" id="keywords" /></td>
+					class="width400" name="keywords" id="keywords" />多个关键字以空格隔开</td>
 			</tr>
 			<tr>
 				<td class="fieldName">栏目:</td>
@@ -80,17 +109,14 @@
 							<option value="${list.id }">${list.columnName }</option>
 						</c:forEach>
 
-				</select></td>
+				</select><span class="asterisk">*</span></td>
 			</tr>
 
 			<tr>
 				<td class="fieldName">内容:</td>
-				<td class="fieldForm"><textarea cols="40" rows="5"
-						name="editor1" id="editor1">
+				<td class="fieldForm"><textarea name="content" id="content">
 					</textarea></td>
 			</tr>
-
-
 
 			<tr>
 				<td class="fieldName"></td>
@@ -100,6 +126,6 @@
 			</tr>
 		</table>
 	</form>
-	<ckeditor:replace replace="editor1" basePath="${ctx }/ckeditor/" />
+	<ckeditor:replace replace="content" basePath="${ctx }/ckeditor/" />
 </body>
 </html>

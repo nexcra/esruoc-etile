@@ -63,12 +63,14 @@ public class ArticleController {
 	 * @return the page to list the Articles
 	 */
 	@RequestMapping(params = "action=addArticle")
-	public String addArticle(String title, String subTitle, Integer columnId,
-			String content, String author, String keywords, String copyFrom,
-			Integer source, Integer hitCount) {
+	public String addArticle(HttpServletRequest request, String title,
+			String subTitle, Integer columnId, Integer status, String content,
+			String author, String keywords, String copyFrom, Integer source,
+			Integer hitCount) {
 		Article article = new Article();
 		article.setTitle(title);
 		article.setSubTitle(subTitle);
+		article.setStatus(status);
 		article.setColumnId(columnId);
 		article.setContent(content);
 		article.setAuthor(author);
@@ -76,6 +78,8 @@ public class ArticleController {
 		article.setCopyFrom(copyFrom);
 		article.setSource(source);
 		article.setHitCount(hitCount);
+		article.setAuthor((String) request.getSession().getAttribute(
+				"adminName"));
 
 		int result = this.articleService.addArticle(article);
 		return "redirect:article.do?action=listArticle";
@@ -94,22 +98,30 @@ public class ArticleController {
 	public String toUpdateArticle(HttpServletRequest request, String id) {
 		Map map = this.articleService.getArticleById(id);
 		request.setAttribute("map", map);
+		List<Column> list = this.columnService.listAllColumn();
+		request.setAttribute("list", list);
 		return "/article/updateArticle.jsp";
 	}
 
 	@RequestMapping(params = "action=updateArticle")
-	public String updateArticle(int id, String title, String content,
-			String author, String keywords, String copyFrom, Integer source,
-			Integer hitCount) {
+	public String updateArticle(HttpServletRequest request, int id,
+			String title, String subTitle, Integer columnId, Integer status,
+			String content, String author, String keywords, String copyFrom,
+			Integer source, Integer hitCount) {
 		Article article = new Article();
 		article.setId(id);
 		article.setTitle(title);
+		article.setSubTitle(subTitle);
+		article.setStatus(status);
+		article.setColumnId(columnId);
 		article.setContent(content);
 		article.setAuthor(author);
 		article.setKeywords(keywords);
 		article.setCopyFrom(copyFrom);
 		article.setSource(source);
 		article.setHitCount(hitCount);
+		article.setAuthor((String) request.getSession().getAttribute(
+				"adminName"));
 
 		int result = this.articleService.updateArticle(article);
 		return "redirect:article.do?action=listArticle";

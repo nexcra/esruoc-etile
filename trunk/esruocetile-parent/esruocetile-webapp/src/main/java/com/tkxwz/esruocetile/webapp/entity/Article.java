@@ -16,16 +16,10 @@ public class Article implements Serializable {
 	private Integer columnId;
 
 	private String title;
-	private String subTitle;
-	
-	public String getSubTitle() {
-		return subTitle;
-	}
 
-	
-	public void setSubTitle(String subTitle) {
-		this.subTitle = subTitle;
-	}
+	private String subTitle;
+
+	private Integer status;
 
 	private String content;
 
@@ -45,6 +39,22 @@ public class Article implements Serializable {
 
 	public Integer getId() {
 		return id;
+	}
+
+	public String getSubTitle() {
+		return subTitle;
+	}
+
+	public void setSubTitle(String subTitle) {
+		this.subTitle = subTitle;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	public void setId(Integer id) {
