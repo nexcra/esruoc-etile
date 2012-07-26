@@ -1,7 +1,7 @@
 package com.tkxwz.esruocetile.core.constant;
 
 /**
- * @author Po Kong 
+ * @author Po Kong
  * @since 2012-2-25 下午2:45:04
  */
 public class CommonConstants {
@@ -20,4 +20,5 @@ public class CommonConstants {
 	 * 分页组件中当前页参数名字
 	 */
 	public static final String CURRENT_PAGE_LINK_NAME = "currentPageNum";
+
 }
