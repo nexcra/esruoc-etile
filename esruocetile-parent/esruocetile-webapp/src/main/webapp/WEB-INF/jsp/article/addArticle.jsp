@@ -10,29 +10,9 @@
 <link rel="stylesheet" type="text/css" href="${ctx }/css/validate.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${ctx }/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
-<script type="text/javascript">
-		if ( typeof CKEDITOR == 'undefined' )
-		{
-		  document.write('加载失败') ;
-		}
-		else
-		{
-		  //var editor = CKEDITOR.replace( 'editor1',
-		  //     {
-			//		customConfig: "news_ck_config.js"
-		//		});
-		 
-		  var editor = CKEDITOR.replace( 'editor1');
-				
-		  CKEDITOR.on('instanceReady', function(evt){
-	         var editor = evt.editor;
-	         editor.execCommand('maximize');
-	      });
-		}
-
-</script>
 <script type="text/javascript">
 	$(function() {
 		$("#addForm").validate({
@@ -126,6 +106,13 @@
 			</tr>
 		</table>
 	</form>
-	<ckeditor:replace replace="content" basePath="${ctx }/ckeditor/" />
+	 
+	<script type="text/javascript">
+		CKEDITOR.replace('content', {
+			filebrowserUploadUrl : 'ckeditor/uploader?Type=File',
+			filebrowserImageUploadUrl : 'ckeditor/uploader?Type=Image',
+			filebrowserFlashUploadUrl : 'ckeditor/uploader?Type=Flash'
+		});
+	</script>
 </body>
 </html>
