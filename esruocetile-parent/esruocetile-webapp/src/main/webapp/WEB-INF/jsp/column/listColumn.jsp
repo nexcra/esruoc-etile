@@ -181,7 +181,12 @@
 				<th>操作</th>
 			</tr>
 		</thead>
+		<c:if test="${empty page.pageDatas }">
+			<tr>
+				<td colspan="4">对不起，暂时没有数据</td>
+			</tr>
 
+		</c:if>
 		<c:forEach items="${page.pageDatas }" var="list" varStatus="vs">
 			<tr <c:if test="${vs.index %2==1 }">
 					class="a1"

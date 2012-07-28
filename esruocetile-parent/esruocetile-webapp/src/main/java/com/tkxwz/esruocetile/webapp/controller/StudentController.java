@@ -28,8 +28,7 @@ public class StudentController {
 	private StudentService studentService;
 
 	@RequestMapping(params = "action=listStudent")
-	public String listStudent(HttpServletRequest request,
-			String currentPageNum) {
+	public String listStudent(HttpServletRequest request, String currentPageNum) {
 		Page page = new Page();
 		page = new Page(PageUtil.getPageNum(currentPageNum));
 		this.studentService.listStudent(page);
@@ -99,6 +98,19 @@ public class StudentController {
 		Map map = this.studentService.getStudentById(id);
 		request.setAttribute("map", map);
 		return "/student/viewStudent.jsp";
+	}
+
+	@RequestMapping(params = "action=searchStudent")
+	public String searchStudent(HttpServletRequest request,
+			String currentPageNum) throws IllegalAccessException,
+			InvocationTargetException {
+		Student student = new Student();
+		BeanUtil.populate(student, request.getParameterMap());
+		Page page = new Page();
+		page = new Page(PageUtil.getPageNum(currentPageNum));
+		this.studentService.searchStudent(page, student);
+		request.setAttribute("page", page);
+		return "/student/listStudent.jsp";
 	}
 
 }

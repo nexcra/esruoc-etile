@@ -179,15 +179,18 @@
 				<th><input type="checkbox" id="checkAll" /></th>
 				<th>用户</th>
 				<th>操作</th>
-		</tr>
+			</tr>
 		</thead>
+		<c:if test="${empty page.pageDatas }">
+			<tr>
+				<td colspan="3">对不起，暂时没有数据</td>
+			</tr>
 
+		</c:if>
 		<c:forEach items="${page.pageDatas }" var="list" varStatus="vs">
-			<tr 
-				<c:if test="${vs.index %2==1 }">
+			<tr <c:if test="${vs.index %2==1 }">
 					class="a1"
-				</c:if>
-			>
+				</c:if>>
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
 				<td>${list.name }</td>

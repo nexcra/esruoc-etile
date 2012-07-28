@@ -171,7 +171,46 @@
 
 
 	</div>
+	<form action="${ctx }/student.do?action=searchStudent" name="queryForm"
+		id="queryForm" method="post">
+		<table width="100%" border="1" class="formTable">
+			<tr>
+				<td class="fieldName">学号:</td>
+				<td class="fieldForm"><input type="text" name="studentNo"
+					id="studentNo" /></td>
+				<td class="fieldName">姓名:</td>
+				<td class="fieldForm"><input type="text" name="name" id="name" />
+				</td>
+			</tr>
 
+			<tr>
+				<td class="fieldName">性别:</td>
+				<td class="fieldForm"><select name="gender" id="gender">
+						<option>全部</option>
+						<option>男</option>
+						<option>女</option>
+				</select></td>
+				<td class="fieldName">身份证号:</td>
+				<td class="fieldForm"><input type="text" name="idNo" id="idNo" /></td>
+			</tr>
+
+
+			<tr>
+				<td class="fieldName">专业:</td>
+				<td class="fieldForm"><input type="text" name="major"
+					id="major" /></td>
+				<td class="fieldName">行政班:</td>
+				<td class="fieldForm"><input type="text" name="executiveClaas"
+					id="executiveClaas" /></td>
+			</tr>
+			<tr>
+				<td colspan="4" align="center"><input type="submit" value="查询"
+					class="submitButton" /> <input type="reset" value="重置"
+					class="resetButton" /></td>
+				</td>
+			</tr>
+		</table>
+	</form>
 	<table width="100%" id="mytab" border="1" class="t1">
 		<thead>
 			<tr>
@@ -188,7 +227,12 @@
 				<th>操作</th>
 			</tr>
 		</thead>
+		<c:if test="${empty page.pageDatas }">
+			<tr>
+				<td colspan="11">对不起，暂时没有数据</td>
+			</tr>
 
+		</c:if>
 		<c:forEach items="${page.pageDatas }" var="list" varStatus="vs">
 			<tr <c:if test="${vs.index %2==1 }">
 					class="a1"

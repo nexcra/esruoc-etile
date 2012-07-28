@@ -3,13 +3,16 @@ package com.tkxwz.esruocetile.webapp.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.tkxwz.esruocetile.core.page.Page;
+import com.tkxwz.esruocetile.core.util.ListUtil;
 import com.tkxwz.esruocetile.webapp.entity.Student;
 
 /**
@@ -120,27 +123,40 @@ public class StudentDao extends BaseDao<Student> {
 		return this.update(sql.toString(), values, valueTypes);
 	}
 
-	/**
-	 * @author Po Kong
-	 * @since 24 Jul 2012 22:22:30
-	 * @return
-	 */
-	public List<Student> listAllStudent() {
-
+	public Page searchStudent(Page page, Student student) {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select t.id, t.student_name ");
-		sql.append(" from t_student t ");
-		sql.append(" where t.student_type <> 1 ");
-		sql.append(" order by t.order_num desc, t.id desc ");
+		sql.append(" select t.* from t_student t ");
+		sql.append(" where 1 = 1 ");
+		List<Object> valuesList = new ArrayList<Object>();
+		List<Integer> valueTypesList = new ArrayList<Integer>();
+		if (StringUtils.isNotEmpty(student.getStudentNo())) {
+			sql.append(" and t.student_no like '%" + student.getStudentNo()
+					+ "%'");
+		}
 
-		return this.queryForList(sql.toString(), new RowMapper<Student>() {
+		if (StringUtils.isNotEmpty(student.getName())) {
+			sql.append(" and t.name like  '%" + student.getName() + "%'");
+		}
+		if (StringUtils.isNotEmpty(student.getGender())
+				&& !"全部".equals(student.getGender())) {
+			sql.append(" and t.gender = ? ");
+			valuesList.add(student.getGender());
+			valueTypesList.add(Types.VARCHAR);
+		}
+		if (StringUtils.isNotEmpty(student.getIdNo())) {
+			sql.append(" and t.id_no like '%" + student.getIdNo() + "%'");
+		}
+		if (StringUtils.isNotEmpty(student.getMajor())) {
+			sql.append(" and t.major like '%" + student.getMajor() + "%'");
+		}
+		if (StringUtils.isNotEmpty(student.getExecutiveClaas())) {
+			sql.append(" and t.executive_class like '%"
+					+ student.getExecutiveClaas() + "%'");
+		}
+		Object[] values = ListUtil.list2objectArray(valuesList);
+		int[] valueTypes = ListUtil.list2intArray(valueTypesList);
 
-			public Student mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Student student = new Student();
-				student.setId(rs.getInt("id"));
-				return student;
-			}
-
-		});
+		return queryForPage(sql.toString(), values, valueTypes, page);
 	}
+
 }

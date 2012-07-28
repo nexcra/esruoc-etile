@@ -79,13 +79,4 @@ public class TestBookingService {
 
 	}
 
-	/**
-	 * @author Po Kong
-	 * @since 24 Jul 2012 22:21:51
-	 */
-	public List<TestBooking> listAllTestBooking() {
-		return this.testBookingDao.listAllTestBooking();
-
-	}
-
 }
