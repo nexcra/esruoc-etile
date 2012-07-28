@@ -112,28 +112,4 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 		return this.update(sql.toString(), values, valueTypes);
 	}
 
-	/**
-	 * @author Po Kong
-	 * @since 24 Jul 2012 22:22:30
-	 * @return
-	 */
-	public List<TestBooking> listAllTestBooking() {
-
-		StringBuilder sql = new StringBuilder();
-		sql.append(" select t.id, t.testBooking_name ");
-		sql.append(" from t_test_booking t ");
-		sql.append(" where t.testBooking_type <> 1 ");
-		sql.append(" order by t.order_num desc, t.id desc ");
-
-		return this.queryForList(sql.toString(), new RowMapper<TestBooking>() {
-
-			public TestBooking mapRow(ResultSet rs, int rowNum)
-					throws SQLException {
-				TestBooking testBooking = new TestBooking();
-				testBooking.setId(rs.getInt("id"));
-				return testBooking;
-			}
-
-		});
-	}
 }
