@@ -27,6 +27,9 @@
 			url : "column.do?action=listColumn",
 			text : "栏目管理"
 		}, {
+			url : "student.do?action=listStudent",
+			text : "学生信息管理"
+		},  {
 			url : "testBooking.do?action=listTestBooking",
 			text : "考试预约信息"
 		}, {
