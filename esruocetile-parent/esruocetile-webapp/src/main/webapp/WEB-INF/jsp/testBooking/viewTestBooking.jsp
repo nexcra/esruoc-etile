@@ -12,8 +12,8 @@
 	$(function() {
 		$("#returnButton").click(
 				function() {
-					overrideSelectedTab('listTestBooking', '考试预约信息',
-							'testBooking.do?action=listTestBooking');
+					overrideSelectedTab('listTestBooking', '学生信息管理',
+							'student.do?action=listStudent');
 				});
 
 	});
@@ -78,6 +78,5 @@
 				class="submitButton" id="returnButton" /></td>
 		</tr>
 	</table>
-	</form>
 </body>
 </html>
