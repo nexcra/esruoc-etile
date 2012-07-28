@@ -95,4 +95,11 @@ public class ColumnController {
 		return "redirect:column.do?action=listColumn";
 	}
 
+	@RequestMapping(params = "action=viewColumn")
+	public String viewColumn(HttpServletRequest request, String id) {
+		Map map = this.columnService.getColumnById(id);
+		request.setAttribute("map", map);
+		return "/column/viewColumn.jsp";
+	}
+
 }
