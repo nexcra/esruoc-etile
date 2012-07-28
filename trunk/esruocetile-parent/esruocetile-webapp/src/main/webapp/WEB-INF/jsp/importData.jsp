@@ -35,10 +35,27 @@
 <body>
 	<form action="data.do?action=import" name="importForm" id="importForm"
 		method="post" enctype="multipart/form-data">
-		<div>请选择excel 2003及其以下版本的文件导入</div>
-		<div>下载<a href="#">导入模板</a></div>
-		<input type="file" name="importExcel" id="importExcel"> <input
-			type="submit" value="导入">
+		<table width="100%" border="1" class="formTable">
+			<tr>
+				<td class="fieldName">文件:</td>
+				<td class="fieldForm"><input type="file" name="importExcel"
+					id="importExcel" class="inputText" /></td>
+			</tr>
+
+			<tr>
+				<td class="fieldName">说明:</td>
+				<td class="fieldForm">导入文件为excel,并且此excel必须符合模板中的格式方可导入！</a><a
+					href="import.xls">导入模板下载</a>
+				</td>
+			</tr>
+
+			<tr>
+				<td class="fieldName"></td>
+				<td class="fieldForm"><input type="submit" value="导入"
+					class="submitButton" /> <input type="reset" value="重置"
+					class="resetButton" /></td>
+			</tr>
+		</table>
 	</form>
 </body>
 </html>
