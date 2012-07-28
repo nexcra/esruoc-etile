@@ -96,11 +96,41 @@
 											+ checkListValue);
 
 						});
+		//更新
+		$(".update").click(
+				function() {
+					overrideSelectedTab('updateArticle', '修改文章',
+							'article.do?action=toUpdateArticle&id='
+									+ $(this).attr("value"));
+				});
+
+		//删除
+		$(".delete").click(
+				function() {
+
+					if (!confirm("您真的要删除吗?")) {
+						return false;
+					}
+
+					$.ajax({
+						type : "POST",
+						url : "article.do?action=deleteArticle&randomNum="
+								+ new Date().getTime() + Math.random(),
+						cache : false,
+						data : "id=" + $(this).attr("value"),
+						dataType : "text",
+						success : function(data) {
+							alert(data);
+							overrideSelectedTab('listArticle', '文章管理',
+									'article.do?action=listArticle');
+						}
+					});
+				});
+		//查看
 		$(".view").click(
 				function() {
-					overrideSelectedTab('viewArticle', '查看文章',
-							'article.do?action=viewArticle&id='
-									+ $(this).attr("value"));
+					window.open('article.do?action=viewArticle&id='
+							+ $(this).attr("value"), "_blank");
 				});
 
 	});
@@ -140,7 +170,7 @@
 
 	</div>
 
-	<table width="90%" id="mytab" border="1" class="t1">
+	<table width="100%" id="mytab" border="1" class="t1">
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
@@ -149,12 +179,17 @@
 				<th>状态</th>
 				<th>添加时间</th>
 				<th>操作</th>
+			</tr>
 		</thead>
-		</tr>
 
-		<c:forEach items="${page.pageDatas }" var="list">
-			<tr title="${list.title }
-			">
+		<c:forEach items="${page.pageDatas }" var="list" varStatus="vs">
+			<tr
+				title="${list.title }"
+				<c:if test="${vs.index %2==1 }">
+					class="a1"
+				
+				</c:if>
+			> 
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
 				<td>${list.title }</td>
@@ -166,9 +201,11 @@
 					</c:choose></td>
 				<td><fmt:formatDate value="${list.insert_time }"
 						pattern="yyyy-MM-dd hh:ss:mm" /></td>
-				<td>
-					<div class="view operationButton" value="${list.id }">查看</div>
-				</td>
+				<td><span class="update operationButton" value="${list.id }">修改</span>
+					<span class="operationButton">|</span> <span
+					class="delete operationButton" value="${list.id }">删除</span><span
+					class="operationButton">|</span> <span class="view operationButton"
+					value="${list.id }">查看</span></td>
 		</c:forEach>
 
 	</table>

@@ -11,7 +11,7 @@
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
 <script type="text/javascript"
-	src="${ctx }/widget/widget/ckeditor/ckeditor.js"></script>
+	src="${ctx }/widget/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
 <script type="text/javascript">
