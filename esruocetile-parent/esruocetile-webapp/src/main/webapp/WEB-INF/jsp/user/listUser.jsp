@@ -99,6 +99,37 @@
 					window.parent.f_addTab('updatePersonalPassword', '修改个人密码',
 							'user.do?action=toUpdatePersonalPassword');
 				});
+		
+		//更新
+		$(".update").click(
+				function() {
+					overrideSelectedTab('updateUser', '修改用户',
+							'user.do?action=toUpdateUser&id='
+									+ $(this).attr("value"));
+				});
+
+		//删除
+		$(".delete").click(
+				function() {
+
+					if (!confirm("您真的要删除吗?")) {
+						return false;
+					}
+
+					$.ajax({
+						type : "POST",
+						url : "user.do?action=deleteUser&randomNum="
+								+ new Date().getTime() + Math.random(),
+						cache : false,
+						data : "id=" + $(this).attr("value"),
+						dataType : "text",
+						success : function(data) {
+							alert(data);
+							overrideSelectedTab('listUser', '用户管理',
+									'user.do?action=listUser');
+						}
+					});
+				});
 
 	});
 
@@ -142,19 +173,27 @@
 
 	</div>
 
-	<table width="90%" id="mytab" border="1" class="t1">
+	<table width="100%" id="mytab" border="1" class="t1">
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
 				<th>用户</th>
-		</thead>
+				<th>操作</th>
 		</tr>
+		</thead>
 
-		<c:forEach items="${page.pageDatas }" var="list">
-			<tr>
+		<c:forEach items="${page.pageDatas }" var="list" varStatus="vs">
+			<tr 
+				<c:if test="${vs.index %2==1 }">
+					class="a1"
+				</c:if>
+			>
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
 				<td>${list.name }</td>
+				<td><span class="update operationButton" value="${list.id }">修改</span>
+					<span class="operationButton">|</span> <span
+					class="delete operationButton" value="${list.id }">删除</span></td>
 			</tr>
 		</c:forEach>
 
