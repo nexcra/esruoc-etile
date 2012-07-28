@@ -16,7 +16,7 @@
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#addForm").validate({
+		$("#updateForm").validate({
 			rules : {
 				name : {
 					required : true 
@@ -39,8 +39,8 @@
 </script>
 </head>
 <body>
-	<form action="${ctx }/testBooking.do?action=addTestBooking"
-		name="addForm" id="addForm" method="post">
+	<form action="${ctx }/testBooking.do?action=updateTestBooking"
+		name="updateForm" id="updateForm" method="post">
 		<input type="hidden" name="id" value="${map.id }" />
 		<table width="100%" border="1" class="formTable">
 			<tr>
