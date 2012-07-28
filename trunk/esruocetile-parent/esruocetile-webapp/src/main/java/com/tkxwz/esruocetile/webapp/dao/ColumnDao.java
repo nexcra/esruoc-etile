@@ -21,7 +21,7 @@ public class ColumnDao extends BaseDao<Column> {
 
 	public Page listColumn(Page page) {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select t.id, t.column_name, t.column_type, t.show_on_nav, t.show_on_index_page,  t.order_num ");
+		sql.append(" select t.id, t.column_name, t.column_type, t.show_on_nav, t.show_on_index_page, t.insert_time, t.update_time,  t.order_num ");
 		sql.append(" from t_column t ");
 		sql.append(" order by t.order_num desc, t.id desc ");
 		return this.queryForPage(sql.toString(), page);
@@ -30,9 +30,9 @@ public class ColumnDao extends BaseDao<Column> {
 	public int addColumn(Column column) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" insert into t_column  ");
-		sql.append(" ( column_name, column_type ,column_content,description,order_num,insert_time ) ");
+		sql.append(" ( column_name, column_type ,column_content,description,order_num,insert_time ,update_time) ");
 		sql.append(" values ");
-		sql.append(" ( ?, ?, ?, ?, ?  ,now()) ");
+		sql.append(" ( ?, ?, ?, ?, ?  ,now(),now()) ");
 		Object[] values = { column.getColumnName(), column.getColumnType(),
 				column.getColumnContent(), column.getDescription(),
 				column.getOrderNum() };
@@ -85,7 +85,8 @@ public class ColumnDao extends BaseDao<Column> {
 		sql.append("     t.column_type = ? ,   ");
 		sql.append("     t.column_content = ? ,  ");
 		sql.append("     t.description = ?,   ");
-		sql.append("     t.order_num = ?   ");
+		sql.append("     t.order_num = ?,  ");
+		sql.append("     t.update_time = now()   ");
 		sql.append(" where t.id = ? ");
 
 		Object[] values = { column.getColumnName(), column.getColumnType(),
