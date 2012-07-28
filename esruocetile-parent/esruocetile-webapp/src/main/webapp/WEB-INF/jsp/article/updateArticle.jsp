@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx }/css/validate.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="${ctx }/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="${ctx }/widget/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
 <script type="text/javascript">
