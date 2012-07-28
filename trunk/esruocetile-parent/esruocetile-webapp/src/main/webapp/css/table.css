@@ -35,7 +35,7 @@ h1,h2,h3 {
 .title th,.title td {
 	border: 1px solid #CAD9EA;
 	padding: 5px;
-	font-size: 13px;
+	font-size: 12px;
 }
 
 table.t1 {
@@ -46,7 +46,7 @@ table.t1 {
 table.t1 th {
 	background: url(../images/skin/default/table/th_bg1.gif) repeat-x;
 	height: 30px;
-	font-size: 14px;
+	font-size: 13px;
 	font-weight: bold;
 }
 
