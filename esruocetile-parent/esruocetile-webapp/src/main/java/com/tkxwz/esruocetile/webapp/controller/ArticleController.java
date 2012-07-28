@@ -127,4 +127,11 @@ public class ArticleController {
 		return "redirect:article.do?action=listArticle";
 	}
 
+	@RequestMapping(params = "action=viewArticle")
+	public String viewArticle(HttpServletRequest request, String id) {
+		Map map = this.articleService.getArticleById(id);
+		request.setAttribute("map", map);
+		return "/front/viewArticle.jsp";
+	}
+
 }
