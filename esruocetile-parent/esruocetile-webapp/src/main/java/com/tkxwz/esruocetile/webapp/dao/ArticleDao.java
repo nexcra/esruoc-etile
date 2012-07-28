@@ -23,6 +23,7 @@ public class ArticleDao extends BaseDao<Article> {
 		sql.append(" a.status, ");
 		sql.append(" b.column_name, ");
 		sql.append(" a.insert_time, ");
+		sql.append(" a.update_time, ");
 		sql.append(" a.hit_count ");
 		sql.append(" FROM t_article a, t_column b ");
 		sql.append(" WHERE a.column_id = b.id ");
@@ -44,10 +45,11 @@ public class ArticleDao extends BaseDao<Article> {
 		sql.append("   content, ");
 		sql.append("   author, ");
 		sql.append("   keywords, ");
-		sql.append("   hit_count,");
-		sql.append("   insert_time ) ");
+		sql.append("   hit_count, ");
+		sql.append("   insert_time, ");
+		sql.append("   update_time ) ");
 		sql.append(" values ");
-		sql.append(" ( ?, ?, ?, ?, ?, ?, ?,? ,?,?,now()) ");
+		sql.append(" ( ?, ?, ?, ?, ?, ?, ?,? ,?,?,now(),now()) ");
 		Object[] values = { article.getTitle(), article.getSubTitle(),
 				article.getColumnId(), article.getStatus(),
 				article.getSource(), article.getCopyFrom(),
