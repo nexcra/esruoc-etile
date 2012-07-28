@@ -97,6 +97,43 @@
 											+ checkListValue);
 
 						});
+		//更新
+		$(".update").click(
+				function() {
+					overrideSelectedTab('updateColumn', '修改栏目',
+							'column.do?action=toUpdateColumn&id='
+									+ $(this).attr("value"));
+				});
+
+		//删除
+		$(".delete").click(
+				function() {
+
+					if (!confirm("您真的要删除吗?")) {
+						return false;
+					}
+
+					$.ajax({
+						type : "POST",
+						url : "column.do?action=deleteColumn&randomNum="
+								+ new Date().getTime() + Math.random(),
+						cache : false,
+						data : "id=" + $(this).attr("value"),
+						dataType : "text",
+						success : function(data) {
+							alert(data);
+							overrideSelectedTab('listColumn', '栏目管理',
+									'column.do?action=listColumn');
+						}
+					});
+				});
+		//查看
+		$(".view").click(
+				function() {
+					overrideSelectedTab('viewColumn', '查看栏目',
+							'column.do?action=viewColumn&id='
+									+ $(this).attr("value"));
+				});
 
 	});
 
@@ -135,27 +172,32 @@
 
 	</div>
 
-	<table width="90%" id="mytab" border="1" class="t1">
+	<table width="100%" id="mytab" border="1" class="t1">
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
 				<th>栏目名称</th>
-				<!-- 	<th>是否单页面</th> -->
+				<th>更新时间</th>
+				<th>操作</th>
+			</tr>
 		</thead>
-		</tr>
 
-		<c:forEach items="${page.pageDatas }" var="list">
-			<tr>
+		<c:forEach items="${page.pageDatas }" var="list" varStatus="vs">
+			<tr <c:if test="${vs.index %2==1 }">
+					class="a1"
+				</c:if>>
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
 				<td>${list.column_name }</td>
-				<!-- 	<td><c:choose>
-						<c:when test="${list.column_type==1 }">是</c:when>
-						<c:otherwise>否 </c:otherwise>
-					</c:choose></td> -->
+				<td><fmt:formatDate value="${list.update_time }"
+						pattern="yyyy-MM-dd hh:ss:mm" /></td>
+				<td><span class="update operationButton" value="${list.id }">修改</span>
+					<span class="operationButton">|</span> <span
+					class="delete operationButton" value="${list.id }">删除</span><span
+					class="operationButton">|</span> <span class="view operationButton"
+					value="${list.id }">查看</span></td>
 			</tr>
 		</c:forEach>
-
 	</table>
 	<div class="pageBar">
 		<tkxwz:page url="${ctx }/column.do?action=listColumn" page="${page }" />
