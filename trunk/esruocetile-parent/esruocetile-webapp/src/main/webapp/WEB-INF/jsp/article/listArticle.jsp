@@ -151,7 +151,7 @@
 	 * @param url 打开的url地址
 	 */
 	function overrideSelectedTab(tabid, text, url) {
-		window.parent.overrideSelectedTab(tabid, text, url);
+		window.parent.f_addTab(tabid, text, url);
 	}
 </script>
 </head>

@@ -205,7 +205,7 @@
 				</c:if>>
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
-				<td>${list.name }</td>
+				<td>${list.test_booking_name }</td>
 				<td><c:if test="${list.campus ==1 }">
 						  石牌
 						</c:if> <c:if test="${list.campus ==2 }">
