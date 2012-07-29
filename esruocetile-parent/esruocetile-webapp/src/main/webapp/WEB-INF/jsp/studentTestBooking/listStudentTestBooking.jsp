@@ -73,8 +73,7 @@
 									});
 						});
 
-		 
-	//展开搜索栏
+		//展开搜索栏
 		$("#expand").click(function() {
 			$("#searchTable").show();
 		});
@@ -125,6 +124,7 @@
 						function() {
 							var formToExport = document
 									.getElementById("queryForm");
+
 							var formAction = "studentTestBooking.do?action=exportStudentTestBooking";
 							formAction += "&testBookingName="
 									+ $("#testBookingName").val();
@@ -138,9 +138,32 @@
 									+ $("#executiveClass").val();
 
 							formToExport.action = formAction;
-							formToExpot.submit();
+							formToExport.submit();
 							$("#searchTable").show();
 						});
+
+		$("#toSearch")
+				.click(
+						function() {
+							var formToExport = document
+									.getElementById("queryForm");
+
+							var formAction = "studentTestBooking.do?action=searchStudentTestBooking";
+							formAction += "&testBookingName="
+									+ $("#testBookingName").val();
+							formAction += "&campus=" + $("#campus").val();
+							formAction += "&studentNo=" + $("#studentNo").val();
+							formAction += "&name=" + $("#name").val();
+							formAction += "&gender=" + $("#gender").val();
+							formAction += "&idNo=" + $("#idNo").val();
+							formAction += "&major=" + $("#major").val();
+							formAction += "&executiveClass="
+									+ $("#executiveClass").val();
+
+							formToExport.action = formAction;
+							formToExport.submit();
+							$("#searchTable").show();
+						})
 
 	});
 
@@ -176,8 +199,7 @@
 	<form
 		action="${ctx }/studentTestBooking.do?action=searchStudentTestBooking"
 		name="queryForm" id="queryForm" method="post">
-		<table width="100%" border="1" class="formTable" id="searchTable"
-			 >
+		<table width="100%" border="1" class="formTable" id="searchTable">
 			<tr>
 				<td class="fieldName">校区:</td>
 				<td class="fieldForm"><select name="campus" id="campus">
@@ -241,10 +263,10 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="center"><input type="submit" value="搜索"
-					class="submitButton" /> <input type="submit" value="导出"
-					id="toExport" class="submitButton" /> <input type="reset"
-					value="重置" class="resetButton" /> <input type="reset" id="fold"
-					value="隐藏" class="resetButton" /></td>
+					id="toSearch" class="submitButton" /> <input type="button"
+					value="导出" id="toExport" class="submitButton" /> <input
+					type="reset" value="重置" class="resetButton" /> <input type="reset"
+					id="fold" value="隐藏" class="resetButton" /></td>
 				</td>
 			</tr>
 		</table>
@@ -253,10 +275,10 @@
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
+				<th>考试校区</th>
+				<th>考试名称</th>
 				<th>学号</th>
 				<th>姓名</th>
-				<th>考试名称</th>
-				<th>考试校区</th>
 				<th>学院</th>
 				<th>年级</th>
 				<th>性别</th>
@@ -279,11 +301,11 @@
 				</c:if>>
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
-				<td>${list.student_no }</td>
-				<td>${list.name }</td>
-				<td>${list.test_booking_name }</td>
 				<td><c:if test="${list.campus ==1 }">石牌</c:if> <c:if
 						test="${list.campus ==2 }">大学城</c:if></td>
+				<td>${list.test_booking_name }</td>
+				<td>${list.student_no }</td>
+				<td>${list.name }</td>
 				<td>${list.college }</td>
 				<td>${list.grade }</td>
 				<td>${list.gender }</td>
@@ -292,7 +314,7 @@
 				<td>${list.id_no }</td>
 				<td>${list.major }</td>
 				<td>${list.executive_class }</td>
-				<td><span class="operationButton">|</span> <span
+				<td><span
 					class="delete operationButton" value="${list.id }">删除</span><span
 					class="operationButton">|</span> <span class="view operationButton"
 					value="${list.id }">查看</span></td>

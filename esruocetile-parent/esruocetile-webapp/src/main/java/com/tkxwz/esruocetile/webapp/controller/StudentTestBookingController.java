@@ -88,15 +88,16 @@ public class StudentTestBookingController {
 		String[] columnNames = new String[] { "考试校区", "考试名称", "学院", "年级", "学号",
 				"姓名", "性别", "民族代码", "民族", "出生日期", "身份证号", "专业名称", "行政班" };
 
-		String titleName = "result.xls";//不创建说明;
-		String sheetName = "考生预约考试结果";
+		String titleName = "testBooking.xls";//不创建说明;
+		String sheetName = "学生预约考试情况";
 
 		OutputStream fOut = response.getOutputStream();
 		response.setHeader("Content-Disposition", "attachment; filename="
 				+ new String(titleName.getBytes("GB2312"), "ISO8859-1"));
 
 		ExcelUtil.create(request, excelContent, columnNames, titleName,sheetName, fOut);
+		 
 
-		return "/studentTestBooking/listStudentTestBooking.jsp";
+		return null;
 	}
 }

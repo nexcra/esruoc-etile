@@ -110,6 +110,7 @@ public class StudentController {
 		page = new Page(PageUtil.getPageNum(currentPageNum));
 		this.studentService.searchStudent(page, student);
 		request.setAttribute("page", page);
+		request.setAttribute("bean", student);
 		return "/student/listStudent.jsp";
 	}
 

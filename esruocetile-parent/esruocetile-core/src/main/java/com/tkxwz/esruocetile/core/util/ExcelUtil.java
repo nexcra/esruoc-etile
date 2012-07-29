@@ -208,7 +208,6 @@ public class ExcelUtil {
 			cell = row.createCell(cellNo++);
 			cell.setCellStyle(style2);
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			System.out.println(excelContent.get(i).get("date_of_birth"));
 			String dateOfBirth = sdf.format(excelContent.get(i).get(
 					"date_of_birth"));
 			cell.setCellValue(dateOfBirth);

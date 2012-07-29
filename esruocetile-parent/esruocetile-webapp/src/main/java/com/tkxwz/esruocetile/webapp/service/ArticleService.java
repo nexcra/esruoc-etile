@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.webapp.dao.ArticleDao;
 import com.tkxwz.esruocetile.webapp.entity.Article;
+import com.tkxwz.esruocetile.webapp.entity.Student;
 
 /**
  * @author Po Kong
@@ -78,4 +79,7 @@ public class ArticleService {
 
 	}
 
+	public Page searchArticle(Page page, Article article) {
+		return this.articleDao.searchArticle(page, article);
+	}
 }

@@ -24,6 +24,7 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		sql.append(" select ");
 		sql.append(" b.test_booking_name , ");
 		sql.append(" b.campus , ");
+		sql.append(" a.id, ");
 		sql.append(" a.name, ");
 		sql.append(" a.student_no, ");
 		sql.append(" a.college, ");
@@ -50,8 +51,8 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 	public int deleteStudentTestBookingById(String id) {
 
 		StringBuilder sql = new StringBuilder();
-		sql.append(" delete from  t_studentTestBooking ");
-		sql.append(" where id = ?  ");
+		sql.append(" delete from  t_student_test_booking ");
+		sql.append(" where  student_id = ?  ");
 		Object[] values = { Integer.parseInt(id) };
 		int[] valueTypes = { Types.INTEGER };
 		return this.insert(sql.toString(), values, valueTypes);
@@ -64,8 +65,25 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 	 */
 	public Map getStudentTestBookingById(String id) {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select t.* ");
-		sql.append(" from t_studentTestBooking t where t.id = ? ");
+		sql.append(" select ");
+		sql.append(" b.test_booking_name , ");
+		sql.append(" b.campus , "); 
+		sql.append(" a.id, ");
+		sql.append(" a.name, ");
+		sql.append(" a.student_no, ");
+		sql.append(" a.college, ");
+		sql.append(" a.grade, ");
+		sql.append(" a.gender, ");
+		sql.append(" a.nationality_code, ");
+		sql.append(" a.nationality, ");
+		sql.append(" a.date_of_birth, ");
+		sql.append(" a.id_no, ");
+		sql.append(" a.major, ");
+		sql.append(" a.executive_class ");
+		sql.append(" from t_student a, t_test_booking b, t_student_test_booking c ");
+		sql.append(" where a.id = c.student_id  ");
+		sql.append(" and b.id = c.test_booking_id  ");
+		sql.append(" and a.id = ?  ");
 		Object[] values = { Integer.parseInt(id) };
 		int[] valueTypes = { Types.INTEGER };
 		return this.queryForMap(sql.toString(), values, valueTypes);
@@ -76,6 +94,7 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 			StudentTestBooking studentTestBooking) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select ");
+		sql.append(" b.id , ");
 		sql.append(" b.test_booking_name , ");
 		sql.append(" b.campus , ");
 		sql.append(" a.name, ");
