@@ -24,12 +24,12 @@
 				name : {
 					required : true
 				},
-				college:{
-					required:true 
+				college : {
+					required : true
 				},
-				grade:{
-					required:true
-				}
+				grade : {
+					required : true
+				},
 				gender : {
 					required : true
 				},

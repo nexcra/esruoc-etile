@@ -10,8 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${ctx }/css/validate.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
-<script type="text/javascript"
-	src="${ctx }/widget/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="${ctx }/widget/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
 <script type="text/javascript">
@@ -21,6 +20,15 @@
 				title : {
 					required : true
 
+				},
+				columnId : {
+					required : true
+				},
+				source : {
+					required : true
+				},
+				status : {
+					required : true
 				}
 			}
 		});
@@ -33,6 +41,13 @@
 				$("#copyFromRow").hide();
 			}
 		});
+
+		//转到添加栏目
+		$("#toAddColumn").click(
+				function() {
+					window.parent.overrideSelectedTab("addColumn", "添加栏目",
+							"column.do?action=toAddColumn");
+				});
 	});
 </script>
 </head>
@@ -75,7 +90,7 @@
 					name="status">
 						<option value="1" selected="selected">正式发布</option>
 						<option value="2">待发布</option>
-				</select></td>
+				</select><span class="asterisk">*</span></td>
 			</tr>
 
 			<tr>
@@ -90,7 +105,8 @@
 							<option value="${list.id }">${list.columnName }</option>
 						</c:forEach>
 
-				</select><span class="asterisk">*</span></td>
+				</select><span class="asterisk">*</span> <span id="toAddColumn"
+					style="cursor: pointer;">添加栏目</span></td>
 			</tr>
 
 			<tr>

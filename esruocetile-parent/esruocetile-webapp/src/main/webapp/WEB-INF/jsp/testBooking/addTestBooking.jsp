@@ -72,7 +72,7 @@
 					id="bookingEndTime" type="text" class="inputText"
 					onclick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'d4311\')}'})" />
 					<img
-					onClick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss'},minDate:'#F{$dp.$D(\'d4311\')}'})"
+					onClick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'d4311\')}'})"
 					src="widget/My97DatePicker/skin/datePicker.gif" width="16"
 					height="22" align="absmiddle"></td>
 			</tr>

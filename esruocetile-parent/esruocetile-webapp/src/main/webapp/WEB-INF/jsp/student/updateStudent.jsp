@@ -29,7 +29,7 @@
 				},
 				grade:{
 					required:true
-				}
+				},
 				gender : {
 					required : true
 				},

@@ -20,6 +20,15 @@
 				title : {
 					required : true
 
+				},
+				columnId : {
+					required : true
+				},
+				source : {
+					required : true
+				},
+				status : {
+					required : true
 				}
 			}
 		});
@@ -96,7 +105,7 @@
 							<c:if test="${map.status ==2 }">
 						selected="selected"
 							</c:if>>待审核</option>
-				</select></td>
+				</select><span class="asterisk">*</span></td>
 			</tr>
 
 
