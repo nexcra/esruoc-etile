@@ -202,8 +202,7 @@
 	</div>
 	<form action="${ctx }/student.do?action=searchStudent" name="queryForm"
 		id="queryForm" method="post">
-		<table width="100%" border="1" class="formTable" id="searchTable"
-			style="display: none">
+		<table width="100%" border="1" class="formTable" id="searchTable">
 			<tr>
 				<td class="fieldName">学号:</td>
 				<td class="fieldForm"><input type="text" name="studentNo"
@@ -244,8 +243,7 @@
 			<tr>
 				<td colspan="4" align="center"><input type="submit" value="搜索"
 					class="submitButton" /> <input type="reset" value="重置"
-					class="resetButton" />
-					<input type="reset" id="fold" value="隐藏"
+					class="resetButton" /> <input type="reset" id="fold" value="隐藏"
 					class="resetButton" /></td>
 				</td>
 			</tr>
