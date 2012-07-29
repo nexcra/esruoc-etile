@@ -21,10 +21,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tkxwz.esruocetile.webapp.dao.DataDao;
+import com.tkxwz.esruocetile.webapp.dao.StudentDao;
 import com.tkxwz.esruocetile.webapp.entity.Student;
 
 /**
- * @author Po Kong 
+ * @author Po Kong
  * @since 2012-7-5 下午2:10:09
  */
 
@@ -34,10 +35,13 @@ public class DataService {
 	@Autowired
 	private DataDao dataDao;
 
+	@Autowired
+	private StudentDao studentDao;
+
 	/**
 	 * 判断是否为excel2003之前的版本
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-7-6 下午4:30:32
 	 * @param fileExtension
 	 * @return
@@ -53,7 +57,7 @@ public class DataService {
 	 * 遍历excel中除第一行的每一行，读出每列的值，把列的值放入Map中，然后把Map放在List中存放并返回<br />
 	 * 特别注意:在excel，空白字符串也是占一行的，因此这个时候需要排除出去
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-7-5 下午2:12:05
 	 * @param filePath
 	 *        excel存放的路径
@@ -87,7 +91,7 @@ public class DataService {
 				if (cell.getCellType() == Cell.CELL_TYPE_STRING) {
 					cellValue = cell.getStringCellValue();
 				} else if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC) {
-					cellValue = cell.getNumericCellValue() + "";
+					cellValue = (int) (cell.getNumericCellValue()) + "";
 				}
 				// 如果发现一行中有一列为空，直接退出循环
 				if (StringUtils.isEmpty(cellValue)) {
@@ -106,7 +110,7 @@ public class DataService {
 	}
 
 	/**
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-7-6 下午4:37:21
 	 * @param inp
 	 * @param isExcel2003
@@ -124,14 +128,26 @@ public class DataService {
 		return wb;
 	}
 
-	public void batchAddStudent(List<Map<Integer, String>> studentList) {
+	public int batchAddStudent(List<Map<Integer, String>> studentList) {
 		Student student = new Student();
+		int result = 0;
 		for (int i = 0; i < studentList.size(); i++) {
 			Map<Integer, String> map = studentList.get(i);
-			student.setName(map.get(0));
-			student.setStudentNo(map.get(1));
-			student.setIdNo(map.get(2));
-			this.dataDao.addStudent(student);
+			student.setCollege(map.get(0));
+			student.setGrade(map.get(1));
+			student.setStudentNo(map.get(2));
+			student.setName(map.get(3));
+			student.setGender(map.get(4));
+
+			student.setNationality(map.get(5));
+			student.setNotionalityCode(map.get(6));
+			student.setDateOfBirth(map.get(7));
+			student.setIdNo(map.get(8));
+			student.setMajor(map.get(9));
+			student.setExecutiveClaas(map.get(10));
+
+			result += this.studentDao.addStudent(student);
 		}
+		return result;
 	}
 }

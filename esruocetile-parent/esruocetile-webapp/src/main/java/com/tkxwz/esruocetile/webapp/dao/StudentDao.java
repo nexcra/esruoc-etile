@@ -36,6 +36,8 @@ public class StudentDao extends BaseDao<Student> {
 		sql.append(" ( ");
 		sql.append(" student_no, ");
 		sql.append(" name, ");
+		sql.append(" college, ");
+		sql.append(" grade, ");
 		sql.append(" gender, ");
 		sql.append(" nationality_code, ");
 		sql.append(" nationality, ");
@@ -45,17 +47,17 @@ public class StudentDao extends BaseDao<Student> {
 		sql.append(" executive_class ");
 		sql.append(" ) ");
 		sql.append(" values ");
-		sql.append(" ( ?, ?, ?, ?, ? ,? ,? ,?,? ) ");
+		sql.append(" ( ?, ?, ?, ?, ? ,? ,? ,?,?,?,? ) ");
 		Object[] values = { student.getStudentNo(), student.getName(),
-				student.getGender(), student.getNotionalityCode(),
-				student.getNationality(), student.getDateOfBirth(),
-				student.getIdNo(), student.getMajor(),
-				student.getExecutiveClaas(),
+				student.getCollege(), student.getGrade(), student.getGender(),
+				student.getNotionalityCode(), student.getNationality(),
+				student.getDateOfBirth(), student.getIdNo(),
+				student.getMajor(), student.getExecutiveClaas(),
 
 		};
 		int[] valueTypes = { Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
 				Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
-				Types.VARCHAR, Types.VARCHAR };
+				Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR };
 		return this.insert(sql.toString(), values, valueTypes);
 
 	}
@@ -102,6 +104,8 @@ public class StudentDao extends BaseDao<Student> {
 		sql.append(" set   ");
 		sql.append(" student_no = ? , ");
 		sql.append(" name = ? , ");
+		sql.append(" college = ?, ");
+		sql.append(" grade = ?, ");
 		sql.append(" gender = ? , ");
 		sql.append(" nationality_code = ? , ");
 		sql.append(" nationality = ? , ");
@@ -111,15 +115,17 @@ public class StudentDao extends BaseDao<Student> {
 		sql.append(" executive_class  = ? ");
 		sql.append(" where t.id = ? ");
 		Object[] values = { student.getStudentNo(), student.getName(),
-				student.getGender(), student.getNotionalityCode(),
-				student.getNationality(), student.getDateOfBirth(),
-				student.getIdNo(), student.getMajor(),
-				student.getExecutiveClaas(), student.getId()
+				student.getCollege(), student.getGrade(), student.getGender(),
+				student.getNotionalityCode(), student.getNationality(),
+				student.getDateOfBirth(), student.getIdNo(),
+				student.getMajor(), student.getExecutiveClaas(),
+				student.getId()
 
 		};
 		int[] valueTypes = { Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
 				Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
-				Types.VARCHAR, Types.VARCHAR, Types.INTEGER };
+				Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
+				Types.INTEGER };
 		return this.update(sql.toString(), values, valueTypes);
 	}
 
@@ -136,6 +142,12 @@ public class StudentDao extends BaseDao<Student> {
 
 		if (StringUtils.isNotEmpty(student.getName())) {
 			sql.append(" and t.name like  '%" + student.getName() + "%'");
+		}
+		if (StringUtils.isNotEmpty(student.getGrade())) {
+			sql.append(" and t.grade like  '%" + student.getGrade() + "%'");
+		}
+		if (StringUtils.isNotEmpty(student.getCollege())) {
+			sql.append(" and t.college like  '%" + student.getCollege() + "%'");
 		}
 		if (StringUtils.isNotEmpty(student.getGender())
 				&& !"全部".equals(student.getGender())) {

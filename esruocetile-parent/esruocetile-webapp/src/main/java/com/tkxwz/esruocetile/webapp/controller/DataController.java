@@ -36,15 +36,16 @@ public class DataController {
 	@Autowired
 	private DictService dictService;
 
-	@RequestMapping(params = "action=toImport")
+	@RequestMapping(params = "action=toImportStudentData")
 	public String toImportStudentData() {
 		return "importData.jsp";
 	}
 
-	@RequestMapping(params = "action=import")
+	@RequestMapping(params = "action=importStudentData")
 	public String importStudentData(HttpServletRequest request) {
 		// 检查是否multipart的enctype
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+		int result = 0;
 		if (isMultipart) {
 			ServletFileUpload upload = new ServletFileUpload();
 
@@ -87,7 +88,8 @@ public class DataController {
 							List<Map<Integer, String>> studentList = dataService
 									.extractExcelData(filePath, fileExtension);
 
-							this.dataService.batchAddStudent(studentList);
+							result = this.dataService
+									.batchAddStudent(studentList);
 						}
 						// 导入完成后，删除服务器上的临时文件
 						new File(filePath).delete();
@@ -100,6 +102,7 @@ public class DataController {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("成功导入" + result + "条记录");
 		return "redirect:/student.do?action=listStudent";
 	}
 }

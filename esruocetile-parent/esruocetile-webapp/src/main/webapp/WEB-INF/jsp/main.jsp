@@ -39,8 +39,8 @@
 			url : "user.do?action=listUser",
 			text : "管理员管理"
 		}, {
-			url : "data.do?action=toImport",
-			text : "导入excel数据"
+			url : "data.do?action=toImportStudentData",
+			text : "导入学生数据"
 		} ]
 
 	}
