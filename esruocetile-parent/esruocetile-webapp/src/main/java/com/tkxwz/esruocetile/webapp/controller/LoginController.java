@@ -48,10 +48,69 @@ public class LoginController {
 
 	@RequestMapping(params = "action=processLogin")
 	public String processLogin(HttpServletRequest request,
-			HttpServletResponse response, String name, String password,
-			String checkCode) {
+			HttpServletResponse response, String loginType, String name,
+			String password, String checkCode) {
 		String returnPage = "redirect:/main.do";
+		// 验证码
+		String checkCodeInSession = (String) request.getSession().getAttribute(
+				"checkCodeInSession");
+		// 验证码错误
+		if (StringUtils.isEmpty(checkCode)
+				|| StringUtils.isEmpty(checkCodeInSession)
+				|| !checkCode.equalsIgnoreCase(checkCodeInSession)) {
+			request.setAttribute("error", "验证码错误，请重新输入!");
+			returnPage = "/login.jsp";
+		} else {
+			if ("student".equals(loginType)) {// 学生登录
+				returnPage = processStudentLogin(request, name, password);
+			} else {// 管理员登录
+				returnPage = processAdminLogin(request, name, password);
+			}
+		}
+		return returnPage;
+	}
 
+	/**
+	 * @author Po Kong
+	 * @since 29 Jul 2012 18:57:57
+	 * @param request
+	 * @param name
+	 * @param password
+	 * @return
+	 */
+	private String processStudentLogin(HttpServletRequest request, String name,
+			String password) {
+		String returnPage = "redirect:/main.do";
+		// 验证用户密码是否匹配
+
+		int studentCount = this.loginService.getStudentCountByNameAndPassword(
+				name, password);
+		boolean isUserExist = this.loginService.isUserExist(studentCount);
+
+		if (!isUserExist) {// 用户不存在
+			request.setAttribute("error", "用户名或者密码错误, 请重新登录!");
+			returnPage = "/login.jsp";
+		} else {// 用户存在
+			Map userMap = this.loginService.getStudentByNameAndPassword(name,
+					password);
+			HttpSession session = request.getSession();
+			session.setAttribute("studentId", userMap.get("id"));
+			session.setAttribute("studentName", name);
+			session.setAttribute("studentPassword", password);
+			returnPage ="/front/index.jsp";
+		}
+		return returnPage;
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 29 Jul 2012 18:55:04
+	 * @param name
+	 * @param password
+	 */
+	private String processAdminLogin(HttpServletRequest request, String name,
+			String password) {
+		String returnPage = "redirect:/main.do";
 		// 验证用户密码是否匹配
 		User user = new User();
 		user.setName(name);
@@ -69,7 +128,6 @@ public class LoginController {
 			session.setAttribute("adminName", userMap.get("name"));
 			session.setAttribute("adminPassword", userMap.get("password"));
 		}
-
 		return returnPage;
 	}
 
