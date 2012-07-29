@@ -6,7 +6,7 @@ import java.io.Serializable;
  * @author Po Kong
  * @since 2012-7-5 下午8:15:58
  */
-public class Student implements Serializable {
+public class StudentTestBooking implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,6 +19,26 @@ public class Student implements Serializable {
 	private String college;
 
 	private String grade;
+
+	private String campus;
+
+	public String getCampus() {
+		return campus;
+	}
+
+	public void setCampus(String campus) {
+		this.campus = campus;
+	}
+
+	public String getTestBookingName() {
+		return testBookingName;
+	}
+
+	public void setTestBookingName(String testBookingName) {
+		this.testBookingName = testBookingName;
+	}
+
+	private String testBookingName;
 
 	public String getCollege() {
 		return college;

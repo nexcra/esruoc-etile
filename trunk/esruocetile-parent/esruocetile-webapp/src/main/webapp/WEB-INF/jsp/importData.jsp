@@ -28,13 +28,30 @@
 				}
 			}
 		});
+		$(function() {
+			$("#returnButton").click(
+					function() {
+						overrideSelectedTab('listStudent', '学生信息管理',
+								'student.do?action=listStudent');
+					});
+
+		});
+		/**
+		 *  调用父窗口的overrideSelectedTab方法打开
+		 * @param tabid tab的ID
+		 * @param text 要显示的文本
+		 * @param url 打开的url地址
+		 */
+		function overrideSelectedTab(tabid, text, url) {
+			window.parent.overrideSelectedTab(tabid, text, url);
+		}
 	});
 </script>
 <title>导入学生数据</title>
 </head>
 <body>
-	<form action="data.do?action=import" name="importForm" id="importForm"
-		method="post" enctype="multipart/form-data">
+	<form action="data.do?action=importStudentData" name="importForm"
+		id="importForm" method="post" enctype="multipart/form-data">
 		<table width="100%" border="1" class="formTable">
 			<tr>
 				<td class="fieldName">文件:</td>
@@ -45,7 +62,7 @@
 			<tr>
 				<td class="fieldName">说明:</td>
 				<td class="fieldForm">导入文件为excel,并且此excel必须符合模板中的格式方可导入！</a><a
-					href="import.xls">导入模板下载</a>
+					href="${ctx }/importExample.xls">导入模板下载(右键，另存为)</a>
 				</td>
 			</tr>
 
@@ -53,7 +70,8 @@
 				<td class="fieldName"></td>
 				<td class="fieldForm"><input type="submit" value="导入"
 					class="submitButton" /> <input type="reset" value="重置"
-					class="resetButton" /></td>
+					class="resetButton" /> <input type="button" value="返回"
+					class="submitButton" id="returnButton" /></td>
 			</tr>
 		</table>
 	</form>

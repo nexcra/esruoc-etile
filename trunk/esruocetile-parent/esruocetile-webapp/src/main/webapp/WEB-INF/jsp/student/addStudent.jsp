@@ -24,6 +24,12 @@
 				name : {
 					required : true
 				},
+				college:{
+					required:true 
+				},
+				grade:{
+					required:true
+				}
 				gender : {
 					required : true
 				},
@@ -65,6 +71,16 @@
 				<td class="fieldName" width="20%">姓名:</td>
 				<td class="fieldForm" width="80%"><input type="text"
 					name="name" id="name" /><span class="asterisk">*</span></td>
+			</tr>
+			<tr>
+				<td class="fieldName">学院:</td>
+				<td class="fieldForm"><input type="text" name="college"
+					id="college" /><span class="asterisk">*</span></td>
+			</tr>
+			<tr>
+				<td class="fieldName">年级:</td>
+				<td class="fieldForm"><input type="text" name="grade"
+					id="grade" /><span class="asterisk">*</span></td>
 			</tr>
 			<tr>
 				<td class="fieldName" width="20%">性别:</td>

@@ -24,6 +24,12 @@
 				name : {
 					required : true
 				},
+				college:{
+					required:true
+				},
+				grade:{
+					required:true
+				}
 				gender : {
 					required : true
 				},
@@ -58,8 +64,8 @@
 </script>
 </head>
 <body>
-	<form action="${ctx }/student.do?action=updateStudent" name="updateForm"
-		id="updateForm" method="post">
+	<form action="${ctx }/student.do?action=updateStudent"
+		name="updateForm" id="updateForm" method="post">
 		<input type="hidden" name="id" id="id" value="${map.id }" />
 		<table width="100%" border="1" class="formTable">
 			<tr>
@@ -75,6 +81,18 @@
 					class="asterisk">*</span></td>
 			</tr>
 			<tr>
+				<td class="fieldName" width="20%">学院:</td>
+				<td class="fieldForm" width="80%"><input type="text"
+					name="college" id="college" value="${map.name }" /><span
+					class="asterisk">*</span></td>
+			</tr>
+			<tr>
+				<td class="fieldName" width="20%">年级:</td>
+				<td class="fieldForm" width="80%"><input type="text"
+					name="grade" id="grade" value="${map.name }" /><span
+					class="asterisk">*</span></td>
+			</tr>
+			<tr>
 				<td class="fieldName" width="20%">性别:</td>
 				<td class="fieldForm" width="80%"><select name="gender"
 					id="gender">
@@ -85,9 +103,10 @@
 			</tr>
 			<tr>
 				<td class="fieldName" width="20%">民族:</td>
-				<td class="fieldForm" width="80%"><input type="text" name="nationality"
-					id="nationalityValue" value="${map.nationality }" /> <select
-					name="nationality" id="nationality" style="display: none">
+				<td class="fieldForm" width="80%"><input type="text"
+					name="nationality" id="nationalityValue"
+					value="${map.nationality }" /> <select name="nationality"
+					id="nationality" style="display: none">
 						<option value="汉族">汉族</option>
 						<option value="蒙古族">蒙古族</option>
 						<option value="回族">回族</option>

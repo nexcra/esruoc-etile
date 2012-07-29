@@ -31,7 +31,7 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" insert into t_test_booking  ");
 		sql.append(" ( ");
-		sql.append(" name, ");
+		sql.append(" test_booking_name, ");
 		sql.append(" campus, ");
 		sql.append(" description, ");
 		sql.append(" booking_begin_time, ");
@@ -92,7 +92,7 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 	public int updateTestBooking(TestBooking testBooking) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" update t_test_booking t");
-		sql.append(" set t.name = ? , ");
+		sql.append(" set t.test_booking_name = ? , ");
 		sql.append(" t.campus= ? , ");
 		sql.append(" t.description= ? , ");
 		sql.append(" t.booking_begin_time= ? , ");
