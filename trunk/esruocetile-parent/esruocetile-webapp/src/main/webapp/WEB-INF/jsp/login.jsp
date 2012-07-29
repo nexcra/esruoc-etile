@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/common/noLoginCommon.jsp"%> 
+<%@include file="/common/noLoginCommon.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -16,6 +16,9 @@
 		//验证表单
 		$("#loginForm").validate({
 			rules : {
+				loginType : {
+					required : true
+				},
 				name : {
 					required : true
 				},
@@ -41,6 +44,8 @@
 			$(this).attr("src", 'checkCode?now=' + new Date());
 		});
 
+		
+
 	});
 </script>
 </head>
@@ -58,6 +63,16 @@
 				<c:if test="${error !=null }">
 					<div class="loginError">${error }</div>
 				</c:if>
+				<div class="loginInput">
+
+
+					<div class="usernameIcon">登录类型:</div>
+					<div class="usernameInput">
+						<input type="radio" name="loginType" value="student"
+							checked="checked" />学生 <input type="radio" name="loginType"
+							value="teacher" /> 管理员 </select>
+					</div>
+				</div>
 				<div class="loginInput">
 
 
@@ -85,8 +100,9 @@
 				</div>
 				<div class="cb"></div>
 				<div class="loginButton">
-					<input type="submit" class="loginSubmitButton" value="" /> <input
-						type="reset" class="loginResetButton" value="" />
+					<input type="submit" class="loginSubmitButton" value=""
+						id="loginSubmit" /> <input type="reset" class="loginResetButton"
+						value="" />
 				</div>
 
 			</div>

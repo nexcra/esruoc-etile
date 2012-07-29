@@ -49,4 +49,26 @@ public class LoginService {
 		return this.loginDao.getUserByNameAndPassword(user);
 	}
 
+	/**
+	 * @author Po Kong
+	 * @since 29 Jul 2012 19:00:24
+	 * @param name
+	 * @param password
+	 * @return
+	 */
+	public int getStudentCountByNameAndPassword(String name, String password) {
+		return this.loginDao.getStudentCountByNameAndPassword(name, password);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 29 Jul 2012 19:02:29
+	 * @param name
+	 * @param password
+	 * @return
+	 */
+	public Map getStudentByNameAndPassword(String name, String password) {
+		return this.loginDao.getUserByNameAndPassword(name, password);
+	}
+
 }
