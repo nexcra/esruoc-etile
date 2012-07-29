@@ -37,6 +37,7 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		sql.append(" a.executive_class ");
 		sql.append(" from t_student a, t_test_booking b, t_student_test_booking c ");
 		sql.append(" where a.id = c.student_id  ");
+		sql.append(" and b.id = c.test_booking_id  ");
 		sql.append(" order by  b.id desc ");
 		return this.queryForPage(sql.toString(), page);
 	}
@@ -90,6 +91,7 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		sql.append(" a.executive_class ");
 		sql.append(" from t_student a, t_test_booking b, t_student_test_booking c ");
 		sql.append(" where a.id = c.student_id  ");
+		sql.append(" and b.id = c.test_booking_id  ");
 		List<Object> valuesList = new ArrayList<Object>();
 		List<Integer> valueTypesList = new ArrayList<Integer>();
 		if (StringUtils.isNotEmpty(studentTestBooking.getCampus())
@@ -170,6 +172,7 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		sql.append(" a.executive_class ");
 		sql.append(" from t_student a, t_test_booking b, t_student_test_booking c ");
 		sql.append(" where a.id = c.student_id  ");
+		sql.append(" and b.id = c.test_booking_id  ");
 		List<Object> valuesList = new ArrayList<Object>();
 		List<Integer> valueTypesList = new ArrayList<Integer>();
 		if (StringUtils.isNotEmpty(studentTestBooking.getCampus())

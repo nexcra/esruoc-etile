@@ -38,7 +38,7 @@ public class TestExcel extends HttpServlet {
 		response.setHeader("Content-Disposition", "attachment; filename="
 				+ new String(titleName.getBytes("GB2312"), "ISO8859-1"));
 
-		ExcelUtil.create(request, excelContent, columnNames, titleName, fOut);
+		//ExcelUtil.create(request, excelContent, columnNames, titleName, fOut);
 	}
 
 	@Override

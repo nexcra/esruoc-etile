@@ -73,13 +73,8 @@
 									});
 						});
 
-		//导出预约
-		$("#exportStudentTestBooking").click(
-				function() {
-					alert("导出")
-				})
-
-		//展开搜索栏
+		 
+	//展开搜索栏
 		$("#expand").click(function() {
 			$("#searchTable").show();
 		});
@@ -124,6 +119,29 @@
 									+ $(this).attr("value"));
 				});
 
+		//导出
+		$("#toExport")
+				.click(
+						function() {
+							var formToExport = document
+									.getElementById("queryForm");
+							var formAction = "studentTestBooking.do?action=exportStudentTestBooking";
+							formAction += "&testBookingName="
+									+ $("#testBookingName").val();
+							formAction += "&campus=" + $("#campus").val();
+							formAction += "&studentNo=" + $("#studentNo").val();
+							formAction += "&name=" + $("#name").val();
+							formAction += "&gender=" + $("#gender").val();
+							formAction += "&idNo=" + $("#idNo").val();
+							formAction += "&major=" + $("#major").val();
+							formAction += "&executiveClass="
+									+ $("#executiveClass").val();
+
+							formToExport.action = formAction;
+							formToExpot.submit();
+							$("#searchTable").show();
+						});
+
 	});
 
 	/**
@@ -146,11 +164,6 @@
 			删除
 			<div class="button1Right"></div>
 		</div>
-		<div class="button1" id="exportStudentTestBooking">
-			<div class="button1Left"></div>
-			导出
-			<div class="button1Right"></div>
-		</div>
 
 		<div class="button2" id="expand">
 			<div class="button1Left"></div>
@@ -164,7 +177,7 @@
 		action="${ctx }/studentTestBooking.do?action=searchStudentTestBooking"
 		name="queryForm" id="queryForm" method="post">
 		<table width="100%" border="1" class="formTable" id="searchTable"
-			style="display: none">
+			 >
 			<tr>
 				<td class="fieldName">校区:</td>
 				<td class="fieldForm"><select name="campus" id="campus">
@@ -227,11 +240,11 @@
 					id="executiveClaas" value="${bean.executiveClaas }" /></td>
 			</tr>
 			<tr>
-				<td colspan="4" align="center"><input type="submit" value="导出"
-					class="submitButton" /><input type="submit" value="搜索"
-					class="submitButton" /> <input type="reset" value="重置"
-					class="resetButton" /> <input type="reset" id="fold" value="隐藏"
-					class="resetButton" /></td>
+				<td colspan="4" align="center"><input type="submit" value="搜索"
+					class="submitButton" /> <input type="submit" value="导出"
+					id="toExport" class="submitButton" /> <input type="reset"
+					value="重置" class="resetButton" /> <input type="reset" id="fold"
+					value="隐藏" class="resetButton" /></td>
 				</td>
 			</tr>
 		</table>
