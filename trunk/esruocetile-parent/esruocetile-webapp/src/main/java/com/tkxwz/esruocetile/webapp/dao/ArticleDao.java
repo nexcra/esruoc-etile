@@ -1,11 +1,15 @@
 package com.tkxwz.esruocetile.webapp.dao;
 
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import com.tkxwz.esruocetile.core.page.Page;
+import com.tkxwz.esruocetile.core.util.ListUtil;
 import com.tkxwz.esruocetile.webapp.entity.Article;
 
 /**
@@ -20,6 +24,7 @@ public class ArticleDao extends BaseDao<Article> {
 		sql.append(" SELECT a.id, ");
 		sql.append(" a.title, ");
 		sql.append(" a.sub_title, ");
+		sql.append(" a.source, ");
 		sql.append(" a.status, ");
 		sql.append(" b.column_name, ");
 		sql.append(" a.insert_time, ");
@@ -126,5 +131,55 @@ public class ArticleDao extends BaseDao<Article> {
 				Types.INTEGER, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
 				Types.VARCHAR, Types.VARCHAR, Types.INTEGER, Types.INTEGER };
 		return this.update(sql.toString(), values, valueTypes);
+	}
+
+	public Page searchArticle(Page page, Article article) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" SELECT a.id, ");
+		sql.append(" a.title, ");
+		sql.append(" a.sub_title, ");
+		sql.append(" a.source, ");
+		sql.append(" a.status, ");
+		sql.append(" b.column_name, ");
+		sql.append(" a.insert_time, ");
+		sql.append(" a.update_time, ");
+		sql.append(" a.hit_count ");
+		sql.append(" FROM t_article a, t_column b ");
+		sql.append(" WHERE a.column_id = b.id ");
+		sql.append(" and a.status in (1,2) ");
+		List<Object> valuesList = new ArrayList<Object>();
+		List<Integer> valueTypesList = new ArrayList<Integer>();
+		if (StringUtils.isNotEmpty(String.valueOf(article.getColumnId()))
+				&& (0 != article.getColumnId().intValue())) {
+			sql.append(" and a.column_id = ? ");
+			valuesList.add(article.getColumnId());
+			valueTypesList.add(Types.INTEGER);
+		}
+		if (StringUtils.isNotEmpty(article.getTitle())) {
+			sql.append(" and a.title like '%" + article.getTitle() + "%'");
+		}
+
+		if (StringUtils.isNotEmpty(article.getSubTitle())) {
+			sql.append(" and a.sub_title like  '%" + article.getSubTitle()
+					+ "%'");
+		}
+		if (StringUtils.isNotEmpty(String.valueOf(article.getSource()))
+				&& (0 != article.getSource())) {
+			sql.append(" and a.source =  ?");
+			valuesList.add(article.getSource());
+			valueTypesList.add(Types.INTEGER);
+		}
+		if (StringUtils.isNotEmpty(String.valueOf(article.getStatus()))
+				&& (0 != article.getStatus())) {
+			sql.append(" and a.status = ? ");
+			valuesList.add(article.getStatus());
+			valueTypesList.add(Types.INTEGER);
+		}
+		sql.append(" order by a.insert_time desc ");
+
+		Object[] values = ListUtil.list2objectArray(valuesList);
+		int[] valueTypes = ListUtil.list2intArray(valueTypesList);
+
+		return queryForPage(sql.toString(), values, valueTypes, page);
 	}
 }

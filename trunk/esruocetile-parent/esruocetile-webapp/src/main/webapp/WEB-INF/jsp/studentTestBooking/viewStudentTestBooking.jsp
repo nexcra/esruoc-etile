@@ -10,11 +10,13 @@
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#returnButton").click(
-				function() {
-					overrideSelectedTab('listStudentTestBooking', '学生信息管理',
-							'studentTestBooking.do?action=listStudentTestBooking');
-				});
+		$("#returnButton")
+				.click(
+						function() {
+							overrideSelectedTab('listStudentTestBooking',
+									'学生信息管理',
+									'studentTestBooking.do?action=listStudentTestBooking');
+						});
 
 	});
 	/**
@@ -31,8 +33,17 @@
 <body>
 	<table width="100%" border="1" class="formTable">
 		<tr>
-			<td class="fieldName" width="20%">学号:</td>
-			<td class="fieldForm" width="80%">${map.studentTestBooking_no }</td>
+			<td class="fieldName" width="20%">考试校区:</td>
+			<td class="fieldForm" width="80%"><c:if
+					test="${map.campus ==1 }">石牌</c:if> <c:if
+					test="${map.campus ==2 }">大学城</c:if></td>
+		</tr>
+		<tr>
+			<td class="fieldName" width="20%">考试名称:</td>
+			<td class="fieldForm" width="80%">${map.test_booking_name}</td>
+		</tr>
+		<td class="fieldName" width="20%">学号:</td>
+		<td class="fieldForm" width="80%">${map.student_no }</td>
 		</tr>
 		<tr>
 			<td class="fieldName" width="20%">姓名:</td>

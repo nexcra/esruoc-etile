@@ -206,39 +206,46 @@
 			<tr>
 				<td class="fieldName">学号:</td>
 				<td class="fieldForm"><input type="text" name="studentNo"
-					id="studentNo" /></td>
+					id="studentNo" value="${bean.studentNo }" /></td>
 				<td class="fieldName">姓名:</td>
-				<td class="fieldForm"><input type="text" name="name" id="name" />
-				</td>
+				<td class="fieldForm"><input type="text" name="name" id="name"
+					value="${bean.name }" /></td>
 			</tr>
 			<tr>
 				<td class="fieldName">学院:</td>
 				<td class="fieldForm"><input type="text" name="college"
-					id="college" /></td>
+					id="college" value="${bean.college }" /></td>
 				<td class="fieldName">年级:</td>
 				<td class="fieldForm"><input type="text" name="grade"
-					id="grade" /></td>
+					id="grade" value="${bean.grade }" /></td>
 			</tr>
 
 			<tr>
 				<td class="fieldName">性别:</td>
 				<td class="fieldForm"><select name="gender" id="gender">
 						<option>全部</option>
-						<option>男</option>
-						<option>女</option>
+						<option
+							<c:if test="${bean.gender =='男' }">
+						selected = "selected"
+						</c:if>>男</option>
+						<option
+							<c:if test="${bean.gender =='女' }">
+						selected = "selected"
+						</c:if>>女</option>
 				</select></td>
 				<td class="fieldName">身份证号:</td>
-				<td class="fieldForm"><input type="text" name="idNo" id="idNo" /></td>
+				<td class="fieldForm"><input type="text" name="idNo" id="idNo"
+					value="${bean.idNo }" /></td>
 			</tr>
 
 
 			<tr>
 				<td class="fieldName">专业:</td>
 				<td class="fieldForm"><input type="text" name="major"
-					id="major" /></td>
+					id="major" value="${bean.major }" /></td>
 				<td class="fieldName">行政班:</td>
 				<td class="fieldForm"><input type="text" name="executiveClaas"
-					id="executiveClaas" /></td>
+					id="executiveClaas" value="${bean.executiveClaas }" /></td>
 			</tr>
 			<tr>
 				<td colspan="4" align="center"><input type="submit" value="搜索"

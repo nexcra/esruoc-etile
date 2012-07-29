@@ -96,6 +96,15 @@
 											+ checkListValue);
 
 						});
+		//展开搜索栏
+		$("#expand").click(function() {
+			$("#searchTable").show();
+		});
+
+		//收缩搜索栏
+		$("#fold").click(function() {
+			$("#searchTable").hide();
+		});
 		//更新
 		$(".update").click(
 				function() {
@@ -166,16 +175,75 @@
 			删除
 			<div class="button1Right"></div>
 		</div>
-
+		<div class="button2" id="expand">
+			<div class="button1Left"></div>
+			展开搜索栏
+			<div class="button1Right"></div>
+		</div>
 
 	</div>
+	<form action="${ctx }/article.do?action=searchArticle" name="queryForm"
+		id="queryForm" method="post">
+		<table width="100%" border="1" class="formTable" id="searchTable">
+			<tr>
+				<td class="fieldName">栏目:</td>
+				<td class="fieldForm"><select name="columnId" id="columnId">
+						<option value="0" selected="selected">全部</option>
+						<c:forEach var="list" items="${list }">
+							<option value="${list.id }"
+								<c:if test="${bean.columnId == list.id }"> selected="selected" </c:if>>${list.columnName
+								}</option>
+						</c:forEach>
 
+				</select></td>
+
+				<td class="fieldName"></td>
+				<td class="fieldForm"></td>
+			</tr>
+			<tr>
+				<td class="fieldName">标题:</td>
+				<td class="fieldForm"><input type="text" class="width350"
+					name="title" id="title" value="${bean.title }" /></td>
+				<td class="fieldName">副标题:</td>
+				<td class="fieldForm"><input type="text" class="width350"
+					name="subTitle" id="subTitle" value="${bean.subTitle }" /></td>
+			</tr>
+			<tr>
+				<td class="fieldName">来源:</td>
+				<td class="fieldForm"><select name="source" id="source">
+						<option value="0" selected="selected">全部</option>
+						<option value="1"
+							<c:if test="${bean.source == 1 }"> selected="selected" </c:if>>本站原创</option>
+						<option value="2"
+							<c:if test="${bean.source == 2 }"> selected="selected" </c:if>>转载</option>
+				</select></td>
+				<td class="fieldName">状态:</td>
+				<td class="fieldForm"><select id="status" name="status">
+						<option value="0" selected="selected">全部</option>
+						<option value="1"
+							<c:if test="${bean.status == 1 }"> selected="selected" </c:if>>正式发布</option>
+						<option value="2"
+							<c:if test="${bean.status == 2 }"> selected="selected" </c:if>>待发布</option>
+				</select></td>
+			</tr>
+
+
+			<tr>
+				<td colspan="4" align="center"><input type="submit" value="搜索"
+					id="toSearch" class="submitButton" /> <input type="reset"
+					value="重置" class="resetButton" /> <input type="reset" id="fold"
+					value="隐藏" class="resetButton" /></td>
+				</td>
+			</tr>
+		</table>
+	</form>
 	<table width="100%" id="mytab" border="1" class="t1">
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
 				<th>文章名称</th>
 				<th>所属栏目</th>
+				<th>来源</th>
 				<th>状态</th>
 				<th>添加时间</th>
 				<th>操作</th>
@@ -197,6 +265,10 @@
 					value="${list.id }" /></td>
 				<td>${list.title }</td>
 				<td>${list.column_name }</td>
+				<td><c:choose>
+						<c:when test="${list.source ==1 }">本站原创</c:when>
+						<c:when test="${list.source ==2 }">转开</c:when>
+					</c:choose></td>
 				<td><c:choose>
 						<c:when test="${list.status ==1 }">已发布</c:when>
 						<c:when test="${list.status ==2 }">待发布</c:when>

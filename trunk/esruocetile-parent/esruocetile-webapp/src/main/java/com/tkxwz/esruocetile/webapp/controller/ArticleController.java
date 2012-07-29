@@ -1,6 +1,7 @@
 package com.tkxwz.esruocetile.webapp.controller;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -12,9 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tkxwz.esruocetile.core.page.Page;
+import com.tkxwz.esruocetile.core.util.BeanUtil;
 import com.tkxwz.esruocetile.core.util.PageUtil;
 import com.tkxwz.esruocetile.webapp.entity.Article;
 import com.tkxwz.esruocetile.webapp.entity.Column;
+import com.tkxwz.esruocetile.webapp.entity.Student;
 import com.tkxwz.esruocetile.webapp.service.ArticleService;
 import com.tkxwz.esruocetile.webapp.service.ColumnService;
 
@@ -37,6 +40,8 @@ public class ArticleController {
 		page = new Page(PageUtil.getPageNum(currentPageNum));
 		this.articleService.listArticle(page);
 		request.setAttribute("page", page);
+		List<Column> list = this.columnService.listAllColumn();
+		request.setAttribute("list", list);
 		return "/article/listArticle.jsp";
 	}
 
@@ -134,4 +139,20 @@ public class ArticleController {
 		return "/front/viewArticle.jsp";
 	}
 
+	@RequestMapping(params = "action=searchArticle")
+	public String searchArticle(HttpServletRequest request,
+			String currentPageNum) throws IllegalAccessException,
+			InvocationTargetException {
+		Article article = new Article();
+		BeanUtil.populate(article, request.getParameterMap());
+		Page page = new Page();
+		page = new Page(PageUtil.getPageNum(currentPageNum));
+		this.articleService.searchArticle(page, article);
+		request.setAttribute("page", page);
+		List<Column> list = this.columnService.listAllColumn();
+		request.setAttribute("list", list);
+		request.setAttribute("bean", article);
+
+		return "/article/listArticle.jsp";
+	}
 }
