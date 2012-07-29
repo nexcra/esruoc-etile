@@ -1,10 +1,3 @@
-
-<%@page import="org.apache.commons.lang3.StringUtils"%>
-<%
-	if (StringUtils.isEmpty((String)session.getAttribute("adminName"))) {
-		response.sendRedirect("login.do?action=toLogin");
-	}
-%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>

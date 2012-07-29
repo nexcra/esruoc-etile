@@ -251,7 +251,7 @@
 		</thead>
 		<c:if test="${empty page.pageDatas }">
 			<tr>
-				<td colspan="6">对不起，暂时没有数据</td>
+				<td colspan="7">对不起，暂时没有数据</td>
 			</tr>
 
 		</c:if>
