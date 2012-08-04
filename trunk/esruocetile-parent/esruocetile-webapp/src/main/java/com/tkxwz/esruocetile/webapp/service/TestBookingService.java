@@ -79,4 +79,16 @@ public class TestBookingService {
 
 	}
 
+	 /**
+	 * 
+	 * 
+	 * @author Po Kong
+	 * @since 2012-8-4 下午12:56:49
+	 * @param page
+	 */
+	public Page listTestBookingForStudent(Page page) {
+		return this.testBookingDao.listTestBookingForStudent(page);
+		
+	}
+
 }

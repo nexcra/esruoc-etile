@@ -8,8 +8,32 @@
 <title>查看文章</title>
 <link rel="stylesheet" type="text/css" href="${ctx }/css/main.css" />
 <link rel="stylesheet" type="text/css" href="${ctx }/css/validate.css" />
+<script type="text/javascript" src="${ctx }/js/article.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
+
+<script type="text/javascript">
+$(function(){
+	$("#font_small").click(
+		function (){ 
+			fontZoomA();
+		}
+	);
+	
+	$("#font_big").click(
+		function (){ 
+			fontZoomB();
+		}
+	);
+	
+	$("#close_window").click(
+		function (){  
+			window.close();
+		}
+	);
+	
+	
+});
+</script>
 </head>
 <body>
 	<div style="width: 980px; margin: 20px auto; text-align: center;">
@@ -26,8 +50,9 @@
 			<a href="${map.copy_from }">转载</a>
 		</c:if>
 
-		<div style="border: 1px solid #ccc; margin: 10px 0;  text-align: left;">${map.content
+		<div style="border: 1px solid #ccc; margin: 10px 0; text-align: left;">${map.content
 			}</div>
-		<div style="text-align:right; padding-right:20px;">作者:${map.author }</div>
+		<div style="text-align: right; padding-right: 20px;">作者:${map.author
+			}</div>
 </body>
 </html>

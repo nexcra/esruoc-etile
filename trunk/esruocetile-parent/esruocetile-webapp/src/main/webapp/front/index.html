@@ -1,14 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@include file="/common/noLoginCommon.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>首页</title>
-<link rel="stylesheet" type="text/css" href="${ctx }/css/front.css" />
-<script type="text/javascript" src="${ctx }/js/time.js"></script>
-<script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="../css/front.css" />
+<script type="text/javascript" src="../js/time.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		displayTime("time");
@@ -16,35 +13,42 @@
 </script>
 </head>
 <body>
-	<%@include file="/common/top.jsp"%>
+	<div class="top">
+		<div id="time_div">
+			现在是:<span id="time"></span>
+		</div>
+	</div>
 	<div class="main">
-		<%@include file="/common/left.jsp"%>
-		<div class="right">
-			<div class="path">
-				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt;
+		<div class="left">
+			<div class="left_top"></div>
+			<div class="left_main">
+				<ul>
+					<li><a href="#">普通话水平考试报名系统</a></li>
+					<li><a href="#">普通话水平考试预约系统</a></li>
+					<li><a href="#">机构设置</a></li>
+					<li><a href="#">政策文件</a></li>
+					<li><a href="#">通知公告</a></li>
+					<li><a href="#">友情链接</a></li>
+					<li><a href="#">文档下载</a></li>
+				</ul>
 			</div>
+			<div class="left_bottom"></div>
+		</div>
+		<div class="right">
+			<div class="path">您现在所在的位置：首页>>文档下载</div>
 			<div class="newest">
 				<div class="pic_article">
-					<img src="${ctx }/images/skin/default/front/demo_pic.jpg" />
+					<img src="../images/skin/default/front/demo_pic.jpg" />
 				</div>
 				<div class="newest_article">
 					<h2>最新消息</h2>
 					<ul>
-						<c:forEach items="${recentArticleList.pageDatas }"
-							var="recentArticleList" varStatus="vs" end="6">
-							<li><a
-								href="${ctx }/article.do?action=viewArticle&id=${recentArticleList.id }">
-									<c:set value="${recentArticleList.title}" var="c" /> <c:choose>
-										<c:when test="${fn:length(c) > 17}">
-											<c:out value="${fn:substring(c, 0, 17)}...." />
-										</c:when>
-										<c:otherwise>
-											<c:out value="${c}" />
-										</c:otherwise>
-									</c:choose>
-							</a></li>
-
-						</c:forEach>
+						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
+						<li><a href="#">通知公告通知公告通知公告通知公告通告</a></li>
+						<li><a href="#">通知公告通知公告通知公告通知公告</a></li>
+						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
+						<li><a href="#">通知公告通知公告通知公告通知公告通告</a></li>
+						<li><a href="#">通知公告通知公告通知公告通知公告</a></li>
 					</ul>
 				</div>
 				<div class="column_article">
@@ -117,6 +121,11 @@
 			</div>
 		</div>
 	</div>
-	<%@include file="/common/bottom.jsp"%>
+	<div class="clear"></div>
+	<div class="bottom">
+		<p>回到首页 | 设为首页 | 加入收藏 | 联系我们 | 管理登录</p>
+		<p>广东省语言文字培训测试工作办公室 版权所有 2011-1013 技术支持 YANGWEIJIE</p>
+		<p>地址 ： 广东省广州市天河区瘦狗岭路463号 广东外语艺术职业学院 信息楼10楼 电话：020-38458053</p>
+	</div>
 </body>
 </html>

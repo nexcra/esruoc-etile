@@ -88,4 +88,9 @@ public class ColumnService {
 
 	}
 
+	public Page listArticleByColumnId(Page page, Integer columnId) {
+		return this.columnDao.columnList(page, columnId);
+
+	}
+
 }

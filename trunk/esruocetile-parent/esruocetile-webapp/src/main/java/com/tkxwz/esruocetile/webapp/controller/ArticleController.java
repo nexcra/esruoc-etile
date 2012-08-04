@@ -136,7 +136,8 @@ public class ArticleController {
 	public String viewArticle(HttpServletRequest request, String id) {
 		Map map = this.articleService.getArticleById(id);
 		request.setAttribute("map", map);
-		return "/front/viewArticle.jsp";
+		 
+		return "/front/article/viewArticle.jsp";
 	}
 
 	@RequestMapping(params = "action=searchArticle")

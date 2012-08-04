@@ -75,4 +75,45 @@ public class StudentTestBookingService {
 		return this.studentTestBookingDao
 				.searchStudentTestBooking(studentTestBooking);
 	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午1:45:34
+	 * @param studentTestBooking
+	 */
+	public int addStudentTestBooking(String studentId, String testBookingId) {
+		List<Map<String, Object>> list = this.studentTestBookingDao
+				.getStudentTestBookingByStudentId(studentId);
+		if (null != list && list.size() > 0) {
+
+			return this.studentTestBookingDao.updateStudentTestBooking(
+					studentId, testBookingId);
+		} else {
+			return this.studentTestBookingDao.addStudentTestBooking(studentId,
+					testBookingId);
+		}
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午3:54:02
+	 * @param studentId
+	 * @return
+	 */
+	public List<Map<String, Object>> getStudentTestBookingByStudentId(
+			String studentId) {
+		return this.studentTestBookingDao
+				.getStudentTestBookingByStudentId(studentId);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午5:03:49
+	 * @param studentId
+	 */
+	public int deleteStudentTestBooking(String studentId) {
+		return this.studentTestBookingDao
+				.deleteStudentTestBookingById(studentId);
+
+	}
 }

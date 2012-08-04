@@ -112,4 +112,18 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 		return this.update(sql.toString(), values, valueTypes);
 	}
 
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午12:57:36
+	 * @param page
+	 * @return
+	 */
+	public Page listTestBookingForStudent(Page page) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select t.* ");
+		sql.append(" from t_test_booking t ");
+		sql.append(" order by  t.id desc ");
+		return this.queryForPage(sql.toString(), page);
+	}
+
 }

@@ -11,7 +11,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +44,62 @@ public class StudentTestBookingController {
 		this.studentTestBookingService.listStudentTestBooking(page);
 		request.setAttribute("page", page);
 		return "/studentTestBooking/listStudentTestBooking.jsp";
+	}
+
+	@RequestMapping(params = "action=addStudentTestBooking")
+	public String addStudentTestBooking(HttpServletRequest request,
+			HttpServletResponse response, String testBookingId)
+			throws IOException, IllegalAccessException,
+			InvocationTargetException {
+		String result = "redirect:/index.do";
+		HttpSession session = request.getSession();
+		String studentId = (String) session.getAttribute("studentId");
+		String message = "恭喜您，预约成功!";
+		if (StringUtils.isEmpty(studentId)) {
+			message = "您还没有登录，请先<a href='" + request.getContextPath()
+					+ "/login.do?action=toLogin'>登录.</a> ";
+
+			result = "redirect:/message.do";
+		} else {
+
+			this.studentTestBookingService.addStudentTestBooking(studentId,
+					testBookingId);
+			List<Map<String, Object>> list = this.studentTestBookingService
+					.getStudentTestBookingByStudentId(studentId);
+
+			session.setAttribute("bookingList", list);
+			result = "redirect:/message.do";
+
+		}
+		session.setAttribute("message", message);
+		return result;
+	}
+
+	
+
+	@RequestMapping(params = "action=cancelBooking")
+	public String cancelBooking(HttpServletRequest request,
+			HttpServletResponse response, String testBookingId)
+			throws IOException, IllegalAccessException,
+			InvocationTargetException {
+		String result = "redirect:/index.do";
+		String studentId = (String) request.getSession().getAttribute(
+				"studentId");
+		String message = "恭喜您！取消预约成功";
+		if (StringUtils.isEmpty(studentId)) {
+			message = "您还没有登录，请先<a href='" + request.getServletPath()
+					+ "login.do?action=toLogin'>登录</a>";
+
+			result = "redirect:/message.do";
+		} else {
+
+			this.studentTestBookingService.deleteStudentTestBooking(studentId);
+			request.getSession().removeAttribute("bookingList");
+			result = "redirect:/message.do";
+
+		}
+		request.getSession().setAttribute("message", message);
+		return result;
 	}
 
 	@RequestMapping(params = "action=deleteStudentTestBooking")
@@ -92,8 +150,9 @@ public class StudentTestBookingController {
 		String[] columnNames = new String[] { "考试校区", "考试名称", "学院", "年级", "学号",
 				"姓名", "性别", "民族代码", "民族", "出生日期", "身份证号", "专业名称", "行政班" };
 
-		PrintWriter writer2 = response.getWriter();;
-		//OutputStream out = response.getOutputStream();
+		PrintWriter writer2 = response.getWriter();
+		;
+		// OutputStream out = response.getOutputStream();
 		String fileName = "test2.csv";
 		response.setContentType("application/octet-stream;charset=GB2312"); // the encoding of this
 		// example is GB2312
@@ -103,8 +162,8 @@ public class StudentTestBookingController {
 		CsvWriter writer = null;
 		StringBuilder content = new StringBuilder();
 		try {
-		//	writer = new CsvWriter(fileName, ',', Charset.forName("GBK"));
-			//writer.writeRecord(columnNames);
+			// writer = new CsvWriter(fileName, ',', Charset.forName("GBK"));
+			// writer.writeRecord(columnNames);
 			for (int i = 0; i < excelContent.size(); i++) {
 
 				String cellValue = "";
@@ -113,81 +172,81 @@ public class StudentTestBookingController {
 
 				cellValue = (String) excelContent.get(i).get("campus");
 				cellValue = cellValue.equals("1") ? "石牌" : "大学城";
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 				content.append(cellValue);
 				// 考试名称
 
 				cellValue = (String) excelContent.get(i).get(
 						"test_booking_name");
-				//writer.write(cellValue);
-				content.append(","+cellValue);
+				// writer.write(cellValue);
+				content.append("," + cellValue);
 
 				// 学院
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("college");
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 				// 年级
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("grade");
-				//.write(cellValue);
+				// .write(cellValue);
 				// 学号
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("student_no");
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 				// 姓名
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("name");
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 				// 性别
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("gender");
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 
 				// 民族
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("nationality");
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 				// 民族代码
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i)
 						.get("nationality_code");
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 				// 出生日期
 				// 新建一列
 
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String dateOfBirth = sdf.format(excelContent.get(i).get(
 						"date_of_birth"));
-				//writer.write(dateOfBirth);
+				// writer.write(dateOfBirth);
 
 				// 身份证号
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("id_no");
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 				// 专业名称
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("major");
-				//writer.write(cellValue);
+				// writer.write(cellValue);
 				// 行政班
 				// 新建一列
 
 				cellValue = (String) excelContent.get(i).get("executive_class");
-				//.write(cellValue);
-				///
+				// .write(cellValue);
+				// /
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			//writer.close();
+			// writer.close();
 			writer2.write(content.toString());
 			writer2.close();
 		}
