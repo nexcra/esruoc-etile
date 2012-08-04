@@ -121,4 +121,23 @@ public class ColumnDao extends BaseDao<Column> {
 
 		});
 	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午6:24:24
+	 * @param columnId
+	 * @return
+	 */
+	public Page columnList(Page page, Integer columnId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select a.*, b.column_name ");
+		sql.append(" from t_article a, t_column b ");
+		sql.append(" where a.column_id = b.id   ");
+		sql.append("  and  a.column_id = ? ");
+		sql.append(" order by  a.id desc ");
+
+		Object[] values = { columnId };
+		int[] valueTypes = { Types.INTEGER };
+		return this.queryForPage(sql.toString(), values, valueTypes, page);
+	}
 }

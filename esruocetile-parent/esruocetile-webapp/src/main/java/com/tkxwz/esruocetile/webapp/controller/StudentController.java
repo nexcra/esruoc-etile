@@ -82,6 +82,12 @@ public class StudentController {
 		request.setAttribute("map", map);
 		return "/student/updateStudent.jsp";
 	}
+	@RequestMapping(params = "action=toPersonalDetail")
+	public String toPersonalDetail(HttpServletRequest request, String id) {
+		Map map = this.studentService.getStudentById(id);
+		request.setAttribute("map", map);
+		return "/front/student/viewStudent.jsp";
+	}
 
 	@RequestMapping(params = "action=updateStudent")
 	public String updateStudent(HttpServletRequest request)

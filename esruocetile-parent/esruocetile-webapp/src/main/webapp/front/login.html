@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>文章列表</title>
+<link rel="stylesheet" type="text/css" href="../css/front.css" />
+<link rel="stylesheet" type="text/css" href="../css/frontlogin.css" />
+<script type="text/javascript" src="../js/time.js"></script>
+<script type="text/javascript" src="../js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
+<script type="text/javascript"
+	src="../js/jquery.validate.message.cn.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		/*$("#test_booking_login").toggle(function(){ 
+			$("#user_login").show();
+			$(this).addClass("to_login");
+			 
+		
+		}, function(){
+			$("#user_login").hide();
+			$(this).removeClass("to_login");
+		});*/
+		$("#test_booking_login").click(function(){ 
+			if($("#user_login").hasClass("show")) {
+				$("#user_login").removeClass("show");
+				$("#user_login").hide();
+				$(this).removeClass("to_login");
+			}else {
+				$("#user_login").addClass("show");
+				$("#user_login").show();
+				$(this).addClass("to_login");
+			}
+		})
+		$("#close_login").click(function(){
+			$("#user_login").removeClass("show");
+				$("#user_login").hide();
+				$("#test_booking_login").removeClass("to_login");
+		});
+	
+	});
+	$(function() {
+		//验证表单
+		$("#loginForm").validate({
+			rules : {
+				loginType : {
+					required : true
+				},
+				name : {
+					required : true
+				},
+				password : {
+					required : true
+				},
+				checkCode : {
+					required : true,
+					remote : "login.do?action=isCheckCodeValid"
+				}
+			},
+			messages : {
+				checkCode : {
+					remote : "验证码错误(不区分大小写)"
+				}
+			}
+		});
+
+		//加载验证码
+		$("#checkCodeImg").attr("src", 'checkCode?now=' + new Date())
+		//单击刷新验证码
+		.click(function() {
+			$(this).attr("src", 'checkCode?now=' + new Date());
+		});
+ 
+	});
+</script>
+</head>
+<body>
+<div class="top">
+	<div id="time_div">现在是:<span id="time"></span></div>
+</div>
+<div class="main">
+	<div class="left">
+		<div class="left_top"></div>
+		<div class="left_main" style="position:relative">
+			
+			<ul>
+				<li><a href="#">普通话水平考试报名系统</a></li>
+				<li><a href="#" id="test_booking_login">普通话水平考试预约系统</a>
+				
+				</li>
+				<div class="user_login" id="user_login"  >
+				<form name="loginForm" id="loginForm"
+		action="${ctx }/login.do?action=processLogin" method="post">
+					<table   border="0" cellspacing="0" cellpadding="0" class="login_table">
+					 
+						<tr>
+							<td width="150" align="right">类&nbsp;&nbsp;型：</td>
+							<td width="250"><input type="radio" checked="checked"/>
+								学生
+								<input type="radio"  class=""/>
+								老师</td>
+						</tr>
+						
+						<tr>
+							<td align="right">用户名：</td>
+							<td><input name="name" type="text"  class="input_text" id="name"/></td>
+						</tr>
+						<tr>
+							<td align="right">密&nbsp;&nbsp;码：</td>
+							<td><input name="password" type="password" id="password" class="input_text"/></td>
+						</tr>
+						<tr>
+							<td align="right">验证码：</td>
+							<td><input name="checkCode" type="text" id="checkCode"  class="input_text_checkcode"/>
+								<img  src="checkCodeImg" id="checkCodeImg" class="checkCodeImg" title="看不清的话请单击刷新（不区分大小写）"   align="top"/></td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center"><input class="button" type="submit" value="登录"/>
+								<input class="button" type="reset" value="重置"/>
+								<input class="button" type="button" id="close_login" value="关闭"/>
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+				<li><a href="#">机构设置</a></li>
+				<li><a href="#">政策文件</a></li>
+				<li><a href="#">通知公告</a></li>
+				<li><a href="#">友情链接</a></li>
+				<li><a href="#">文档下载</a></li>
+			</ul>
+		</div>
+		<div class="left_bottom"></div>
+	</div>
+	<div class="right">
+		<div class="path">您现在所在的位置：首页 &gt;&gt; 文档下载</div>
+		<div class="column_name"><span>&gt;&gt;</span> 查看文章《中国广东公司通讯公司》</div>
+		<div class="article_title">保险系召开2013届毕业生实习与就业指导会</div>
+		<div class="article_sub_title">---保险系召开2013届毕业生实习与就业指导会</div>
+		<div class="article_other_info">作者：Po 点击数:244  更新时间:2012年08月08日</div>
+		<div class="article_content" id="article_content"> 暑假在即，为让学生把假期的实习与就业很好地结合起来，6月29日，保险系召开了2013届毕业生实习与就业指导会。
+			
+			会议通报了保险系2012届毕业生的就业、考研情况，分析了保险系今年毕业生就业的规律及特点，并向2009级学生介绍了学校为促进大学生就业提供的各种服务。
+			
+			保险系党政领导对2013届毕业生进行了就业动员。保险系党总支书记王胜利在分析2012届毕业生就业情况的基础上，深入分析了正确处理好形象与包装、被动就业与主动择业、本专业就业与跨专业就业“三个关系”对于大学生就业的重要关系，并要求2013届毕业生端正择业态度，确定求职目标，调适就业心态，在激烈的就业竞争中学会主动出击，通过各种渠道寻求就业出路。系主任刘连生进一步指出，2013届毕业生应认清就业形势，增强就业竞争意识，科学规划、合理安排好自己的时间，在积极就业的同时要按照学校的要求完成学习任务。
+			
+			同学们在会后纷纷表示，这次会议让他们明确了实习与就业之间的关系，决心利用暑假，认真完成实习任务，同时为就业做好充分准备。</div>
+		<div class="article_control">【字体： <span id="font_small" class="cursor_pointer">小</span> <span  id="font_big" class="cursor_pointer">大</span>】 【 <span id="close_window" class="cursor_pointer">关闭窗口</span>】 </div>
+	</div>
+</div>
+<div class="bottom">
+	<p>回到首页 | 设为首页 | 加入收藏 | 联系我们 | 管理登录</p>
+	<p>广东省语言文字培训测试工作办公室 版权所有 2011-1013 　技术支持 YANGWEIJIE</p>
+	<p>地址 ： 广东省广州市天河区瘦狗岭路463号 广东外语艺术职业学院 信息楼10楼 电话：020-38458053 </p>
+</div>
+</body>
+</html>

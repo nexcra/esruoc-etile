@@ -36,6 +36,15 @@ public class TestBookingController {
 		request.setAttribute("page", page);
 		return "/testBooking/listTestBooking.jsp";
 	}
+	@RequestMapping(params = "action=listTestBookingForStudent")
+	public String listTestBookingForStudent(HttpServletRequest request,
+			String currentPageNum) {
+		Page page = new Page();
+		page = new Page(PageUtil.getPageNum(currentPageNum),1000);
+		this.testBookingService.listTestBookingForStudent(page);
+		request.setAttribute("page", page);
+		return "/front/testBooking/listTestBookingForStudent.jsp";
+	}
 
 	/**
 	 * to add a TestBooking
@@ -99,6 +108,13 @@ public class TestBookingController {
 		Map map = this.testBookingService.getTestBookingById(id);
 		request.setAttribute("map", map);
 		return "/testBooking/viewTestBooking.jsp";
+	}
+	
+	@RequestMapping(params = "action=viewTestBookingForStudent")
+	public String viewTestBookingForStudent(HttpServletRequest request, String id) {
+		Map map = this.testBookingService.getTestBookingById(id);
+		request.setAttribute("map", map);
+		return "/front/testBooking/viewTestBookingForStudent.jsp";
 	}
 
 }

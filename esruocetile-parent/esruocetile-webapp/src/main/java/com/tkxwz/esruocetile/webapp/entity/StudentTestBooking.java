@@ -12,6 +12,16 @@ public class StudentTestBooking implements Serializable {
 
 	private int id;
 
+	private Integer studentId;
+
+	public Integer getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
+	}
+
 	private String studentNo;
 
 	private String name;
@@ -39,6 +49,16 @@ public class StudentTestBooking implements Serializable {
 	}
 
 	private String testBookingName;
+
+	private String testBookingId;
+
+	public String getTestBookingId() {
+		return testBookingId;
+	}
+
+	public void setTestBookingId(String testBookingId) {
+		this.testBookingId = testBookingId;
+	}
 
 	public String getCollege() {
 		return college;

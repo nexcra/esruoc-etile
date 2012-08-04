@@ -102,4 +102,15 @@ public class ColumnController {
 		return "/column/viewColumn.jsp";
 	}
 
+	@RequestMapping(params = "action=listArticle")
+	public String listArticleByColumnId(HttpServletRequest request,
+			String currentPageNum, String columnId) {
+		Page page = new Page();
+		page = new Page(PageUtil.getPageNum(currentPageNum));
+		this.columnService.listArticleByColumnId(page,
+				Integer.valueOf(columnId));
+		request.setAttribute("page", page);
+		return "/front/article/listArticle.jsp";
+	}
+
 }

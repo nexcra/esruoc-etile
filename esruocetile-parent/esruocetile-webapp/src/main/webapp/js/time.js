@@ -1,6 +1,6 @@
-function clockon(bgclock){
+function displayTime(id){
 	var now=new Date();
-	var year=now.getYear();
+	var year=now.getFullYear();
 	var month=now.getMonth();
 	var date=now.getDate();
 	var day=now.getDay();
@@ -19,7 +19,7 @@ function clockon(bgclock){
 	var time="";
 	time=year+"年"+month+"月"+date+"日 "+week+" " //+hour+":"+minu+":"+sec; //暂时不显示时分秒
 	 
-		document.getElementById(bgclock).innerHTML = time;
+		document.getElementById(id).innerHTML = time;
 	//var timer=setTimeout("clockon(bgclock)",200);//不作刷新时间
 } 
  

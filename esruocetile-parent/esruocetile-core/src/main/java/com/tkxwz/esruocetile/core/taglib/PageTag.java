@@ -12,7 +12,7 @@ import com.tkxwz.esruocetile.core.constant.CommonConstants;
 import com.tkxwz.esruocetile.core.page.Page;
 
 /**
- * @author Po Kong 
+ * @author Po Kong
  * @since 2012-2-26 下午9:15:13
  */
 public class PageTag extends TagSupport {
@@ -42,7 +42,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 标签处理开始，构建一个存放分页信息html的字符串缓冲区
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午9:52:11
 	 * @return 忽略标签之间的内容
 	 * @throws JspException
@@ -57,7 +57,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 分页标签处理逻辑
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午9:59:11
 	 * @return 按正常流程继续处理jsp页面
 	 * @throws JspException
@@ -82,7 +82,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 得到分页div开始标记
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午10:03:25
 	 */
 	private void getStartDiv() {
@@ -99,7 +99,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 得到分页信息
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午10:03:29
 	 */
 	private void getPageInfo() {
@@ -121,7 +121,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 文字之间空白
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 下午2:50:59
 	 */
 	private void space() {
@@ -131,7 +131,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 得到分页链接url串
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 下午12:51:38
 	 * @param pageNum
 	 *        页码
@@ -158,7 +158,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 得到第一页分页信息,如果当前页为首页，则只显示文字，否则显示链接
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午11:37:15
 	 */
 	private void getFirstPageInfo() {
@@ -174,7 +174,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 得到上一页分页信息，如果当前页为首页，则只显示文字，否则显示链接
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午11:37:28
 	 */
 	private void getPreviousPageInfo() {
@@ -190,11 +190,12 @@ public class PageTag extends TagSupport {
 	/**
 	 * 得到下一页分页信息，如果当前页为末页，则只显示文字，否则显示链接
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午11:37:54
 	 */
 	private void getNextPageInfo() {
-		if (page.getCurrentPageNum() == page.getTotalPages()) {
+		if (page.getCurrentPageNum() == page.getTotalPages()
+				|| page.getTotalRecords() == 0) {
 			pageHtml.append(this.nextPageName);
 		} else {
 			this.getPageLinkUrl(page.getNextPageNum(), this.nextPageName);
@@ -204,11 +205,12 @@ public class PageTag extends TagSupport {
 	/**
 	 * 得到末页分页信息，如果当前页为末页，则只显示文字，否则显示链接
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午11:38:36
 	 */
 	private void getLastPageInfo() {
-		if (page.getCurrentPageNum() == page.getTotalPages()) {
+		if (page.getCurrentPageNum() == page.getTotalPages()
+				|| page.getTotalRecords() == 0) {
 			pageHtml.append(this.lastPageName);
 		} else {
 			this.getPageLinkUrl(page.getTotalPages(), this.lastPageName);
@@ -217,7 +219,7 @@ public class PageTag extends TagSupport {
 	}
 
 	/**
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午11:38:39
 	 */
 	private void getPageSizeInfo() {
@@ -227,7 +229,7 @@ public class PageTag extends TagSupport {
 	}
 
 	/**
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午11:38:45
 	 */
 	private void getTotalRecordsInfo() {
@@ -238,7 +240,7 @@ public class PageTag extends TagSupport {
 	}
 
 	/**
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午11:38:42
 	 */
 	private void getNavigatePageInfo() {
@@ -252,7 +254,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 转到第几页
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 下午2:51:43
 	 */
 	private void goToPage() {
@@ -269,7 +271,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 写日志
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午10:03:41
 	 */
 	private void writeLog() {
@@ -279,7 +281,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 得到分页div结束标记
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午10:03:39
 	 */
 	private void getEndDiv() {
@@ -289,7 +291,7 @@ public class PageTag extends TagSupport {
 	/**
 	 * 将分页信息返回给页面
 	 * 
-	 * @author Po Kong 
+	 * @author Po Kong
 	 * @since 2012-2-27 上午10:03:45.
 	 */
 	private void writePageHtmlToPage() {

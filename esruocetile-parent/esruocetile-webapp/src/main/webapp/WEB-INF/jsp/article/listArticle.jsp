@@ -28,11 +28,11 @@
 		$("#checkAll").click(function() {
 			$(".checkList").attr("checked", !!$("#checkAll").attr("checked"));
 		});
-
+		var i = 0 ;
 		//添加文章
 		$("#newArticle").click(
 				function() {
-					overrideSelectedTab('newArticle', '新增文章',
+					overrideSelectedTab('newArticle'+i++, '新增文章',
 							'article.do?action=toAddArticle');
 				});
 

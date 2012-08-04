@@ -67,7 +67,7 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select ");
 		sql.append(" b.test_booking_name , ");
-		sql.append(" b.campus , "); 
+		sql.append(" b.campus , ");
 		sql.append(" a.id, ");
 		sql.append(" a.name, ");
 		sql.append(" a.student_no, ");
@@ -245,6 +245,72 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		int[] valueTypes = ListUtil.list2intArray(valueTypesList);
 
 		return queryForList(sql.toString(), values, valueTypes);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午1:46:16
+	 * @param studentTestBooking
+	 * @return
+	 */
+	public int addStudentTestBooking(String studentId, String testBookingId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" insert into   t_student_test_booking(student_id, test_booking_id ) ");
+		sql.append(" values  ( ? , ? ) ");
+		Object[] values = { Integer.valueOf(studentId),
+				Integer.valueOf(testBookingId) };
+		int[] valueTypes = { Types.INTEGER, Types.INTEGER };
+		return this.insert(sql.toString(), values, valueTypes);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午3:54:27
+	 * @param studentId
+	 * @return
+	 */
+	public List<Map<String, Object>> getStudentTestBookingByStudentId(
+			String studentId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select ");
+		sql.append(" b.id , ");
+		sql.append(" b.test_booking_name , ");
+		sql.append(" b.campus , ");
+		sql.append(" a.id, ");
+		sql.append(" a.name, ");
+		sql.append(" a.student_no, ");
+		sql.append(" a.college, ");
+		sql.append(" a.grade, ");
+		sql.append(" a.gender, ");
+		sql.append(" a.nationality_code, ");
+		sql.append(" a.nationality, ");
+		sql.append(" a.date_of_birth, ");
+		sql.append(" a.id_no, ");
+		sql.append(" a.major, ");
+		sql.append(" a.executive_class ");
+		sql.append(" from t_student a, t_test_booking b, t_student_test_booking c ");
+		sql.append(" where a.id = c.student_id  ");
+		sql.append(" and b.id = c.test_booking_id  ");
+		sql.append(" and a.id = ?  ");
+		Object[] values = { Integer.parseInt(studentId) };
+		int[] valueTypes = { Types.INTEGER };
+		return this.queryForList(sql.toString(), values, valueTypes);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午4:55:18
+	 * @param studentId
+	 * @return
+	 */
+	public int updateStudentTestBooking(String studentId, String testBookingId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update  t_student_test_booking a set   test_booking_id = ?   ");
+		sql.append(" where   a.student_id = ?  ");
+		Object[] values = { Integer.valueOf(testBookingId),
+				Integer.valueOf(studentId) };
+		int[] valueTypes = { Types.INTEGER, Types.INTEGER };
+		return this.update(sql.toString(), values, valueTypes);
 	}
 
 }
