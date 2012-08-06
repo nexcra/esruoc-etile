@@ -1,5 +1,6 @@
 package com.tkxwz.esruocetile.webapp.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.webapp.dao.ArticleDao;
 import com.tkxwz.esruocetile.webapp.entity.Article;
+import com.tkxwz.esruocetile.webapp.entity.Column;
 import com.tkxwz.esruocetile.webapp.entity.Student;
 
 /**
@@ -81,5 +83,16 @@ public class ArticleService {
 
 	public Page searchArticle(Page page, Article article) {
 		return this.articleDao.searchArticle(page, article);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午11:52:57
+	 * @param columnList
+	 * @param string
+	 */
+	public Page listArticleByColumnName(Page page, String columnName) {
+		return this.articleDao.listArticleByColumnName(page, columnName);
+
 	}
 }

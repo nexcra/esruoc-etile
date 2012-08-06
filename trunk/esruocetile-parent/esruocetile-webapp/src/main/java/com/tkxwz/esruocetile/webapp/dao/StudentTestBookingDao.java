@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 
 import com.tkxwz.esruocetile.core.page.Page;
@@ -18,6 +20,8 @@ import com.tkxwz.esruocetile.webapp.entity.StudentTestBooking;
  */
 @Repository
 public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
+
+	private static Log logger = LogFactory.getLog(StudentTestBookingDao.class);
 
 	public Page listStudentTestBooking(Page page) {
 		StringBuilder sql = new StringBuilder();
@@ -141,9 +145,13 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 					+ studentTestBooking.getCollege() + "%'");
 		}
 		if (StringUtils.isNotEmpty(studentTestBooking.getGender())
-				&& !"全部".equals(studentTestBooking.getGender())) {
+				&& !"all".equals(studentTestBooking.getGender())) {
 			sql.append(" and a.gender = ? ");
-			valuesList.add(studentTestBooking.getGender());
+			if (studentTestBooking.getGender().equals("1")) {
+				valuesList.add("男");
+			} else {
+				valuesList.add("女");
+			}
 			valueTypesList.add(Types.VARCHAR);
 		}
 		if (StringUtils.isNotEmpty(studentTestBooking.getIdNo())) {
@@ -162,7 +170,8 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		sql.append(" order by  b.id desc ");
 		Object[] values = ListUtil.list2objectArray(valuesList);
 		int[] valueTypes = ListUtil.list2intArray(valueTypesList);
-
+		logger.debug("StudentTestBookingDao:searchStudentTestBooking(Page page,StudentTestBooking studentTestBooking):"
+				+ sql.toString());
 		return queryForPage(sql.toString(), values, valueTypes, page);
 	}
 
@@ -222,9 +231,14 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 					+ studentTestBooking.getCollege() + "%'");
 		}
 		if (StringUtils.isNotEmpty(studentTestBooking.getGender())
-				&& !"全部".equals(studentTestBooking.getGender())) {
+				&& !"all".equals(studentTestBooking.getGender())) {
 			sql.append(" and a.gender = ? ");
-			valuesList.add(studentTestBooking.getGender());
+			logger.debug("性别:" + studentTestBooking.getGender());
+			if (studentTestBooking.getGender().equals("1")) {
+				valuesList.add("男");
+			} else {
+				valuesList.add("女");
+			}
 			valueTypesList.add(Types.VARCHAR);
 		}
 		if (StringUtils.isNotEmpty(studentTestBooking.getIdNo())) {
@@ -243,7 +257,8 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		sql.append(" order by  b.id desc ");
 		Object[] values = ListUtil.list2objectArray(valuesList);
 		int[] valueTypes = ListUtil.list2intArray(valueTypesList);
-
+		logger.debug("StudentTestBookingDao:searchStudentTestBooking(StudentTestBooking studentTestBooking):"
+				+ sql.toString());
 		return queryForList(sql.toString(), values, valueTypes);
 	}
 

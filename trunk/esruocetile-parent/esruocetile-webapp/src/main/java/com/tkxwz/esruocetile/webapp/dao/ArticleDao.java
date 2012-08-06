@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.core.util.ListUtil;
 import com.tkxwz.esruocetile.webapp.entity.Article;
+import com.tkxwz.esruocetile.webapp.entity.Column;
 
 /**
  * @author Po Kong
@@ -181,5 +182,35 @@ public class ArticleDao extends BaseDao<Article> {
 		int[] valueTypes = ListUtil.list2intArray(valueTypesList);
 
 		return queryForPage(sql.toString(), values, valueTypes, page);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-4 下午11:55:03
+	 * @param page
+	 * @param columnName
+	 * @return
+	 */
+	public Page listArticleByColumnName(Page page, String columnName) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" SELECT a.id, ");
+		sql.append(" a.title, ");
+		sql.append(" a.sub_title, ");
+		sql.append(" a.source, ");
+		sql.append(" a.status, ");
+		sql.append(" b.column_name, ");
+		sql.append(" a.insert_time, ");
+		sql.append(" a.update_time, ");
+		sql.append(" a.hit_count ");
+		sql.append(" FROM t_article a, t_column b ");
+		sql.append(" WHERE a.column_id = b.id ");
+		sql.append(" and a.status in (1,2) ");
+		sql.append(" and b.column_name = ?   ");
+		sql.append(" order by a.insert_time desc ");
+
+		Object[] values = { columnName };
+		int[] valueTypes = { Types.VARCHAR };
+
+		return this.queryForPage(sql.toString(), values, valueTypes, page);
 	}
 }
