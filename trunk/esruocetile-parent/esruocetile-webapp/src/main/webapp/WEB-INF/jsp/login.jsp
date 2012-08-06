@@ -36,15 +36,27 @@
 				}
 			}
 		});
+		var loginType = $(':input:radio:checked').val();
+		if ("student" == loginType) {
+			$(".hint").show();
+		} else {
+			$(".hint").hide();
+		}
 
+		$(':input:radio').click(function() {
+			var loginType = $(':input:radio:checked').val();
+			if ("student" == loginType) {
+				$(".hint").show();
+			} else {
+				$(".hint").hide();
+			}
+		});
 		//加载验证码
 		$("#checkCodeImg").attr("src", 'checkCode?now=' + new Date())
 		//单击刷新验证码
 		.click(function() {
 			$(this).attr("src", 'checkCode?now=' + new Date());
 		});
-
-		
 
 	});
 </script>
@@ -78,7 +90,8 @@
 
 					<div class="usernameIcon">用户名:</div>
 					<div class="usernameInput">
-						<input type="text" name="name" id="name" class="username" />
+						<input type="text" name="name" id="name" class="username" /><span
+							class="hint" style="display: none">&nbsp;请输入学号</span>
 					</div>
 				</div>
 				<div class="cb"></div>
@@ -86,7 +99,7 @@
 					<div class="passwordIcon">密&nbsp;码：</div>
 					<div class="passwordInput">
 						<input type="password" name="password" id="password"
-							class="password" />
+							class="password" /><span class="hint" style="display: none">&nbsp;请输入身份证号</span>
 					</div>
 				</div>
 

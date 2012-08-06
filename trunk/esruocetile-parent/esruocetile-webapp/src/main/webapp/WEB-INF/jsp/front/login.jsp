@@ -72,7 +72,7 @@
 	<div class="main">
 		<div class="right">
 			<div class="path">
-				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt;
+				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt;登录 
 			</div>
 			<c:if test="${sessionScope.studentId ==null }">
 				<div>

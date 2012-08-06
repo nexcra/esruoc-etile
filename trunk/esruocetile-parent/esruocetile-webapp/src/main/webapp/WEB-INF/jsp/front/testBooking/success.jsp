@@ -21,8 +21,9 @@
 	<div class="main">
 		<%@include file="/common/left.jsp"%>
 		<div class="right">
+		<%@include file="/common/frontLogin.jsp"%> 
 			<div class="path">
-				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt;
+				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt; 提示
 			</div>
 			<div class="column_article_list">
 				 预约成功，请<a href="返回"></a>

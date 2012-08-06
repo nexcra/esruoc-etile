@@ -83,13 +83,13 @@
 			<tr>
 				<td class="fieldName" width="20%">学院:</td>
 				<td class="fieldForm" width="80%"><input type="text"
-					name="college" id="college" value="${map.name }" /><span
+					name="college" id="college" value="${map.college }" /><span
 					class="asterisk">*</span></td>
 			</tr>
 			<tr>
 				<td class="fieldName" width="20%">年级:</td>
 				<td class="fieldForm" width="80%"><input type="text"
-					name="grade" id="grade" value="${map.name }" /><span
+					name="grade" id="grade" value="${map.grade }" /><span
 					class="asterisk">*</span></td>
 			</tr>
 			<tr>
@@ -165,7 +165,7 @@
 						<option value="珞巴族">珞巴族</option>
 						<option value="基诺族">基诺族</option>
 						<option value="其他">其他</option>
-				</select></td>
+				</select><span class="asterisk">*</span></td>
 			</tr>
 			<tr>
 				<td class="fieldName" width="20%">民族代码:</td>
