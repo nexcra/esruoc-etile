@@ -139,8 +139,8 @@ public class DataService {
 			student.setName(map.get(3));
 			student.setGender(map.get(4));
 
-			student.setNationality(map.get(5));
-			student.setNotionalityCode(map.get(6));
+			student.setNotionalityCode(map.get(5));
+			student.setNationality(map.get(6));
 			student.setDateOfBirth(map.get(7));
 			student.setIdNo(map.get(8));
 			student.setMajor(map.get(9));

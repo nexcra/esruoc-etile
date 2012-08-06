@@ -107,7 +107,7 @@ public class LoginController {
 			session.setAttribute("studentName", userMap.get("name"));
 			session.setAttribute("studentNo", userMap.get("student_no"));
 			session.setAttribute("studentPassword", password);
-			returnPage = "/front/index.jsp";
+			returnPage = "redirect:/index.do";
 		}
 		return returnPage;
 	}

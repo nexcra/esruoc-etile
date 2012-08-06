@@ -36,14 +36,42 @@ public class IndexController {
 
 	@RequestMapping(params = "action=toIndex")
 	public String toIndex(HttpServletRequest request) {
-		Page recentArticleList = new Page(PageUtil.getPageNum("1"));
+		Page page = new Page(PageUtil.getPageNum("1"));
 		List<Column> columnList = this.columnService.listAllColumn();
-		this.articleService.listArticle(recentArticleList);
-
+		this.articleService.listArticle(page);
 		HttpSession session = request.getSession();
-
 		session.setAttribute("columnList", columnList);
-		request.setAttribute("recentArticleList", recentArticleList);
+
+		request.setAttribute("recentArticleList", page);
+
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleService.listArticleByColumnName(page, "通知公告");
+		request.setAttribute("tzggArticleList", page);
+
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleService.listArticleByColumnName(page, "常见问题");
+		request.setAttribute("cjwtArticleList", page);
+
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleService.listArticleByColumnName(page, "测试指南");
+		request.setAttribute("csznArticleList", page);
+
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleService.listArticleByColumnName(page, "文档下载");
+		request.setAttribute("wdxzArticleList", page);
+		
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleService.listArticleByColumnName(page, "机构设置");
+		request.setAttribute("jgszArticleList", page);
+		//政策文件二级
+		page = new Page(PageUtil.getPageNum("1"));
+		//this.articleService.listColumnByParentColumnName(page, "机构设置");
+		//request.setAttribute("jgszArticleList", page);
+		 
+		
+
+		session.setAttribute("csznColumnList", columnList);
+
 		return "/front/index.jsp";
 	}
 }
