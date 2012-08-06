@@ -191,17 +191,18 @@ public class ExcelUtil {
 			cellValue = (String) excelContent.get(i).get("gender");
 			cell.setCellValue(cellValue);
 
-			// 民族
-			// 新建一列
-			cell = row.createCell(cellNo++);
-			cell.setCellStyle(style2);
-			cellValue = (String) excelContent.get(i).get("nationality");
-			cell.setCellValue(cellValue);
 			// 民族代码
 			// 新建一列
 			cell = row.createCell(cellNo++);
 			cell.setCellStyle(style2);
 			cellValue = (String) excelContent.get(i).get("nationality_code");
+			cell.setCellValue(cellValue);
+
+			// 民族
+			// 新建一列
+			cell = row.createCell(cellNo++);
+			cell.setCellStyle(style2);
+			cellValue = (String) excelContent.get(i).get("nationality");
 			cell.setCellValue(cellValue);
 			// 出生日期
 			// 新建一列
