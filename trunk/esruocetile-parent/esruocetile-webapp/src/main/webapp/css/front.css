@@ -48,19 +48,31 @@ body {
 .top {
 	margin: 0 auto;
 	width: 1065px;
-	background: url(../images/skin/default/front/top_bg.jpg) no-repeat;
+	background: url(../images/skin/default/front/top_bg_3.jpg) no-repeat;
 	height: 185px;
 	position: relative;
+}
+
+#myFocus {
+	width: 322px;
+	height: 255px;
+}
+
+.flashBanner {
+	position: absolute;
+	left: 138px;
+	z-index: 1;
 }
 
 #time_div {
 	width: 250px;
 	height: 33px;
 	line-height: 33px;
-	top: 144px;
+	top: 180px;
 	left: 70px;
 	position: absolute;
 	text-align: center;
+	z-index: 9;
 }
 
 .main {
@@ -81,7 +93,7 @@ body {
 
 .left_main {
 	width: 270px;
-	height: 600px;
+	height: 670px;
 	background: url(../images/skin/default/front/left_bg.gif) repeat-y;
 }
 
@@ -93,7 +105,7 @@ body {
 .left_main ul li {
 	color: #6a5f5f;
 	font-family: "黑体";
-	font-size: 18px;
+	font-size: 16px;
 	height: 55px;
 	line-height: 55px;
 	background: url(../images/skin/default/front/left_arrow.jpg) 0 15px
@@ -113,6 +125,7 @@ body {
 	width: 675px;
 	float: left;
 	background: #fff;
+	position: relative; 
 }
 
 .pic_article {
@@ -314,7 +327,7 @@ body {
 	font-size: 20px;
 	line-height: 2em;
 	text-align: center;
-	padding:10px
+	padding: 10px
 }
 
 .article_sub_title {
