@@ -34,7 +34,10 @@
 	<div class="main">
 		<%@include file="/common/left.jsp"%>
 		<div class="right">
-			<div class="path">您现在所在的位置：首页 &gt;&gt; 查看文章 &gt;&gt;</div>
+			<%@include file="/common/frontLogin.jsp"%>
+			<div class="path">
+				您现在所在的位置：<a href="${ctx }">首页</a>&gt;&gt; 查看文章 &gt;&gt;
+			</div>
 			<div class="column_name">
 				<span>&gt;&gt;</span> 查看文章
 			</div>

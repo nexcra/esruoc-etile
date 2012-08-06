@@ -9,9 +9,30 @@
 <link rel="stylesheet" type="text/css" href="${ctx }/css/front.css" />
 <script type="text/javascript" src="${ctx }/js/time.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
+<script type="text/javascript"
+	src="${ctx }/js/jquery.validate.message.cn.js"></script>
+<script type="text/javascript" src="${ctx }/js/myfocus-2.0.2.min.js"></script>
+<!--引入myFocus库-->
+<script type="text/javascript" src="${ctx }/js/mf-pattern/slide3D.js"></script>
+<!--引入风格js文件-->
+
+</style>
+<!--背景图片透明方法-->
+<script src="${ctx }/js/iepng.js" type="text/javascript"></script>
+<!--插入图片透明方法-->
 <script type="text/javascript">
-	$(function() {
-		displayTime("time");
+	EvPNG.fix('div, ul, img, li, input'); //EvPNG.fix('包含透明PNG图片的标签'); 多个标签之间用英文逗号隔开。
+</script>
+<script type="text/javascript">
+	myFocus.set({
+		id : 'myFocus',//焦点图盒子ID
+		pattern : 'mF_fscreen_tb',//风格应用的名称
+		time : 3,//切换时间间隔(秒)
+		trigger : 'click',//触发切换模式:'click'(点击)/'mouseover'(悬停)
+		width : 322,//设置图片区域宽度(像素)
+		height : 255,//设置图片区域高度(像素)
+		txtHeight : '0'//文字层高度设置(像素),'default'为默认高度，0为隐藏
 	});
 </script>
 </head>
@@ -19,13 +40,31 @@
 	<%@include file="/common/top.jsp"%>
 	<div class="main">
 		<%@include file="/common/left.jsp"%>
-		<div class="right">
+		<div class="right" >
+			<%@include file="/common/frontLogin.jsp"%> 
 			<div class="path">
 				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt;
 			</div>
 			<div class="newest">
 				<div class="pic_article">
-					<img src="${ctx }/images/skin/default/front/demo_pic.jpg" />
+					<div id="myFocus">
+						<!--焦点图盒子-->
+						<div class="loading">
+							<img src="${ctx }/images/skin/default/slide/loading.gif"
+								alt="请稍候..." />
+						</div>
+						<!--载入画面(可删除) -->
+						<div class="pic">
+
+							<ul>
+								<li><img src="${ctx }/images/skin/default/slide/02.jpg"
+									thumb="" alt="#" text="图片1更详细的描述文字" /></li>
+								<li><img src="${ctx }/images/skin/default/slide/01.jpg"
+									thumb="" alt="#" text="图片2更详细的描述文字" /></li>
+								<li><img src="${ctx }/images/skin/default/slide/03.jpg"
+									thumb="" alt="#" text="图片3更详细的描述文字" /></li>
+						</div>
+					</div>
 				</div>
 				<div class="newest_article">
 					<h2>最新消息</h2>
@@ -52,33 +91,64 @@
 						<span>&gt;&gt;</span> 测试指南
 					</h2>
 					<ul>
-						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告</a></li>
+						<c:forEach items="${csznArticleList.pageDatas }" var="list"
+							varStatus="vs" end="6">
+							<li><a
+								href="${ctx }/article.do?action=viewArticle&id=${list.id }">
+									<c:set value="${list.title}" var="c" /> <c:choose>
+										<c:when test="${fn:length(c) > 17}">
+											<c:out value="${fn:substring(c, 0, 17)}...." />
+										</c:when>
+										<c:otherwise>
+											<c:out value="${c}" />
+										</c:otherwise>
+									</c:choose>
+							</a></li>
+
+						</c:forEach>
 					</ul>
 				</div>
 				<div class="column_article">
 					<h2>
-						<span>&gt;&gt;</span> 最新公告
+						<span>&gt;&gt;</span> 通知公告
 					</h2>
 					<ul>
-						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通告</a></li>
+						<c:forEach items="${tzggArticleList.pageDatas }" var="list"
+							varStatus="vs" end="6">
+							<li><a
+								href="${ctx }/article.do?action=viewArticle&id=${list.id }">
+									<c:set value="${list.title}" var="c" /> <c:choose>
+										<c:when test="${fn:length(c) > 17}">
+											<c:out value="${fn:substring(c, 0, 17)}...." />
+										</c:when>
+										<c:otherwise>
+											<c:out value="${c}" />
+										</c:otherwise>
+									</c:choose>
+							</a></li>
+
+						</c:forEach>
 					</ul>
 				</div>
 				<div class="column_banner">
 					<div class="column_banner_div">
 						<h2>机构设置</h2>
 						<ul>
-							<li><a href="#">机构设置</a> |</li>
-							<li><a href="#">机构职责</a> |</li>
-							<li><a href="#">人员分工</a> |</li>
-							<li><a href="#">办公地点</a></li>
+							<c:forEach items="${jgszArticleList.pageDatas }" var="list"
+								varStatus="vs" end="6">
+								<li><a
+									href="${ctx }/article.do?action=viewArticle&id=${list.id }">
+										<c:set value="${list.title}" var="c" /> <c:choose>
+											<c:when test="${fn:length(c) > 10}">
+												<c:out value="${fn:substring(c, 0, 10)}...." />
+											</c:when>
+											<c:otherwise>
+												<c:out value="${c}" />
+											</c:otherwise>
+										</c:choose>
+								</a> |</li>
+
+							</c:forEach>
 						</ul>
 					</div>
 					<div class="column_banner_div">
@@ -95,11 +165,21 @@
 						<span>&gt;&gt;</span> 常见问题
 					</h2>
 					<ul>
-						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告</a></li>
+						<c:forEach items="${cjwtArticleList.pageDatas }" var="list"
+							varStatus="vs" end="6">
+							<li><a
+								href="${ctx }/article.do?action=viewArticle&id=${list.id }">
+									<c:set value="${list.title}" var="c" /> <c:choose>
+										<c:when test="${fn:length(c) > 17}">
+											<c:out value="${fn:substring(c, 0, 17)}...." />
+										</c:when>
+										<c:otherwise>
+											<c:out value="${c}" />
+										</c:otherwise>
+									</c:choose>
+							</a></li>
+
+						</c:forEach>
 					</ul>
 				</div>
 				<div class="column_article">
@@ -107,11 +187,22 @@
 						<span>&gt;&gt;</span> 文档下载
 					</h2>
 					<ul>
-						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通公告</a></li>
-						<li><a href="#">通知公告通知公告通知公告通知公告通告</a></li>
+						<c:forEach items="${wdxzArticleList.pageDatas }" var="list"
+							varStatus="vs" end="6">
+							<li><a
+								href="${ctx }/article.do?action=viewArticle&id=${list.id }">
+									<c:set value="${list.title}" var="c" /> <c:choose>
+										<c:when test="${fn:length(c) > 17}">
+											<c:out value="${fn:substring(c, 0, 17)}...." />
+										</c:when>
+										<c:otherwise>
+											<c:out value="${c}" />
+										</c:otherwise>
+									</c:choose>
+							</a></li>
+
+						</c:forEach>
+						</li>
 					</ul>
 				</div>
 			</div>

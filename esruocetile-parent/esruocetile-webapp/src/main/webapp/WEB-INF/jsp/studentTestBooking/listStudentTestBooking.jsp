@@ -139,6 +139,7 @@
 
 							formToExport.action = formAction;
 							formToExport.submit();
+							 
 							$("#searchTable").show();
 						});
 
@@ -161,6 +162,7 @@
 									+ $("#executiveClass").val();
 
 							formToExport.action = formAction;
+							 
 							formToExport.submit();
 							$("#searchTable").show();
 						})
@@ -237,15 +239,15 @@
 			<tr>
 				<td class="fieldName">性别:</td>
 				<td class="fieldForm"><select name="gender" id="gender">
-						<option>全部</option>
+						<option value="all">全部</option>
 						<option
 							<c:if test="${bean.gender =='男' }">
 						selected = "selected"
-						</c:if>>男</option>
+						</c:if> value="1">男</option>
 						<option
 							<c:if test="${bean.gender =='女' }">
 						selected = "selected"
-						</c:if>>女</option>
+						</c:if> value="0">女</option>
 				</select></td>
 				<td class="fieldName">身份证号:</td>
 				<td class="fieldForm"><input type="text" name="idNo" id="idNo"
