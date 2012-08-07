@@ -26,7 +26,7 @@
 		}, {
 			url : "student.do?action=listStudent",
 			text : "学生信息管理"
-		},  {
+		}, {
 			url : "testBooking.do?action=listTestBooking",
 			text : "考试预约信息"
 		}, {
@@ -144,7 +144,12 @@
 				});
 	});
 </script>
-
+<style type="text/css">
+body,html {
+	overflow: hidden;
+	overflow-x: hidden;
+}
+</style>
 </head>
 <body style="padding: 0px; background: #EAEEF5;">
 

@@ -11,12 +11,13 @@
 body,html {
 	font-size: 13px;
 	font-family: "宋体";
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 body {
 	padding: 0px;
 	margin: 0;
-	overflow: hidden;
 }
 
 .l-link {
@@ -227,10 +228,11 @@ body {
 }
 
 .asterisk {
-	color:red;
+	color: red;
 }
+
 .operationButton {
-	cursor:pointer;
+	cursor: pointer;
 	float: left;
-	margin-left:5px;
+	margin-left: 5px;
 }
