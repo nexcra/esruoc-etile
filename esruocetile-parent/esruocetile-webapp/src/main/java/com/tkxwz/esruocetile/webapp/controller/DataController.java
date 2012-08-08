@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tkxwz.esruocetile.webapp.entity.Student;
 import com.tkxwz.esruocetile.webapp.service.DataService;
 import com.tkxwz.esruocetile.webapp.service.DictService;
 
@@ -49,12 +51,13 @@ public class DataController {
 		if (isMultipart) {
 			ServletFileUpload upload = new ServletFileUpload();
 
+			List<Student> duplicateStudentData = new ArrayList<Student>();// 重复学生数据，新增不成功
+
 			FileItemIterator iter;
 			try {
 				iter = upload.getItemIterator(request);
 				while (iter.hasNext()) {
 					FileItemStream item = iter.next();
-					String name = item.getFieldName();// 表单名
 					InputStream is = item.openStream();
 					// 普通的表单域
 					if (item.isFormField()) {
@@ -88,8 +91,10 @@ public class DataController {
 							List<Map<Integer, String>> studentList = dataService
 									.extractExcelData(filePath, fileExtension);
 
-							result = this.dataService
-									.batchAddStudent(studentList);
+							result = this.dataService.batchAddStudent(
+									studentList, duplicateStudentData);
+							request.setAttribute("duplicateStudentData",
+									duplicateStudentData);
 						}
 						// 导入完成后，删除服务器上的临时文件
 						new File(filePath).delete();
@@ -102,7 +107,9 @@ public class DataController {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("成功导入" + result + "条记录");
-		return "redirect:/student.do?action=listStudent";
+		String message = "成功导入" + result + "条记录";
+		request.setAttribute("successImportCount", result);
+		// return "redirect:/student.do?action=listStudent";
+		return "/student/importResult.jsp";
 	}
 }

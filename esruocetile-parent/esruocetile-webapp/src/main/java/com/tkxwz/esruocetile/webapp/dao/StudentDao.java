@@ -171,4 +171,19 @@ public class StudentDao extends BaseDao<Student> {
 		return queryForPage(sql.toString(), values, valueTypes, page);
 	}
 
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-8 下午11:31:41
+	 * @param studentNo
+	 * @return
+	 */
+	public int getStudentCountByStudentNo(String studentNo) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select count(*) ");
+		sql.append(" from t_student t ");
+		sql.append(" where t.student_no = ? ");
+		Object[] values = { studentNo };
+		int[] valueTypes = { Types.VARCHAR };
+		return this.queryForInt(sql.toString(), values, valueTypes);
+	}
 }
