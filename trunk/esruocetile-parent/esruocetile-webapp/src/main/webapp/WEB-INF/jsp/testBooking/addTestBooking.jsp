@@ -59,9 +59,9 @@
 				<td class="fieldName">预约开始时间:</td>
 				<td class="fieldForm"><input name="bookingBeginTime"
 					id="bookingBeginTime" type="text" class="inputText"
-					onclick="WdatePicker({el:'bookingBeginTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d+1}',maxDate:'#F{$dp.$D(\'bookingEndTime\')}'})" />
+					onclick="WdatePicker({el:'bookingBeginTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d}',maxDate:'#F{$dp.$D(\'bookingEndTime\')}'})" />
 					<img
-					onClick="WdatePicker({el:'bookingBeginTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d+1}'})"
+					onClick="WdatePicker({el:'bookingBeginTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d}',maxDate:'#F{$dp.$D(\'bookingEndTime\')}'})"
 					src="widget/My97DatePicker/skin/datePicker.gif" width="16"
 					height="22" align="absmiddle"></td>
 			</tr>
@@ -70,9 +70,9 @@
 				<td class="fieldName">预约结束时间:</td>
 				<td class="fieldForm"><input name="bookingEndTime"
 					id="bookingEndTime" type="text" class="inputText"
-					onclick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'d4311\')}'})" />
+					onclick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'bookingBeginTime\')}'})" />
 					<img
-					onClick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'d4311\')}'})"
+					onClick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'bookingBeginTime\')}'})"
 					src="widget/My97DatePicker/skin/datePicker.gif" width="16"
 					height="22" align="absmiddle"></td>
 			</tr>

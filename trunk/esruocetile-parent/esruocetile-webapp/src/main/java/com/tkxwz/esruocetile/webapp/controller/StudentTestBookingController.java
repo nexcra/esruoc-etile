@@ -75,11 +75,9 @@ public class StudentTestBookingController {
 		return result;
 	}
 
-	
-
 	@RequestMapping(params = "action=cancelBooking")
 	public String cancelBooking(HttpServletRequest request,
-			HttpServletResponse response, String testBookingId)
+			HttpServletResponse response, String oldTestBookingId)
 			throws IOException, IllegalAccessException,
 			InvocationTargetException {
 		String result = "redirect:/index.do";
@@ -91,9 +89,9 @@ public class StudentTestBookingController {
 					+ "login.do?action=toLogin'>登录</a>";
 
 			result = "redirect:/message.do";
-		} else {
-
-			this.studentTestBookingService.deleteStudentTestBooking(studentId);
+		} else {// deal with cancel booking
+			this.studentTestBookingService.deleteStudentTestBooking(studentId,
+					oldTestBookingId);
 			request.getSession().removeAttribute("bookingList");
 			result = "redirect:/message.do";
 

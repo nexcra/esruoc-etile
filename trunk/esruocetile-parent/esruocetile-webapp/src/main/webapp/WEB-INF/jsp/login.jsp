@@ -82,7 +82,7 @@
 					<div class="usernameInput">
 						<input type="radio" name="loginType" value="student"
 							checked="checked" />学生 <input type="radio" name="loginType"
-							value="teacher" /> 管理员 </select>
+							value="teacher" /> 老师 </select>
 					</div>
 				</div>
 				<div class="loginInput">

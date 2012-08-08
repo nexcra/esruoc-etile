@@ -128,10 +128,11 @@ public class DataService {
 		return wb;
 	}
 
-	public int batchAddStudent(List<Map<Integer, String>> studentList) {
-		Student student = new Student();
+	public int batchAddStudent(List<Map<Integer, String>> studentList,
+			List<Student> duplicateStudentData) {
 		int result = 0;
 		for (int i = 0; i < studentList.size(); i++) {
+			Student student = new Student();
 			Map<Integer, String> map = studentList.get(i);
 			student.setCollege(map.get(0));
 			student.setGrade(map.get(1));
@@ -145,8 +146,22 @@ public class DataService {
 			student.setIdNo(map.get(8));
 			student.setMajor(map.get(9));
 			student.setExecutiveClaas(map.get(10));
+			boolean exist = this.exist(student.getStudentNo());
+			if( exist) {
+				duplicateStudentData.add(student);
+			}else {
+				result += this.studentDao.addStudent(student);
+				
+			}
+		}
+		return result;
+	}
 
-			result += this.studentDao.addStudent(student);
+	public boolean exist(String studentNo) {
+		boolean result = false;
+		int count = this.studentDao.getStudentCountByStudentNo(studentNo);
+		if (count > 0) {
+			result = true;
 		}
 		return result;
 	}

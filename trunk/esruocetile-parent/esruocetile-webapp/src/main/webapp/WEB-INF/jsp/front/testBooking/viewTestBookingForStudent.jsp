@@ -21,7 +21,7 @@
 	<div class="main">
 		<%@include file="/common/left.jsp"%>
 		<div class="right">
-		<%@include file="/common/frontLogin.jsp"%> 
+			<%@include file="/common/frontLogin.jsp"%>
 			<div class="path">
 				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt; 查看预约信息
 			</div>
@@ -34,7 +34,8 @@
 					<form
 						action="${ctx }/studentTestBooking.do?action=addStudentTestBooking"
 						method="post">
-						<input type="hidden" name="testBookingId" id="testBookingId" value="${map.id }"/>
+						<input type="hidden" name="testBookingId" id="testBookingId"
+							value="${map.id }" />
 						<table width="100%" border="1"
 							class="test_booking_list_table student_booking_table">
 							<tr>
@@ -66,6 +67,10 @@
 								<td class="fieldForm">${map.max_booking_num }</td>
 							</tr>
 							<tr>
+								<td class="fieldName">当前预约人数:</td>
+								<td class="fieldForm">${map.current_booking_num }</td>
+							</tr>
+							<tr>
 								<td class="fieldName">剩余预约人数:</td>
 								<td class="fieldForm">${map.max_booking_num -
 									map.current_booking_num }</td>
@@ -81,11 +86,13 @@
 							</tr>
 							<tr>
 								<td class="fieldName"></td>
-								<td class="fieldForm"><input type="submit" value="预约"
-									class="button" />
-									
-									 <input type="button" value="返回"
-									class="button" id="returnButton" /></td>
+								<td class="fieldForm"><c:if
+										test="${map.max_booking_num -
+									map.current_booking_num >0 && map.begin_booking > 0 
+										&& map.end_booking > 0 }">
+										<input type="submit" value="预约" class="button" />
+									</c:if> <input type="button" value="返回" class="button"
+									id="returnButton" /></td>
 							</tr>
 						</table>
 					</form>

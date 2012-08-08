@@ -21,7 +21,9 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 
 	public Page listTestBooking(Page page) {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select t.* ");
+		sql.append(" select t.*,  ");
+		sql.append("  		now() -t.booking_begin_time  begin_booking , ");
+		sql.append("  		t.booking_end_time - now()   end_booking   ");
 		sql.append(" from t_test_booking t ");
 		sql.append(" order by  t.id desc ");
 		return this.queryForPage(sql.toString(), page);
@@ -75,7 +77,9 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 	 */
 	public Map getTestBookingById(String id) {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select t.* ");
+		sql.append(" select t.*, ");
+		sql.append("  		now() -t.booking_begin_time  begin_booking , ");
+		sql.append("  		t.booking_end_time - now()   end_booking  ");
 		sql.append(" from t_test_booking t where t.id = ? ");
 		Object[] values = { Integer.parseInt(id) };
 		int[] valueTypes = { Types.INTEGER };
@@ -120,10 +124,41 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 	 */
 	public Page listTestBookingForStudent(Page page) {
 		StringBuilder sql = new StringBuilder();
-		sql.append(" select t.* ");
+		sql.append(" select t.*, ");
+		sql.append("  		now() -t.booking_begin_time  begin_booking , ");
+		sql.append("  		t.booking_end_time - now()   end_booking  ");
 		sql.append(" from t_test_booking t ");
 		sql.append(" order by  t.id desc ");
 		return this.queryForPage(sql.toString(), page);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-8 下午9:18:45
+	 * @param testBookingId
+	 */
+	public int increaseCurrentBookingNum(String testBookingId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update t_test_booking t");
+		sql.append(" set   ");
+		sql.append(" t.current_booking_num=  t.current_booking_num + 1 ");
+		sql.append(" where t.id = ? ");
+		Object[] values = { testBookingId };
+		int[] valueTypes = { Types.INTEGER };
+		return this.update(sql.toString(), values, valueTypes);
+
+	}
+
+	public int decreaseCurrentBookingNum(String testBookingId) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update t_test_booking t");
+		sql.append(" set   ");
+		sql.append(" t.current_booking_num=  t.current_booking_num - 1 ");
+		sql.append(" where t.id = ? ");
+		Object[] values = { testBookingId };
+		int[] valueTypes = { Types.INTEGER };
+		return this.update(sql.toString(), values, valueTypes);
+
 	}
 
 }

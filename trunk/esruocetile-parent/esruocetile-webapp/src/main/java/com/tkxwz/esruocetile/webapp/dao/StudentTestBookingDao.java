@@ -288,7 +288,7 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 			String studentId) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select ");
-		sql.append(" b.id , ");
+		sql.append(" b.id test_booking_id, ");
 		sql.append(" b.test_booking_name , ");
 		sql.append(" b.campus , ");
 		sql.append(" a.id, ");
@@ -302,7 +302,9 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		sql.append(" a.date_of_birth, ");
 		sql.append(" a.id_no, ");
 		sql.append(" a.major, ");
-		sql.append(" a.executive_class ");
+		sql.append(" a.executive_class, ");
+		sql.append("  		now() -b.booking_begin_time  begin_booking , ");
+		sql.append("  		b.booking_end_time - now()   end_booking   ");
 		sql.append(" from t_student a, t_test_booking b, t_student_test_booking c ");
 		sql.append(" where a.id = c.student_id  ");
 		sql.append(" and b.id = c.test_booking_id  ");

@@ -101,7 +101,7 @@
 		//更新
 		$(".update").click(
 				function() {
-					overrideSelectedTab('updateTestBooking', '修改文章',
+					overrideSelectedTab('updateTestBooking', '修改考试预约',
 							'testBooking.do?action=toUpdateTestBooking&id='
 									+ $(this).attr("value"));
 				});

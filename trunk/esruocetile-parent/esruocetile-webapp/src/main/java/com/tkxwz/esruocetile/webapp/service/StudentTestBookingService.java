@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.webapp.dao.StudentTestBookingDao;
+import com.tkxwz.esruocetile.webapp.dao.TestBookingDao;
 import com.tkxwz.esruocetile.webapp.entity.StudentTestBooking;
 
 /**
@@ -19,6 +20,9 @@ public class StudentTestBookingService {
 
 	@Autowired
 	private StudentTestBookingDao studentTestBookingDao;
+
+	@Autowired
+	private TestBookingDao testBookingDao;
 
 	public Page listStudentTestBooking(Page page) {
 		return this.studentTestBookingDao.listStudentTestBooking(page);
@@ -84,14 +88,32 @@ public class StudentTestBookingService {
 	public int addStudentTestBooking(String studentId, String testBookingId) {
 		List<Map<String, Object>> list = this.studentTestBookingDao
 				.getStudentTestBookingByStudentId(studentId);
-		if (null != list && list.size() > 0) {
+		int result = 0;
+		boolean noNeedToAdd = null != list && list.size() > 0;
 
-			return this.studentTestBookingDao.updateStudentTestBooking(
-					studentId, testBookingId);
+		if (noNeedToAdd) {
+			String oldTestBookingId = String.valueOf(list.get(0).get(
+					"test_booking_id"));
+			boolean needUpdate = !testBookingId.equals(oldTestBookingId);
+			if (needUpdate) {
+				result = this.studentTestBookingDao.updateStudentTestBooking(
+						studentId, testBookingId);
+				if (0 != result) { // update the testBooking record of the current_booking_num
+					result = this.testBookingDao
+							.decreaseCurrentBookingNum(oldTestBookingId);
+					result = this.testBookingDao
+							.increaseCurrentBookingNum(testBookingId);
+				}
+			}
 		} else {
-			return this.studentTestBookingDao.addStudentTestBooking(studentId,
-					testBookingId);
+			result = this.studentTestBookingDao.addStudentTestBooking(
+					studentId, testBookingId);
+			if (0 != result) {// //update the testBooking record of the current_booking_num
+				result = this.testBookingDao
+						.increaseCurrentBookingNum(testBookingId);
+			}
 		}
+		return result;
 	}
 
 	/**
@@ -111,9 +133,17 @@ public class StudentTestBookingService {
 	 * @since 2012-8-4 下午5:03:49
 	 * @param studentId
 	 */
-	public int deleteStudentTestBooking(String studentId) {
-		return this.studentTestBookingDao
-				.deleteStudentTestBookingById(studentId);
+	public int deleteStudentTestBooking(String studentId,
+			String oldTestBookingId) {
+		int result = 0;
+		result = this.studentTestBookingDao
+
+		.deleteStudentTestBookingById(studentId);
+		if (0 != result) {
+			result = this.testBookingDao
+					.decreaseCurrentBookingNum(oldTestBookingId);
+		}
+		return result;
 
 	}
 }

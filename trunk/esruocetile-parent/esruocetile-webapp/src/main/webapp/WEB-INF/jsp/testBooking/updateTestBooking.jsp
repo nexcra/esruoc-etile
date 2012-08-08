@@ -46,8 +46,8 @@
 			<tr>
 				<td class="fieldName" width="20%">考试名称:</td>
 				<td class="fieldForm" width="80%"><input type="text"
-					name="name" id="name" class="width400" value="${map.name }" /><span
-					class="asterisk">*</span></td>
+					name="name" id="name" class="width400"
+					value="${map.test_booking_name }" /><span class="asterisk">*</span></td>
 			</tr>
 
 			<tr>
@@ -71,9 +71,9 @@
 					id="bookingBeginTime" type="text" class="inputText"
 					value="<fmt:formatDate value="${map.booking_begin_time }"
 						pattern="yyyy-MM-dd hh:ss:mm" />"
-					onclick="WdatePicker({el:'bookingBeginTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d+1}',maxDate:'#F{$dp.$D(\'bookingEndTime\')}'})" />
+					onclick="WdatePicker({el:'bookingBeginTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d}',maxDate:'#F{$dp.$D(\'bookingEndTime\')}'})" />
 					<img
-					onClick="WdatePicker({el:'bookingBeginTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d+1}'})"
+					onClick="WdatePicker({el:'bookingBeginTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'%y-%M-{%d}',maxDate:'#F{$dp.$D(\'bookingEndTime\')}'})"
 					src="widget/My97DatePicker/skin/datePicker.gif" width="16"
 					height="22" align="absmiddle"></td>
 			</tr>
@@ -84,9 +84,9 @@
 					id="bookingEndTime" type="text" class="inputText"
 					value="<fmt:formatDate value="${map.booking_end_time }"
 						pattern="yyyy-MM-dd hh:ss:mm" />"
-					onclick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'d4311\')}'})" />
+					onclick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'bookingBeginTime\')}'})" />
 					<img
-					onClick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss'},minDate:'#F{$dp.$D(\'d4311\')}'})"
+					onClick="WdatePicker({el:'bookingEndTime',isShowClear:false,dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'bookingBeginTime\')}'})"
 					src="widget/My97DatePicker/skin/datePicker.gif" width="16"
 					height="22" align="absmiddle"></td>
 			</tr>

@@ -23,7 +23,7 @@
 	<div class="main">
 		<%@include file="/common/left.jsp"%>
 		<div class="right">
-		<%@include file="/common/frontLogin.jsp"%> 
+			<%@include file="/common/frontLogin.jsp"%>
 			<div class="path">
 				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt;预约信息
 			</div>
@@ -35,11 +35,11 @@
 					<table width="100%" border="0" class="test_booking_list_table">
 
 						<tr>
-							<th width="40%">考试名称</th>
+							<th width="36%">考试名称</th>
 							<th width="10%">校区</th>
 							<th width="22%">预约开始时间</th>
 							<th width="22%">预约结束时间</th>
-							<th width="6%">操作</th>
+							<th width="10%">操作</th>
 						</tr>
 
 						<c:if test="${empty page.pageDatas }">
@@ -51,9 +51,16 @@
 
 						<c:forEach items="${page.pageDatas }" var="list" varStatus="vs">
 							<tr
-								<c:if test="${vs.index%2==1 }">
-									style="background:#fbfbfb"
-								</c:if>>
+								<c:if
+										test="${list.begin_booking > 0 && list.end_booking > 0 }">
+										style="font-weight:bold; color:green;  "  
+									</c:if>
+								<c:if test="${list.begin_booking < 0 }">
+										 style="" title="未开始预约"
+									</c:if>
+								<c:if test="${list.end_booking < 0 }">
+										 style="background:#f4f4f4; color:#666;"   
+									</c:if>>
 								<td>${list.test_booking_name }</td>
 								<td><c:if test="${list.campus ==1 }">石牌</c:if> <c:if
 										test="${list.campus ==2 }">大学城</c:if></td>
@@ -63,7 +70,19 @@
 										pattern="yyyy-MM-dd hh:ss:mm" /></td>
 								<td><a
 									href="${ctx }/testBooking.do?action=viewTestBookingForStudent&id=${list.id}"
-									id="booking">预约</a></td>
+									id="booking"> <c:if
+											test="${list.begin_booking > 0 
+										&& list.end_booking > 0 
+										&&(list.max_booking_num - list.current_booking_num > 0) }">
+										 可预约  
+									</c:if> <c:if
+											test="${list.max_booking_num - list.current_booking_num <1 }">
+										  已约满
+									</c:if> <c:if test="${list.begin_booking < 0 }">
+										 未开始 
+									</c:if> <c:if test="${list.end_booking < 0 }">
+										 已结束 
+									</c:if></a></td>
 							</tr>
 						</c:forEach>
 					</table>
