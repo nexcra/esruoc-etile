@@ -115,7 +115,8 @@ public class PageTag extends TagSupport {
 		getTotalRecordsInfo();// 共xx条
 		this.space();
 		getNavigatePageInfo();// 第XX页/共xx页
-		// goToPage();转到第几页
+		this.space();
+		goToPage();// 转到第几页
 	}
 
 	/**
@@ -258,13 +259,36 @@ public class PageTag extends TagSupport {
 	 * @since 2012-2-27 下午2:51:43
 	 */
 	private void goToPage() {
-		String goToPageScript = "window.open(\"" + this.url + "&"
-				+ CommonConstants.CURRENT_PAGE_LINK_NAME + "="
-				+ "document.getElementById(\"goToPage_icsp\").value())\"";
-		pageHtml.append("转到:<input type='text' name='goToPage_icsp' id='goToPage_icsp' /> ");
-		pageHtml.append("<a href='#' onclick='");
-		pageHtml.append(goToPageScript);
-		pageHtml.append("' style='text-decoration: none;'>go</a>");
+		/*
+		 * String goToPageScript = "window.open(\"" + this.url + "&"
+		 * + CommonConstants.CURRENT_PAGE_LINK_NAME + "="
+		 * + "document.getElementById(\"goToPage_div\").value())\"";
+		 * pageHtml.append("转到:<input type='text' name='goToPage_div' id='goToPage_div' /> ");
+		 * pageHtml.append("<a href='#' onclick='");
+		 * pageHtml.append(goToPageScript);
+		 * pageHtml.append("' style='text-decoration: none;'>go</a>");
+		 */
+
+		// this.getPageLinkUrl(page.getNextPageNum(), "转到");
+
+		pageHtml.append("转到第<input type='text' style='width:25px;'   name='goToPage_div' id='goToPage_div' /> 页");
+		this.space();
+		pageHtml.append("<a   id='goToPageButton' ");
+		pageHtml.append(" onclick='var goToPageButton = document.getElementById(\"goToPageButton\").href;  document.location.href=goToPageButton.replace(\"pageNumToReplace\",document.getElementById(\"goToPage_div\").value);return false'   href=\"");
+		pageHtml.append(url);
+		if (url.lastIndexOf("?") > 0) {
+			pageHtml.append("&");
+		} else {
+			pageHtml.append("?");
+		}
+		pageHtml.append(CommonConstants.CURRENT_PAGE_LINK_NAME);
+		pageHtml.append("=");
+		pageHtml.append("pageNumToReplace");
+		pageHtml.append("");
+		pageHtml.append("\">");
+
+		pageHtml.append("跳转");
+		pageHtml.append("</a>");
 
 	}
 

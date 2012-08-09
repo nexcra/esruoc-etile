@@ -68,7 +68,7 @@
 							</tr>
 						</c:forEach>
 					</table>
-					<div class="page"><tkxwz:page url="${ctx }/column.do?action=listArticle" page="${page }" /></div>
+					<div class="page"><tkxwz:page url="${ctx }/column.do?action=listArticle&columnId=${param.columnId }" page="${page }" /></div>
 				</div>
 			</div>
 		</div>
