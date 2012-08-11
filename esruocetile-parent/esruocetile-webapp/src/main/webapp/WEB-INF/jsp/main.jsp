@@ -157,9 +157,13 @@ body,html {
 	<div id="topmenu" class="l-topmenu">
 		<div class="l-topmenu-logo">后台主页</div>
 		<div class="l-topmenu-welcome">
-			<span style="color: white;">欢迎您:${adminName }</span> <a href="#"
-				id="toUpdatePersonalPassword" class="l-link2">修改个人密码</a> <a href="#"
-				class="l-link2">刷新</a> <span class="space">|</span> <a
+			<span style="color: white;">欢迎您:${adminName }&nbsp;<span
+				class="space">|&nbsp;</span><a href="${ctx }"
+				id="toUpdatePersonalPassword" class="l-link2">前台首页</a>
+			</span> <span class="space">|&nbsp;</span><a href="#"
+				id="toUpdatePersonalPassword" class="l-link2">修改个人密码</a><span
+				class="space">&nbsp;|&nbsp;</span><a href="#" class="l-link2">刷新</a>&nbsp;<span
+				class="space">|&nbsp;</span><a
 				href="${ctx }/login.do?action=logoutForAdmin" class="l-link2">注销</a>
 		</div>
 	</div>

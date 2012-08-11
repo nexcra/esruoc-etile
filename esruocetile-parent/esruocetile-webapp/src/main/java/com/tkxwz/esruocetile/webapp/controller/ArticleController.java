@@ -20,6 +20,7 @@ import com.tkxwz.esruocetile.webapp.entity.Column;
 import com.tkxwz.esruocetile.webapp.entity.Student;
 import com.tkxwz.esruocetile.webapp.service.ArticleService;
 import com.tkxwz.esruocetile.webapp.service.ColumnService;
+import com.tkxwz.esruocetile.webapp.service.IndexService;
 
 /**
  * @author Po Kong
@@ -33,6 +34,9 @@ public class ArticleController {
 
 	@Autowired
 	private ColumnService columnService;
+
+	@Autowired
+	private IndexService indexService;
 
 	@RequestMapping(params = "action=listArticle")
 	public String listArticle(HttpServletRequest request, String currentPageNum) {
@@ -134,9 +138,12 @@ public class ArticleController {
 
 	@RequestMapping(params = "action=viewArticle")
 	public String viewArticle(HttpServletRequest request, String id) {
+		
+		this.indexService.indexSessionData(request);
+		
 		Map map = this.articleService.getArticleById(id);
 		request.setAttribute("map", map);
-		 
+
 		return "/front/article/viewArticle.jsp";
 	}
 

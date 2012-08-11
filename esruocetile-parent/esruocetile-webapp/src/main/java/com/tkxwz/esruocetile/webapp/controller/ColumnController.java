@@ -14,6 +14,7 @@ import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.core.util.PageUtil;
 import com.tkxwz.esruocetile.webapp.entity.Column;
 import com.tkxwz.esruocetile.webapp.service.ColumnService;
+import com.tkxwz.esruocetile.webapp.service.IndexService;
 
 /**
  * @author Po Kong
@@ -24,6 +25,9 @@ public class ColumnController {
 
 	@Autowired
 	private ColumnService columnService;
+
+	@Autowired
+	private IndexService indexService;
 
 	@RequestMapping(params = "action=listColumn")
 	public String listColumn(HttpServletRequest request, String currentPageNum) {
@@ -105,6 +109,8 @@ public class ColumnController {
 	@RequestMapping(params = "action=listArticle")
 	public String listArticleByColumnId(HttpServletRequest request,
 			String currentPageNum, String columnId) {
+		this.indexService.indexSessionData(request);
+		
 		Page page = new Page();
 		page = new Page(PageUtil.getPageNum(currentPageNum));
 		this.columnService.listArticleByColumnId(page,
@@ -112,5 +118,4 @@ public class ColumnController {
 		request.setAttribute("page", page);
 		return "/front/article/listArticle.jsp";
 	}
-
 }

@@ -18,19 +18,13 @@
 <!--引入风格js文件-->
 
 </style>
-<!--背景图片透明方法-->
-<script src="${ctx }/js/iepng.js" type="text/javascript"></script>
-<!--插入图片透明方法-->
-<script type="text/javascript">
-	EvPNG.fix('div, ul, img, li, input'); //EvPNG.fix('包含透明PNG图片的标签'); 多个标签之间用英文逗号隔开。
-</script>
 <script type="text/javascript">
 	myFocus.set({
 		id : 'myFocus',//焦点图盒子ID
 		pattern : 'mF_fscreen_tb',//风格应用的名称
 		time : 3,//切换时间间隔(秒)
 		trigger : 'click',//触发切换模式:'click'(点击)/'mouseover'(悬停)
-		width : 322,//设置图片区域宽度(像素)
+		width : 326,//设置图片区域宽度(像素)
 		height : 255,//设置图片区域高度(像素)
 		txtHeight : '0'//文字层高度设置(像素),'default'为默认高度，0为隐藏
 	});
@@ -40,8 +34,8 @@
 	<%@include file="/common/top.jsp"%>
 	<div class="main">
 		<%@include file="/common/left.jsp"%>
-		<div class="right" >
-			<%@include file="/common/frontLogin.jsp"%> 
+		<div class="right">
+			<%@include file="/common/frontLogin.jsp"%>
 			<div class="path">
 				您现在所在的位置：<a href="${ctx }">首页</a>&nbsp;&gt;&gt;
 			</div>
@@ -54,8 +48,7 @@
 								alt="请稍候..." />
 						</div>
 						<!--载入画面(可删除) -->
-						<div class="pic">
-
+						<div class="pic"> 
 							<ul>
 								<li><img src="${ctx }/images/skin/default/slide/02.jpg"
 									thumb="" alt="#" text="图片1更详细的描述文字" /></li>
@@ -86,6 +79,7 @@
 						</c:forEach>
 					</ul>
 				</div>
+				<div class="clear"></div>
 				<div class="column_article">
 					<h2>
 						<span>&gt;&gt;</span> 测试指南

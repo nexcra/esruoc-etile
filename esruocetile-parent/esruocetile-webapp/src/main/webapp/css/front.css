@@ -129,12 +129,18 @@ body {
 }
 
 .pic_article {
-	width: 330px;
+	width: 324px;
 	height: 260px;
 	border: 1px solid #ccc;
-	padding: 3px;
+	padding: 4px;
 	float: left;
 	margin-left: 10px;
+	overflow: hidden; 
+	text-align: center;
+}
+
+#myFocus{
+	 
 }
 
 .newest_article {
