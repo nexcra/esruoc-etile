@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.InvocationTargetException;
-import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +53,7 @@ public class StudentTestBookingController {
 		String result = "redirect:/index.do";
 		HttpSession session = request.getSession();
 		String studentId = (String) session.getAttribute("studentId");
+		
 		String message = "恭喜您，预约成功!";
 		if (StringUtils.isEmpty(studentId)) {
 			message = "您还没有登录，请先<a href='" + request.getContextPath()
@@ -62,8 +62,49 @@ public class StudentTestBookingController {
 			result = "redirect:/message.do";
 		} else {
 
-			this.studentTestBookingService.addStudentTestBooking(studentId,
-					testBookingId);
+			List<Map<String, Object>> listForBooking = this.studentTestBookingService
+					.getStudentTestBookingByStudentId(studentId);
+			int resultForBooking = 0;
+			boolean noNeedToAdd = null != listForBooking
+					&& listForBooking.size() > 0;
+
+			if (noNeedToAdd) {
+
+				String oldTestBookingId = String.valueOf(listForBooking.get(0)
+						.get("test_booking_id"));
+
+				// 判断学生之前预约的考试是否已截止预约（表示考试安排中或者考试已经进行完毕，则不能给学生预约）
+				boolean isStopBooking = this.studentTestBookingService
+						.isStopBooking(oldTestBookingId);
+				if (isStopBooking) {
+					message = "您预约的考试已进行或者安排考试中，不能修改或者取消本次预约!";
+					result = "redirect:/message.do";
+				} else {
+					boolean needUpdate = !testBookingId
+							.equals(oldTestBookingId);
+					if (needUpdate) {
+						resultForBooking = this.studentTestBookingService
+								.updateStudentTestBooking(studentId,
+										testBookingId);
+						if (0 != resultForBooking) { // update the testBooking record of the
+														// current_booking_num
+							resultForBooking = this.studentTestBookingService
+									.decreaseCurrentBookingNum(oldTestBookingId);
+							resultForBooking = this.studentTestBookingService
+									.increaseCurrentBookingNum(testBookingId);
+						}
+					}
+				}
+			} else {
+				resultForBooking = this.studentTestBookingService
+						.addStudentTestBooking(studentId, testBookingId);
+				if (0 != resultForBooking) {// //update the testBooking record of the
+											// current_booking_num
+					resultForBooking = this.studentTestBookingService
+							.increaseCurrentBookingNum(testBookingId);
+				}
+			}
+
 			List<Map<String, Object>> list = this.studentTestBookingService
 					.getStudentTestBookingByStudentId(studentId);
 

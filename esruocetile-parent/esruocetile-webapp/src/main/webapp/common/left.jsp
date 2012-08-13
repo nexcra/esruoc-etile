@@ -24,13 +24,28 @@
 					<c:if test="${ !empty sessionScope.bookingList   }">
 						<c:forEach items="${sessionScope.bookingList }" var="list"
 							varStatus="vs">
-							<div>您已预约：【 ${list.test_booking_name } 】</div>
-							<div>可修改预约考试时间!</div>
 							<div>
-								<a
-									href="studentTestBooking.do?action=cancelBooking&oldTestBookingId=${list.test_booking_id }">
-									【取消预约】</a>
+								您已预约：<a
+									href="${ctx }/testBooking.do?action=viewTestBookingForStudent&id=${list.test_booking_id}">【
+									${list.test_booking_name } 】</a>
 							</div>
+
+							<c:choose>
+								<c:when test="${ list.end_booking > 0 }">
+
+									<div>可修改预约考试时间或者取消!</div>
+									<div>
+										<a
+											href="studentTestBooking.do?action=cancelBooking&oldTestBookingId=${list.test_booking_id }">
+											【取消预约】</a>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<div>
+										<span class="warn">您预约的考试已进行或者安排考试中，不能修改或者取消本次预约!</span>
+									</div>
+								</c:otherwise>
+							</c:choose>
 
 						</c:forEach>
 					</c:if>

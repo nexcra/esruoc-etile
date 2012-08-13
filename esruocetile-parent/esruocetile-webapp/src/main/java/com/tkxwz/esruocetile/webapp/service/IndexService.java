@@ -56,14 +56,7 @@ public class IndexService {
 			page = new Page(PageUtil.getPageNum("1"));
 			this.articleDao.listArticleByColumnName(page, "机构设置");
 			request.setAttribute("jgszArticleList", page);
-			// 政策文件二级
-			page = new Page(PageUtil.getPageNum("1"));
-			// this.articleService.listColumnByParentColumnName(page, "机构设置");
-			// request.setAttribute("jgszArticleList", page);
 
-			session.setAttribute("csznColumnList", columnList);
-			
-			System.out.println("indexService invoked ");
 		}
 	}
 }

@@ -75,7 +75,7 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 	 * @since 21 Jul 2012 22:56:00
 	 * @param i
 	 */
-	public Map getTestBookingById(String id) {
+	public Map<String,Object> getTestBookingById(String id) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select t.*, ");
 		sql.append("  		now() -t.booking_begin_time  begin_booking , ");

@@ -15,6 +15,7 @@ import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.core.util.BeanUtil;
 import com.tkxwz.esruocetile.core.util.PageUtil;
 import com.tkxwz.esruocetile.webapp.entity.TestBooking;
+import com.tkxwz.esruocetile.webapp.service.IndexService;
 import com.tkxwz.esruocetile.webapp.service.TestBookingService;
 
 /**
@@ -26,6 +27,8 @@ public class TestBookingController {
 
 	@Autowired
 	private TestBookingService testBookingService;
+	@Autowired
+	private IndexService indexService;
 
 	@RequestMapping(params = "action=listTestBooking")
 	public String listTestBooking(HttpServletRequest request,
@@ -39,6 +42,7 @@ public class TestBookingController {
 	@RequestMapping(params = "action=listTestBookingForStudent")
 	public String listTestBookingForStudent(HttpServletRequest request,
 			String currentPageNum) {
+		this.indexService.indexSessionData(request);
 		Page page = new Page();
 		page = new Page(PageUtil.getPageNum(currentPageNum),1000);
 		this.testBookingService.listTestBookingForStudent(page);
