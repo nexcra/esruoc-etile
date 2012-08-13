@@ -13,11 +13,6 @@
 <script type="text/javascript"
 	src="${ctx }/js/jquery.validate.message.cn.js"></script>
 <script type="text/javascript" src="${ctx }/js/myfocus-2.0.2.min.js"></script>
-<!--引入myFocus库-->
-<script type="text/javascript" src="${ctx }/js/mf-pattern/slide3D.js"></script>
-<!--引入风格js文件-->
-
-</style>
 <script type="text/javascript">
 	myFocus.set({
 		id : 'myFocus',//焦点图盒子ID

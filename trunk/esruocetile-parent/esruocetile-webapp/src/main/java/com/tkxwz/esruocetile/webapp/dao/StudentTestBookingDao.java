@@ -291,6 +291,8 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		sql.append(" b.id test_booking_id, ");
 		sql.append(" b.test_booking_name , ");
 		sql.append(" b.campus , ");
+		sql.append("  		now() -b.booking_begin_time  begin_booking , ");
+		sql.append("  		b.booking_end_time - now()   end_booking ,  ");
 		sql.append(" a.id, ");
 		sql.append(" a.name, ");
 		sql.append(" a.student_no, ");

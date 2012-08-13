@@ -92,6 +92,7 @@ public class StudentTestBookingService {
 		boolean noNeedToAdd = null != list && list.size() > 0;
 
 		if (noNeedToAdd) {
+
 			String oldTestBookingId = String.valueOf(list.get(0).get(
 					"test_booking_id"));
 			boolean needUpdate = !testBookingId.equals(oldTestBookingId);
@@ -145,5 +146,57 @@ public class StudentTestBookingService {
 		}
 		return result;
 
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-9-13 下午9:42:45
+	 * @param studentId
+	 * @param testBookingId
+	 * @return
+	 */
+	public int updateStudentTestBooking(String studentId, String testBookingId) {
+		// TODO Auto-generated method stub
+		return this.studentTestBookingDao.updateStudentTestBooking(studentId,
+				testBookingId);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-9-13 下午9:42:49
+	 * @param oldTestBookingId
+	 * @return
+	 */
+	public int decreaseCurrentBookingNum(String oldTestBookingId) {
+
+		return this.testBookingDao.decreaseCurrentBookingNum(oldTestBookingId);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-9-13 下午9:42:55
+	 * @param testBookingId
+	 * @return
+	 */
+	public int increaseCurrentBookingNum(String testBookingId) {
+
+		return this.testBookingDao.increaseCurrentBookingNum(testBookingId);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-9-13 下午9:50:40
+	 * @param oldTestBookingId
+	 * @return
+	 */
+	public boolean isStopBooking(String oldTestBookingId) {
+		Map<String, Object> map = this.testBookingDao
+				.getTestBookingById(oldTestBookingId);
+		boolean result = false;
+		if (Double.valueOf((Double) map.get("end_booking")).intValue() < 0) {
+			result = true;
+		}
+
+		return result;
 	}
 }
