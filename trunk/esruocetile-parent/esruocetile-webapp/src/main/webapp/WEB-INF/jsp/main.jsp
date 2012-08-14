@@ -159,7 +159,7 @@ body,html {
 		<div class="l-topmenu-welcome">
 			<span style="color: white;">欢迎您:${adminName }&nbsp;<span
 				class="space">|&nbsp;</span><a href="${ctx }"
-				id="toUpdatePersonalPassword" class="l-link2">前台首页</a>
+				  class="l-link2">前台首页</a>
 			</span> <span class="space">|&nbsp;</span><a href="#"
 				id="toUpdatePersonalPassword" class="l-link2">修改个人密码</a><span
 				class="space">&nbsp;|&nbsp;</span><a href="#" class="l-link2">刷新</a>&nbsp;<span

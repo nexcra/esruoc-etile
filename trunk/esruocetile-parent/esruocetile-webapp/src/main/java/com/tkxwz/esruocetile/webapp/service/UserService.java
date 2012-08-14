@@ -89,4 +89,15 @@ public class UserService {
 		int result = this.userDao.checkLastPassword(id, lastPassword);
 		return result == 0 ? false : true;
 	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-8-14 下午8:39:15
+	 * @param name
+	 * @return
+	 */
+	public boolean isUserExist(String name) {
+		int result = this.userDao.checkUserCount(name);
+		return result > 0;
+	}
 }

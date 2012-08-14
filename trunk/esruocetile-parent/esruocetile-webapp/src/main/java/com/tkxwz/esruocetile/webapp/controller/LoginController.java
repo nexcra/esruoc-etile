@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.tkxwz.esruocetile.core.util.MD5Util;
 import com.tkxwz.esruocetile.webapp.entity.User;
 import com.tkxwz.esruocetile.webapp.service.LoginService;
 import com.tkxwz.esruocetile.webapp.service.StudentTestBookingService;
@@ -124,7 +125,7 @@ public class LoginController {
 		// 验证用户密码是否匹配
 		User user = new User();
 		user.setName(name);
-		user.setPassword(password);
+		user.setPassword(MD5Util.MD5(password));
 		int userCount = this.loginService.getUserCountByNameAndPassword(user);
 		boolean isUserExist = this.loginService.isUserExist(userCount);
 

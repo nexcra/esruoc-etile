@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tkxwz.esruocetile.core.page.Page;
+import com.tkxwz.esruocetile.core.util.MD5Util;
 import com.tkxwz.esruocetile.core.util.PageUtil;
 import com.tkxwz.esruocetile.webapp.entity.User;
 import com.tkxwz.esruocetile.webapp.service.UserService;
@@ -65,7 +66,7 @@ public class UserController {
 	public String addUser(String name, String password, String rePassword) {
 		User user = new User();
 		user.setName(name);
-		user.setPassword(password);
+		user.setPassword(MD5Util.MD5(password));
 
 		int result = this.userService.addUser(user);
 		return "redirect:user.do?action=listUser";
@@ -92,7 +93,7 @@ public class UserController {
 		User user = new User();
 		user.setId(id);
 		user.setName(name);
-		user.setPassword(password);
+		user.setPassword(MD5Util.MD5(password));
 		int result = this.userService.updateUser(user);
 		return "redirect:user.do?action=listUser";
 	}
@@ -108,8 +109,20 @@ public class UserController {
 			throws IOException {
 		String result = "false";
 		boolean isValidPassword = this.userService.checkLastPassword(id,
-				lastPassword);
+				MD5Util.MD5(lastPassword));
 		if (isValidPassword) {
+			result = "true";
+		}
+		response.getWriter().write(result);
+		return null;
+	}
+	@RequestMapping(params = "action=isUserExist")
+	public String isUserExist(HttpServletRequest request,
+			HttpServletResponse response, String name)
+					throws IOException {
+		String result = "false";
+		boolean isUserExist = this.userService.isUserExist(name);
+		if (!isUserExist) {
 			result = "true";
 		}
 		response.getWriter().write(result);
