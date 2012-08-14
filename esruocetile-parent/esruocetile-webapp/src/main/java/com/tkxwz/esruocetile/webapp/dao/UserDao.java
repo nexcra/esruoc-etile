@@ -100,4 +100,12 @@ public class UserDao extends BaseDao<User> {
 		int[] valueTypes = { Types.INTEGER, Types.VARCHAR };
 		return this.queryForInt(sql.toString(), values, valueTypes);
 	}
+	public int checkUserCount(String name) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select count(1) from t_user t");
+		sql.append(" where t.name = ? "); 
+		Object[] values = { name };
+		int[] valueTypes = { Types.VARCHAR };
+		return this.queryForInt(sql.toString(), values, valueTypes);
+	}
 }

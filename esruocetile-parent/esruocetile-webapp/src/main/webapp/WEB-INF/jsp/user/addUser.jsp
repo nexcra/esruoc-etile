@@ -24,7 +24,8 @@
 			rules : {
 				name : {
 					required : true,
-					regex : "^[a-zA-Z_]{5,15}\s*$"
+					regex : "^[a-zA-Z_]{5,15}\s*$",
+					remote : "user.do?action=isUserExist"
 
 				},
 				password : {
@@ -37,7 +38,8 @@
 			},
 			messages : {
 				name : {
-					regex : "请输入以字母、下划线组成的5-30个字符"
+					regex : "请输入以字母、下划线组成的5-30个字符",
+					remote : "该用户名已存在，请使用其他名字"
 				}
 			}
 		});
@@ -45,7 +47,6 @@
 </script>
 </head>
 <body>
-	<div class="functionList">您正在操作：增加用户</div>
 	<form action="${ctx }/user.do?action=addUser" name="addForm"
 		id="addForm" method="post">
 		<table width="100%" border="1" class="formTable">
