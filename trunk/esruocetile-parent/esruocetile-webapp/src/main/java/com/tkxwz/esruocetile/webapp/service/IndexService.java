@@ -1,9 +1,9 @@
 package com.tkxwz.esruocetile.webapp.service;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +12,7 @@ import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.core.util.PageUtil;
 import com.tkxwz.esruocetile.webapp.dao.ArticleDao;
 import com.tkxwz.esruocetile.webapp.dao.ColumnDao;
+import com.tkxwz.esruocetile.webapp.dao.ConfigDao;
 import com.tkxwz.esruocetile.webapp.entity.Column;
 
 /**
@@ -26,37 +27,51 @@ public class IndexService {
 
 	@Autowired
 	private ColumnDao columnDao;
+	
+	@Autowired
+	private ConfigDao configDao;
 
 	public void indexSessionData(HttpServletRequest request) {
-		if (null == request.getSession().getAttribute("columnList")) {
-			Page page = new Page(PageUtil.getPageNum("1"));
-			List<Column> columnList = this.columnDao.listAllColumn();
-			this.articleDao.listArticle(page);
-			HttpSession session = request.getSession();
-			session.setAttribute("columnList", columnList);
 
-			request.setAttribute("recentArticleList", page);
+		Page page = new Page(PageUtil.getPageNum("1"));
+		List<Column> columnList = this.columnDao.listAllColumnForNav();
+		
+		this.articleDao.listArticle(page);
 
-			page = new Page(PageUtil.getPageNum("1"));
-			this.articleDao.listArticleByColumnName(page, "通知公告");
-			request.setAttribute("tzggArticleList", page);
+		request.setAttribute("columnList", columnList);
+		request.getSession().setAttribute("columnList", columnList);
 
-			page = new Page(PageUtil.getPageNum("1"));
-			this.articleDao.listArticleByColumnName(page, "常见问题");
-			request.setAttribute("cjwtArticleList", page);
+		request.setAttribute("recentArticleList", page);
 
-			page = new Page(PageUtil.getPageNum("1"));
-			this.articleDao.listArticleByColumnName(page, "测试指南");
-			request.setAttribute("csznArticleList", page);
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleDao.listArticleByColumnName(page, "通知公告");
+		request.setAttribute("tzggArticleList", page);
 
-			page = new Page(PageUtil.getPageNum("1"));
-			this.articleDao.listArticleByColumnName(page, "文档下载");
-			request.setAttribute("wdxzArticleList", page);
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleDao.listArticleByColumnName(page, "常见问题");
+		request.setAttribute("cjwtArticleList", page);
 
-			page = new Page(PageUtil.getPageNum("1"));
-			this.articleDao.listArticleByColumnName(page, "机构设置");
-			request.setAttribute("jgszArticleList", page);
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleDao.listArticleByColumnName(page, "测试指南");
+		request.setAttribute("csznArticleList", page);
 
-		}
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleDao.listArticleByColumnName(page, "文档下载");
+		request.setAttribute("wdxzArticleList", page);
+
+		page = new Page(PageUtil.getPageNum("1"));
+		this.articleDao.listArticleByColumnName(page, "机构设置");
+		request.setAttribute("jgszArticleList", page);
+		
+		//网站底部
+		Map footerMap = this.configDao.getConfigByCode("footer");
+		request.setAttribute("footerMap", footerMap);
+		
+		//预约说明
+		Map bookingDescriptionMap = this.configDao.getConfigByCode("bookingDescription");
+		request.setAttribute("bookingDescriptionMap", bookingDescriptionMap);
+		
+		
+
 	}
 }

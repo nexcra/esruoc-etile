@@ -13,6 +13,7 @@ public class StudentTestBooking implements Serializable {
 	private int id;
 
 	private Integer studentId;
+	
 
 	public Integer getStudentId() {
 		return studentId;

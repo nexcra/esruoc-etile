@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -121,7 +122,7 @@ public class UserController {
 			HttpServletResponse response, String name)
 					throws IOException {
 		String result = "false";
-		boolean isUserExist = this.userService.isUserExist(name);
+		boolean isUserExist = this.userService.isUserExist(StringUtils.trim(name));
 		if (!isUserExist) {
 			result = "true";
 		}

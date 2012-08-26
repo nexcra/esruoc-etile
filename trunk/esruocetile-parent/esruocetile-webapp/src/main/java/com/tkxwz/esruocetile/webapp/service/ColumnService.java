@@ -83,14 +83,31 @@ public class ColumnService {
 	 * @author Po Kong
 	 * @since 24 Jul 2012 22:21:51
 	 */
-	public List<Column> listAllColumn() {
-		return this.columnDao.listAllColumn();
+	public List<Column> listAllColumnForNav() {
+		return this.columnDao.listAllColumnForNav();
 
+	}
+	public List<Column> listAllColumnForArticle() {
+		return this.columnDao.listAllColumnForArticle();
+		
 	}
 
 	public Page listArticleByColumnId(Page page, Integer columnId) {
 		return this.columnDao.columnList(page, columnId);
 
+	}
+
+	 /**
+	 * 
+	 * 
+	 * @author Po Kong
+	 * @since 2012-8-15 下午10:23:48
+	 * @param columnName
+	 * @return
+	 */
+	public boolean isUserExist(String columnName) {
+		int result = this.columnDao.checkUserCount(columnName);
+		return result > 0;
 	}
 
 }

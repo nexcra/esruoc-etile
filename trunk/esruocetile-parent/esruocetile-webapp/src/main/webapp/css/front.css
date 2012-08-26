@@ -125,7 +125,7 @@ body {
 	width: 675px;
 	float: left;
 	background: #fff;
-	position: relative; 
+	position: relative;
 }
 
 .pic_article {
@@ -135,12 +135,12 @@ body {
 	padding: 4px;
 	float: left;
 	margin-left: 10px;
-	overflow: hidden; 
+	overflow: hidden;
 	text-align: center;
 }
 
-#myFocus{
-	 
+#myFocus {
+	
 }
 
 .newest_article {

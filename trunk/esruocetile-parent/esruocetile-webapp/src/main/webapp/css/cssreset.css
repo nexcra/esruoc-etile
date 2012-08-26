@@ -11,11 +11,13 @@ table {
 }      
 fieldset,img {      
     border: 0;      
-}      
+}
+/*
 address,caption,cite,code,dfn,em,strong,th,var{      
     font-weight: normal;      
     font-style: normal;      
-}      
+}
+*/
 ol,ul {      
     list-style: none;      
 }      

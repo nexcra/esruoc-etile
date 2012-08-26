@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>404 - 页面不存在</title>
+<title>404 - 页面不存在</title>
 </head>
 
 <body>
-	 页面不存在 
+	<div style="text-align: center">页面不存在</div>
 </body>
 </html>

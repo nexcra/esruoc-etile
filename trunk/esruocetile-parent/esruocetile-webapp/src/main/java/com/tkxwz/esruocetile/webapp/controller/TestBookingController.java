@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,7 @@ public class TestBookingController {
 
 	@Autowired
 	private TestBookingService testBookingService;
+
 	@Autowired
 	private IndexService indexService;
 
@@ -39,12 +41,13 @@ public class TestBookingController {
 		request.setAttribute("page", page);
 		return "/testBooking/listTestBooking.jsp";
 	}
+
 	@RequestMapping(params = "action=listTestBookingForStudent")
 	public String listTestBookingForStudent(HttpServletRequest request,
 			String currentPageNum) {
 		this.indexService.indexSessionData(request);
 		Page page = new Page();
-		page = new Page(PageUtil.getPageNum(currentPageNum),1000);
+		page = new Page(PageUtil.getPageNum(currentPageNum), 1000);
 		this.testBookingService.listTestBookingForStudent(page);
 		request.setAttribute("page", page);
 		return "/front/testBooking/listTestBookingForStudent.jsp";
@@ -113,12 +116,26 @@ public class TestBookingController {
 		request.setAttribute("map", map);
 		return "/testBooking/viewTestBooking.jsp";
 	}
-	
+
 	@RequestMapping(params = "action=viewTestBookingForStudent")
-	public String viewTestBookingForStudent(HttpServletRequest request, String id) {
+	public String viewTestBookingForStudent(HttpServletRequest request,
+			String id) {
 		Map map = this.testBookingService.getTestBookingById(id);
 		request.setAttribute("map", map);
 		return "/front/testBooking/viewTestBookingForStudent.jsp";
+	}
+
+	@RequestMapping(params = "action=isTestBookingNameExist")
+	public String isUserExist(HttpServletRequest request,
+			HttpServletResponse response, String name) throws IOException {
+		String result = "false";
+		boolean isUserExist = this.testBookingService
+				.isTestBookingNameExist(StringUtils.trim(name));
+		if (!isUserExist) {
+			result = "true";
+		}
+		response.getWriter().write(result);
+		return null;
 	}
 
 }

@@ -177,6 +177,9 @@
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
 				<th>栏目名称</th>
+				<th>类型</th>
+				<th>在导航栏显示</th>
+				<th>序号</th>
 				<th>更新时间</th>
 				<th>操作</th>
 			</tr>
@@ -194,6 +197,17 @@
 				<td><input type="checkbox" class="checkList" name="checkList"
 					value="${list.id }" /></td>
 				<td>${list.column_name }</td>
+				<td><c:if test="${list.column_type == 1}">
+					单页面
+				</c:if> <c:if test="${list.column_type == 2}">
+					文章栏目
+				</c:if></td>
+				<td><c:if test="${list.show_on_nav == 0}">
+					否
+				</c:if> <c:if test="${list.show_on_nav == 1}">
+					是
+				</c:if></td>
+				<td>${list.order_num }</td>
 				<td><fmt:formatDate value="${list.update_time }"
 						pattern="yyyy-MM-dd hh:ss:mm" /></td>
 				<td><span class="update operationButton" value="${list.id }">修改</span>

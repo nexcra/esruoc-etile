@@ -17,6 +17,10 @@
 							'column.do?action=listColumn');
 				});
 
+		if ($("#columnType").val() == '1') {
+			$("#contentRow").show();
+		}
+
 	});
 	/**
 	 *  调用父窗口的overrideSelectedTab方法打开
@@ -32,18 +36,44 @@
 <body>
 	<table width="100%" border="1" class="formTable">
 		<tr>
-			<td class="fieldName" width="40%">栏目名称:</td>
-			<td class="fieldForm" width="60%">${map.column_name }</td>
+			<td class="fieldName" width="100">栏目名称:</td>
+			<td class="fieldForm" width="900">${map.column_name }</td>
 		</tr>
 		<tr>
-			<td class="fieldName">说明:</td>
-			<td class="fieldForm">${map.description }</td>
+			<td class="fieldName"  >在导航栏显示:</td>
+			<td class="fieldForm"  ><c:if
+					test="${map.show_on_nav == 0}">
+					否
+				</c:if> <c:if test="${map.show_on_nav == 1}">
+					是
+				</c:if></td>
 		</tr>
 		<tr>
-			<td class="fieldName"></td>
-			<td class="fieldForm"><input type="button" value="返回"
-				class="submitButton" id="returnButton" /></td>
+			<td class="fieldName"  >类型:</td>
+			<td class="fieldForm" ><input type="hidden"
+				name="columnType" id="columnType" value="${map.column_type }" /> <c:if
+					test="${map.column_type == 1}">
+					单页面
+				</c:if> <c:if test="${map.column_type == 2}">
+					文章栏目
+				</c:if></td>
 		</tr>
+		<tr id="contentRow" style="display: none">
+			<td class="fieldName" >页面内容:</td>
+			<td class="fieldForm" >${map.column_content}</td>
+			<tr>
+				<td class="fieldName" >序号:</td>
+				<td class="fieldForm" >${map.order_num }</td>
+			</tr>
+			<tr>
+				<td class="fieldName">说明:</td>
+				<td class="fieldForm">${map.description }</td>
+			</tr>
+			<tr>
+				<td class="fieldName"></td>
+				<td class="fieldForm"><input type="button" value="返回"
+					class="submitButton" id="returnButton" /></td>
+			</tr>
 	</table>
 </body>
 </html>

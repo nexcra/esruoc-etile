@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>500 - 系统内部错误</title>
 </head>
-<body>系统发生内部错误.
+<body>
+<div style="text-align: center">可能数据已不存在，请确认</div>
+
 </body>
 </html>

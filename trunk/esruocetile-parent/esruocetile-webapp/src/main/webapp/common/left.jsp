@@ -8,6 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>left</title>
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("#cancelBooking").click(function(){
+		if(confirm("您确定取消预约吗？")){
+			return true;
+		}else{
+			return false;
+		}
+	});
+});
+</script>
 </head>
 <body>
 	<div class="left">
@@ -35,7 +46,7 @@
 
 									<div>可修改预约考试时间或者取消!</div>
 									<div>
-										<a
+										<a id="cancelBooking"
 											href="studentTestBooking.do?action=cancelBooking&oldTestBookingId=${list.test_booking_id }">
 											【取消预约】</a>
 									</div>
@@ -69,10 +80,10 @@
 
 				<c:if test="${sessionScope.studentId ==null }">
 					<li><a href="#" id="test_booking_login">普通话水平测试网上预约系统</a></li>
-				</c:if>
-				<c:forEach items="${sessionScope.columnList }" var="columnList">
+				</c:if> 
+				<c:forEach items="${ requestScope.columnList }" var="columnList">
 					<li><a
-						href="${ctx }/column.do?action=listArticle&columnId=${columnList.id}&columnName=${columnList.columnName }">${columnList.columnName
+						href="${ctx }/column.do?action=listArticle&columnId=${columnList.id}&columnType=${columnList.columnType }">${columnList.columnName
 							}</a></li>
 				</c:forEach>
 			</ul>

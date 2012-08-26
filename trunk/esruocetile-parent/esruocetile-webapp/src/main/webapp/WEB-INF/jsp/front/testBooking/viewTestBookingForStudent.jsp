@@ -13,6 +13,19 @@
 		$("#returnButton").click(function() {
 			history.back(-1);
 		});
+
+		$("#submitBooking").click(function() {
+			var isBooking = $("#isBooking").val(), confirmMessage = "您确定预约吗？";
+			if ("yes" == isBooking) {
+				confirmMessage = "您之前已预约过，确定要修改预约吗？";
+			}
+
+			if (confirm(confirmMessage)) {
+				return true;
+			} else {
+				return false;
+			}
+		});
 	});
 </script>
 </head>
@@ -90,7 +103,14 @@
 										test="${map.max_booking_num -
 									map.current_booking_num >0 && map.begin_booking > 0 
 										&& map.end_booking > 0 }">
-										<input type="submit" value="预约" class="button" />
+
+										<!-- 有预约信息的话，就写在这里，然后用js处理提示信息 -->
+										<c:if test="${ !empty sessionScope.bookingList   }">
+											<input type="hidden" name="isBooking" id="isBooking"
+												value="yes" />
+										</c:if>
+										<input type="submit" value="预约" id="submitBooking"
+											class="button" />
 									</c:if> <input type="button" value="返回" class="button"
 									id="returnButton" /></td>
 							</tr>
