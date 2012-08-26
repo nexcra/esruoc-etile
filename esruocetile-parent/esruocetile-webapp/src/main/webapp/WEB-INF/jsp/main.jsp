@@ -38,6 +38,9 @@
 		}, {
 			url : "data.do?action=toImportStudentData",
 			text : "导入学生数据"
+		}, {
+			url : "config.do?action=listConfig",
+			text : "参数配置"
 		} ]
 
 	}

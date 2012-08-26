@@ -25,6 +25,26 @@ public class Column implements Serializable {
 
 	private int orderNum;
 
+	private int showOnNav;
+
+	private int showOnIndexPage;
+
+	public int getShowOnNav() {
+		return showOnNav;
+	}
+
+	public void setShowOnNav(int showOnNav) {
+		this.showOnNav = showOnNav;
+	}
+
+	public int getShowOnIndexPage() {
+		return showOnIndexPage;
+	}
+
+	public void setShowOnIndexPage(int showOnIndexPage) {
+		this.showOnIndexPage = showOnIndexPage;
+	}
+
 	private Date insertTime;
 
 	public Date getInsertTime() {

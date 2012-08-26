@@ -52,14 +52,20 @@
 						<c:forEach items="${page.pageDatas }" var="list" varStatus="vs">
 							<tr
 								<c:if
-										test="${list.begin_booking > 0 && list.end_booking > 0 }">
-										style="font-weight:bold; color:green;  "  
+											test="${list.begin_booking > 0 
+										&& list.end_booking > 0 
+										&&(list.max_booking_num - list.current_booking_num > 0) }">
+										style="color:green;font-weight:bold" 
+									</c:if>
+								<c:if
+											test="${list.max_booking_num - list.current_booking_num <1 }">
+										  style="color:red;" 
 									</c:if>
 								<c:if test="${list.begin_booking < 0 }">
-										 style="" title="未开始预约"
+										 style="background:"  
 									</c:if>
 								<c:if test="${list.end_booking < 0 }">
-										 style="background:#f4f4f4; color:#666;"   
+										  style="color:#999" 
 									</c:if>>
 								<td>${list.test_booking_name }</td>
 								<td><c:if test="${list.campus ==1 }">石牌</c:if> <c:if
@@ -74,14 +80,14 @@
 											test="${list.begin_booking > 0 
 										&& list.end_booking > 0 
 										&&(list.max_booking_num - list.current_booking_num > 0) }">
-										 可预约  
+										<span style="color:green;font-weight:bold">可预约</span>
 									</c:if> <c:if
 											test="${list.max_booking_num - list.current_booking_num <1 }">
-										  已约满
+										<span style="color:red;">已约满 </span>
 									</c:if> <c:if test="${list.begin_booking < 0 }">
 										 未开始 
 									</c:if> <c:if test="${list.end_booking < 0 }">
-										 已结束 
+										 <span style="color:#999;">已结束</span>
 									</c:if></a></td>
 							</tr>
 						</c:forEach>

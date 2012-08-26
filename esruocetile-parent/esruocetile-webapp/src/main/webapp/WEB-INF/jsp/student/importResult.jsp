@@ -38,7 +38,7 @@
 
 
 	<div class="pageBar"
-		style="text-align: left; color: red; font-size: 14px; font-weight: bold">
+		style="text-align: left; color: green; font-size: 14px; font-weight: bold">
 		成功导入<span>${successImportCount }</span>条数据!<br />
 	</div>
 

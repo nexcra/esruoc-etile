@@ -104,7 +104,7 @@
 						<option value="2"
 							<c:if test="${map.status ==2 }">
 						selected="selected"
-							</c:if>>待审核</option>
+							</c:if>>待发布</option>
 				</select><span class="asterisk">*</span></td>
 			</tr>
 

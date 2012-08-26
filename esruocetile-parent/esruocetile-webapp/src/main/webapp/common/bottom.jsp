@@ -19,8 +19,9 @@
 			| <a href="mailto:xxx@qq.com">联系我们 </a>| <a
 				href="${ctx }/login.do?action=toLogin" target="_blank">管理登录</a>
 		</p>
-		<p>华南师范大学普通话培训测试工作办公室 版权所有 2011-1013 技术支持 xxxxx</p>
-		<p>地址 ： 广东省广州市天河区中山大道西55 号  电话：020-xxxx</p>
+		<div>
+			 ${footerMap.content }
+		</div>
 	</div>
 </body>
 </html>

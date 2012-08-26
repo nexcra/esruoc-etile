@@ -71,6 +71,7 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select ");
 		sql.append(" b.test_booking_name , ");
+		sql.append(" c.test_booking_id , "); 
 		sql.append(" b.campus , ");
 		sql.append(" a.id, ");
 		sql.append(" a.name, ");
@@ -123,7 +124,8 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 					+ "%'");
 		}
 
-		if (StringUtils.isNotEmpty(studentTestBooking.getTestBookingName())) {
+		if (StringUtils.isNotEmpty(studentTestBooking.getTestBookingName())
+				&& !"0".equals(studentTestBooking.getTestBookingName())) {
 			sql.append(" and b.test_booking_name like  '%"
 					+ studentTestBooking.getTestBookingName() + "%'");
 		}
@@ -209,7 +211,8 @@ public class StudentTestBookingDao extends BaseDao<StudentTestBooking> {
 					+ "%'");
 		}
 
-		if (StringUtils.isNotEmpty(studentTestBooking.getTestBookingName())) {
+		if (StringUtils.isNotEmpty(studentTestBooking.getTestBookingName())
+				&& !"0".equals(studentTestBooking.getTestBookingName())) {
 			sql.append(" and b.test_booking_name like  '%"
 					+ studentTestBooking.getTestBookingName() + "%'");
 		}

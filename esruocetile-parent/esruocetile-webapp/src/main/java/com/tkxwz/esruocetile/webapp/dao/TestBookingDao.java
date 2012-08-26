@@ -75,7 +75,7 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 	 * @since 21 Jul 2012 22:56:00
 	 * @param i
 	 */
-	public Map<String,Object> getTestBookingById(String id) {
+	public Map<String, Object> getTestBookingById(String id) {
 		StringBuilder sql = new StringBuilder();
 		sql.append(" select t.*, ");
 		sql.append("  		now() -t.booking_begin_time  begin_booking , ");
@@ -159,6 +159,52 @@ public class TestBookingDao extends BaseDao<TestBooking> {
 		int[] valueTypes = { Types.INTEGER };
 		return this.update(sql.toString(), values, valueTypes);
 
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-10-26 下午12:13:02
+	 * @param id
+	 */
+	public int decreaseCurrentBookingNumByStudent(String id) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update t_test_booking t");
+		sql.append(" set   ");
+		sql.append(" t.current_booking_num=  t.current_booking_num - 1 ");
+		sql.append(" where t.student_id = ? ");
+		Object[] values = { id };
+		int[] valueTypes = { Types.INTEGER };
+		return this.update(sql.toString(), values, valueTypes);
+
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-10-26 下午3:19:48
+	 * @param name
+	 * @return
+	 */
+	public int checkTestBookingNameCount(String name) {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select count(1) from t_test_booking t");
+		sql.append(" where t.test_booking_name = ? ");
+		Object[] values = { name };
+		int[] valueTypes = { Types.VARCHAR };
+		return this.queryForInt(sql.toString(), values, valueTypes);
+	}
+
+	/**
+	 * @author Po Kong
+	 * @since 2012-10-26 下午3:36:38
+	 * @return
+	 */
+	public List<Map<String, Object>> listAllTestBooking() {
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select t.id,  ");
+		sql.append(" 		t.test_booking_name ");
+		sql.append(" from t_test_booking t");
+
+		return this.queryForList(sql.toString());
 	}
 
 }

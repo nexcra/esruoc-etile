@@ -1,17 +1,21 @@
 package com.tkxwz.esruocetile.webapp.controller;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.tkxwz.esruocetile.core.page.Page;
+import com.tkxwz.esruocetile.core.util.BeanUtil;
 import com.tkxwz.esruocetile.core.util.PageUtil;
+import com.tkxwz.esruocetile.webapp.entity.Article;
 import com.tkxwz.esruocetile.webapp.entity.Column;
 import com.tkxwz.esruocetile.webapp.service.ColumnService;
 import com.tkxwz.esruocetile.webapp.service.IndexService;
@@ -57,16 +61,37 @@ public class ColumnController {
 	 * @author Po Kong
 	 * @since 21 Jul 2012 12:48:53
 	 * @return the page to list the Columns
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
 	 */
 	@RequestMapping(params = "action=addColumn")
-	public String addColumn(String columnName, String description, int orderNum) {
+	public String addColumn(HttpServletRequest request)
+			throws IllegalAccessException, InvocationTargetException {
+
 		Column column = new Column();
-		column.setColumnName(columnName);
-		column.setColumnType(2);
-		column.setDescription(description);
-		column.setOrderNum(orderNum);
+		BeanUtil.populate(column, request.getParameterMap());
 		int result = this.columnService.addColumn(column);
 		return "redirect:column.do?action=listColumn";
+	}
+
+	@RequestMapping(params = "action=isColumnExist")
+	public String isColumnExist(HttpServletRequest request,
+			HttpServletResponse response, String columnName,
+			String oldColumnName) throws IOException {
+		String result = "false";
+		if (StringUtils.isNotEmpty(oldColumnName)
+				&& oldColumnName.equals(columnName)) {
+			result = "true";
+		} else {
+			boolean isUserExist = this.columnService.isUserExist(columnName);
+			if (!isUserExist) {
+				result = "true";
+			}
+
+		}
+
+		response.getWriter().write(result);
+		return null;
 	}
 
 	@RequestMapping(params = "action=deleteColumn")
@@ -86,14 +111,10 @@ public class ColumnController {
 	}
 
 	@RequestMapping(params = "action=updateColumn")
-	public String updateColumn(int id, String columnName, String description,
-			int orderNum) {
+	public String updateColumn(HttpServletRequest request)
+			throws IllegalAccessException, InvocationTargetException {
 		Column column = new Column();
-		column.setId(id);
-		column.setColumnName(columnName);
-		column.setColumnType(2);
-		column.setDescription(description);
-		column.setOrderNum(orderNum);
+		BeanUtil.populate(column, request.getParameterMap());
 
 		int result = this.columnService.updateColumn(column);
 		return "redirect:column.do?action=listColumn";
@@ -108,14 +129,21 @@ public class ColumnController {
 
 	@RequestMapping(params = "action=listArticle")
 	public String listArticleByColumnId(HttpServletRequest request,
-			String currentPageNum, String columnId) {
+			String currentPageNum, String columnId, String columnType) {
 		this.indexService.indexSessionData(request);
-		
-		Page page = new Page();
-		page = new Page(PageUtil.getPageNum(currentPageNum));
-		this.columnService.listArticleByColumnId(page,
-				Integer.valueOf(columnId));
-		request.setAttribute("page", page);
-		return "/front/article/listArticle.jsp";
+
+		String result = "/front/article/listArticle.jsp";
+		if ("1".equals(columnType)) {
+			Map map = this.columnService.getColumnById(columnId);
+			request.setAttribute("map", map);
+			result = "/front/column/viewColumnContent.jsp";
+		} else {
+			Page page = new Page();
+			page = new Page(PageUtil.getPageNum(currentPageNum));
+			this.columnService.listArticleByColumnId(page,
+					Integer.valueOf(columnId));
+			request.setAttribute("page", page);
+		}
+		return result;
 	}
 }

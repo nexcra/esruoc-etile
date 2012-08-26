@@ -45,7 +45,10 @@ public class StudentTestBookingService {
 	 */
 	public int batchDeleteStudentTestBooking(String[] ids) {
 		int result = 0;
+		String testBookingId = null;
 		for (String id : ids) {
+			testBookingId = String.valueOf( this.studentTestBookingDao.getStudentTestBookingById(id).get("test_booking_id"));
+			this.testBookingDao.decreaseCurrentBookingNum(testBookingId);
 			this.deleteStudentTestBookingById(id);
 			result++;
 		}

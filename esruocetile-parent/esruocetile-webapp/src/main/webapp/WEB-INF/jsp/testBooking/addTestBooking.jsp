@@ -19,7 +19,9 @@
 		$("#addForm").validate({
 			rules : {
 				name : {
-					required : true 
+					required : true ,
+					remote : "testBooking.do?action=isTestBookingNameExist"
+
 				},
 				bookingBeginTime:{
 					required : true ,
@@ -32,6 +34,11 @@
 				maxBookingNum:{
 					required : true ,
 					digits:true
+				}
+			},
+			messages : {
+				name : {
+					remote : "该名称已存在，请使用其他名字"
 				}
 			}
 		});
@@ -86,8 +93,8 @@
 
 			<tr>
 				<td class="fieldName">说明:</td>
-				<td class="fieldForm"><textarea rows="5" cols="50" name="description"
-						id="description"></textarea></td>
+				<td class="fieldForm"><textarea rows="5" cols="50"
+						name="description" id="description"></textarea></td>
 			</tr>
 
 

@@ -97,15 +97,14 @@
 
 			<tr>
 				<td align="right">用户名：</td>
-				<td><input name="name" type="text" class="input_text" id="name"
-					value="20092301169" /><span class="hint" style="display: none">&nbsp;请输入学号</span></td>
+				<td><input name="name" type="text" class="input_text" id="name" /><span
+					class="hint" style="display: none">&nbsp;请输入学号</span></td>
 			</tr>
 
 			<tr>
 				<td align="right">密&nbsp;&nbsp;码：</td>
 				<td><input name="password" type="password" id="password"
-					class="input_text" value="450981199010245469" /><span class="hint"
-					style="display: none">&nbsp;请输入身份证号</span></td>
+					class="input_text" /><span class="hint" style="display: none">&nbsp;请输入身份证号</span></td>
 			</tr>
 			<tr>
 				<td align="right" width="100">验证码：</td>
@@ -122,7 +121,8 @@
 			</tr>
 			<tr>
 				<td colspan="2"><div class="bookingStep">
-						<a target="_blank" href="${ctx }/bookingStep.htm">预约说明</a>
+						<a target="_blank"
+							href="${ctx }/config.do?action=viewConfig&code=bookingDescription">预约说明</a>
 					</div></td>
 			</tr>
 		</table>

@@ -6,6 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>403 - 缺少权限</title>
 </head>
-<body>你没有访问该页面的权限.
+<body><div style="text-align: center">你没有访问该页面的权限.</div>
 </body>
 </html>

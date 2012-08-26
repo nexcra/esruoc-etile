@@ -91,4 +91,28 @@ public class TestBookingService {
 		
 	}
 
+	 /**
+	 * 
+	 * 
+	 * @author Po Kong
+	 * @since 2012-10-26 下午3:19:16
+	 * @param name
+	 * @return
+	 */
+	public boolean isTestBookingNameExist(String name) {
+		int result = this.testBookingDao.checkTestBookingNameCount(name);
+		return result > 0;
+	}
+
+	 /**
+	 * 
+	 * 
+	 * @author Po Kong
+	 * @since 2012-10-26 下午3:35:51
+	 */
+	public List<Map<String,Object>> listAllTestBooking() {
+		return this.testBookingDao.listAllTestBooking();
+		
+	}
+
 }

@@ -44,7 +44,7 @@ public class ArticleController {
 		page = new Page(PageUtil.getPageNum(currentPageNum));
 		this.articleService.listArticle(page);
 		request.setAttribute("page", page);
-		List<Column> list = this.columnService.listAllColumn();
+		List<Column> list = this.columnService.listAllColumnForArticle();
 		request.setAttribute("list", list);
 		return "/article/listArticle.jsp";
 	}
@@ -59,7 +59,7 @@ public class ArticleController {
 
 	@RequestMapping(params = "action=toAddArticle")
 	public String toAddArticle(HttpServletRequest request) {
-		List<Column> list = this.columnService.listAllColumn();
+		List<Column> list = this.columnService.listAllColumnForArticle();
 		request.setAttribute("list", list);
 		return "/article/addArticle.jsp";
 	}
@@ -107,7 +107,7 @@ public class ArticleController {
 	public String toUpdateArticle(HttpServletRequest request, String id) {
 		Map map = this.articleService.getArticleById(id);
 		request.setAttribute("map", map);
-		List<Column> list = this.columnService.listAllColumn();
+		List<Column> list = this.columnService.listAllColumnForArticle();
 		request.setAttribute("list", list);
 		return "/article/updateArticle.jsp";
 	}
@@ -138,9 +138,9 @@ public class ArticleController {
 
 	@RequestMapping(params = "action=viewArticle")
 	public String viewArticle(HttpServletRequest request, String id) {
-		
+
 		this.indexService.indexSessionData(request);
-		
+
 		Map map = this.articleService.getArticleById(id);
 		request.setAttribute("map", map);
 
@@ -157,7 +157,7 @@ public class ArticleController {
 		page = new Page(PageUtil.getPageNum(currentPageNum));
 		this.articleService.searchArticle(page, article);
 		request.setAttribute("page", page);
-		List<Column> list = this.columnService.listAllColumn();
+		List<Column> list = this.columnService.listAllColumnForArticle();
 		request.setAttribute("list", list);
 		request.setAttribute("bean", article);
 

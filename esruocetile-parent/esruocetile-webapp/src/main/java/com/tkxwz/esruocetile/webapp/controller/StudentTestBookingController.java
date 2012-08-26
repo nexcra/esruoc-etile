@@ -24,6 +24,7 @@ import com.tkxwz.esruocetile.core.util.ExcelUtil;
 import com.tkxwz.esruocetile.core.util.PageUtil;
 import com.tkxwz.esruocetile.webapp.entity.StudentTestBooking;
 import com.tkxwz.esruocetile.webapp.service.StudentTestBookingService;
+import com.tkxwz.esruocetile.webapp.service.TestBookingService;
 
 /**
  * @author Po Kong
@@ -35,9 +36,17 @@ public class StudentTestBookingController {
 	@Autowired
 	private StudentTestBookingService studentTestBookingService;
 
+	@Autowired
+	private TestBookingService testBookingService;
+
 	@RequestMapping(params = "action=listStudentTestBooking")
 	public String listStudentTestBooking(HttpServletRequest request,
 			String currentPageNum) {
+		// 显示考试名称列表
+		List<Map<String, Object>> testBookingList = this.testBookingService
+				.listAllTestBooking();
+		request.setAttribute("testBookingList", testBookingList);
+
 		Page page = new Page();
 		page = new Page(PageUtil.getPageNum(currentPageNum));
 		this.studentTestBookingService.listStudentTestBooking(page);
@@ -53,7 +62,7 @@ public class StudentTestBookingController {
 		String result = "redirect:/index.do";
 		HttpSession session = request.getSession();
 		String studentId = (String) session.getAttribute("studentId");
-		
+
 		String message = "恭喜您，预约成功!";
 		if (StringUtils.isEmpty(studentId)) {
 			message = "您还没有登录，请先<a href='" + request.getContextPath()
@@ -98,11 +107,11 @@ public class StudentTestBookingController {
 			} else {
 				resultForBooking = this.studentTestBookingService
 						.addStudentTestBooking(studentId, testBookingId);
-				if (0 != resultForBooking) {// //update the testBooking record of the
-											// current_booking_num
-					resultForBooking = this.studentTestBookingService
-							.increaseCurrentBookingNum(testBookingId);
-				}
+				// if (0 != resultForBooking) {// //update the testBooking record of the
+				// // current_booking_num
+				// resultForBooking = this.studentTestBookingService
+				// .increaseCurrentBookingNum(testBookingId);
+				// }
 			}
 
 			List<Map<String, Object>> list = this.studentTestBookingService
@@ -162,6 +171,12 @@ public class StudentTestBookingController {
 	public String searchStudentTestBooking(HttpServletRequest request,
 			String currentPageNum) throws IllegalAccessException,
 			InvocationTargetException {
+		// 显示考试名称列表
+				List<Map<String, Object>> testBookingList = this.testBookingService
+						.listAllTestBooking();
+				request.setAttribute("testBookingList", testBookingList);
+				
+				
 		StudentTestBooking studentTestBooking = new StudentTestBooking();
 		BeanUtil.populate(studentTestBooking, request.getParameterMap());
 		Page page = new Page();
@@ -298,6 +313,12 @@ public class StudentTestBookingController {
 			HttpServletResponse response, String currentPageNum)
 			throws IllegalAccessException, InvocationTargetException,
 			IOException {
+		// 显示考试名称列表
+				List<Map<String, Object>> testBookingList = this.testBookingService
+						.listAllTestBooking();
+				request.setAttribute("testBookingList", testBookingList);
+				
+				
 		StudentTestBooking studentTestBooking = new StudentTestBooking();
 		BeanUtil.populate(studentTestBooking, request.getParameterMap());
 		Page page = new Page();

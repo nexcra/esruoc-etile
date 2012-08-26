@@ -216,8 +216,20 @@
 						</c:if>>大学城</option>
 				</select></td>
 				<td class="fieldName">考试名称:</td>
-				<td class="fieldForm"><input type="text" name="testBookingName"
-					id="testBookingName" value="${bean.testBookingName }" /></td>
+				<td class="fieldForm"> 
+					<select name="testBookingName" id="testBookingName">
+						<option value="0">全部</option>
+						<c:forEach items="${testBookingList }" var="list" varStatus="vs">
+							<option value="${list.test_booking_name }" 
+							
+								<c:if test="${list.test_booking_name  == bean.testBookingName}">
+									selected = "selected"
+								</c:if>
+							
+							>${list.test_booking_name }</option>
+						</c:forEach>
+					
+					</td>
 			</tr>
 			<tr>
 				<td class="fieldName">学号:</td>
