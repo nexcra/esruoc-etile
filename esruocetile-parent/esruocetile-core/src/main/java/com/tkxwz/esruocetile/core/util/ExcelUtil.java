@@ -154,7 +154,7 @@ public class ExcelUtil {
 			cellValue = cellValue.equals("1") ? "石牌" : "大学城";
 
 			cell.setCellValue(cellValue);
-			// 考试名称
+			// 测试任务名称
 			cell = row.createCell(cellNo++);
 			cell.setCellStyle(style2);
 			cellValue = (String) excelContent.get(i).get("test_booking_name");

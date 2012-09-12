@@ -63,6 +63,10 @@ public class IndexService {
 		this.articleDao.listArticleByColumnName(page, "机构设置");
 		request.setAttribute("jgszArticleList", page);
 		
+		int id = this.columnDao.getColumnIdByColumnName("政策文件");
+		List<Column> zcwjColumnList = this.columnDao.listColumnByParentId(id);
+		request.setAttribute("zcwjColumnList", zcwjColumnList);
+		
 		//网站底部
 		Map footerMap = this.configDao.getConfigByCode("footer");
 		request.setAttribute("footerMap", footerMap);

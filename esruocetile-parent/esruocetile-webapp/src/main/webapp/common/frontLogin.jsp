@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>首页</title>
-<link rel="stylesheet" type="text/css" href="${ctx }/css/front.css" />
+<link rel="stylesheet" type="text/css" href="${ctx }/css/blue.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
 <script type="text/javascript"
@@ -43,6 +43,8 @@
 			$("#user_login").hide();
 			$("#test_booking_login").removeClass("to_login");
 		});
+		
+		
 
 	});
 	$(function() {
@@ -65,7 +67,7 @@
 			},
 			messages : {
 				checkCode : {
-					remote : "验证码错误(不区分大小写)"
+					remote : "验证码错误,不分大小写"
 				}
 			}
 		});
@@ -89,7 +91,7 @@
 		<table border="0" cellspacing="0" cellpadding="0" class="login_table">
 
 			<tr>
-				<td align="right">类&nbsp;&nbsp;型:</td>
+				<td align="right" width="100">类&nbsp;&nbsp;型：</td>
 				<td width="300"><input name="loginType" value="student"
 					type="radio" checked="checked" /> 学生 <input name="loginType"
 					value="teacher" type="radio" class="" /> 老师</td>
@@ -120,9 +122,9 @@
 					value="关闭" /></td>
 			</tr>
 			<tr>
-				<td colspan="2"><div class="bookingStep">
+				<td colspan="2" ><div class="bookingStep">
 						<a target="_blank"
-							href="${ctx }/config.do?action=viewConfig&code=bookingDescription">预约说明</a>
+							href="${ctx }/config.do?action=viewConfig&code=bookingDescription"  style="font-weight:bold">&nbsp;预约说明  &gt;&gt;</a>
 					</div></td>
 			</tr>
 		</table>

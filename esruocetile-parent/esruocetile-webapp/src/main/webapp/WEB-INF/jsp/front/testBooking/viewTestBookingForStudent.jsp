@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>首页</title>
-<link rel="stylesheet" type="text/css" href="${ctx }/css/front.css" />
+<link rel="stylesheet" type="text/css" href="${ctx }/css/blue.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -17,7 +17,7 @@
 		$("#submitBooking").click(function() {
 			var isBooking = $("#isBooking").val(), confirmMessage = "您确定预约吗？";
 			if ("yes" == isBooking) {
-				confirmMessage = "您之前已预约过，确定要修改预约吗？";
+				confirmMessage = "您之前已有预约信息，确定要修改预约吗？";
 			}
 
 			if (confirm(confirmMessage)) {
@@ -40,7 +40,7 @@
 			</div>
 			<div class="column_article_list">
 				<div class="column_name">
-					<span>&gt;&gt;</span> 预约信息
+					<h2>预约信息</h2>
 				</div>
 				<div class="article_list">
 
@@ -52,11 +52,11 @@
 						<table width="100%" border="1"
 							class="test_booking_list_table student_booking_table">
 							<tr>
-								<td class="fieldName" width="20%">考试名称:</td>
+								<td class="fieldName" width="20%">测试任务名称:</td>
 								<td class="fieldForm" width="80%">${map.test_booking_name }</td>
 							</tr>
 							<tr>
-								<td class="fieldName">校区:</td>
+								<td class="fieldName">考点:</td>
 								<td class="fieldForm"><c:if test="${map.campus ==1 }">
 						石牌
 						</c:if> <c:if test="${map.campus ==2 }">

@@ -12,7 +12,7 @@
 	$(function() {
 		$("#returnButton").click(
 				function() {
-					overrideSelectedTab('listTestBooking', '考试预约信息',
+					overrideSelectedTab('listTestBooking', '测试预约信息',
 							'testBooking.do?action=listTestBooking');
 				});
 
@@ -31,11 +31,11 @@
 <body>
 	<table width="100%" border="1" class="formTable">
 		<tr>
-			<td class="fieldName" width="20%">考试名称:</td>
+			<td class="fieldName" width="20%">测试任务名称:</td>
 			<td class="fieldForm" width="80%">${map.test_booking_name }</td>
 		</tr>
 		<tr>
-			<td class="fieldName">校区:</td>
+			<td class="fieldName">考点:</td>
 			<td class="fieldForm"><c:if test="${map.campus ==1 }">
 						石牌
 						</c:if> <c:if test="${map.campus ==2 }">

@@ -44,14 +44,14 @@
 		<input type="hidden" name="id" value="${map.id }" />
 		<table width="100%" border="1" class="formTable">
 			<tr>
-				<td class="fieldName" width="20%">考试名称:</td>
+				<td class="fieldName" width="20%">测试任务名称:</td>
 				<td class="fieldForm" width="80%"><input type="text"
 					name="name" id="name" class="width400"
 					value="${map.test_booking_name }" /><span class="asterisk">*</span></td>
 			</tr>
 
 			<tr>
-				<td class="fieldName">校区:</td>
+				<td class="fieldName">考点:</td>
 				<td class="fieldForm"><select name="campus" id="campus">
 						<option value="1"
 							<c:if test="${map.campus ==1 }">

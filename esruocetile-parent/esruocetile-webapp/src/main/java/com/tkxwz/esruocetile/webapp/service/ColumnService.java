@@ -91,6 +91,10 @@ public class ColumnService {
 		return this.columnDao.listAllColumnForArticle();
 		
 	}
+	public List<Column> listAllColumnForColumn() {
+		return this.columnDao.listAllColumnForColumn();
+		
+	}
 
 	public Page listArticleByColumnId(Page page, Integer columnId) {
 		return this.columnDao.columnList(page, columnId);
@@ -109,5 +113,20 @@ public class ColumnService {
 		int result = this.columnDao.checkUserCount(columnName);
 		return result > 0;
 	}
+
+	 /**
+	 * 
+	 * 
+	 * @author Po Kong
+	 * @since 2012-9-5 上午12:00:34
+	 * @param page
+	 * @param columnName
+	 */
+	public Page listArticleByColumnName(Page page, String columnName) {
+		return this.columnDao.columnListByColumnName(page, columnName);
+		
+	}
+
+	 
 
 }

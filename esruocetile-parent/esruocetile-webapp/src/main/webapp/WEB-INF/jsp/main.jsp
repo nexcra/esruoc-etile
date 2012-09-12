@@ -28,7 +28,7 @@
 			text : "学生信息管理"
 		}, {
 			url : "testBooking.do?action=listTestBooking",
-			text : "考试预约信息"
+			text : "测试预约信息"
 		}, {
 			url : "studentTestBooking.do?action=listStudentTestBooking",
 			text : "预约名单"

@@ -15,6 +15,7 @@ import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.core.util.BeanUtil;
 import com.tkxwz.esruocetile.core.util.PageUtil;
 import com.tkxwz.esruocetile.webapp.entity.Student;
+import com.tkxwz.esruocetile.webapp.service.IndexService;
 import com.tkxwz.esruocetile.webapp.service.StudentService;
 
 /**
@@ -26,6 +27,9 @@ public class StudentController {
 
 	@Autowired
 	private StudentService studentService;
+
+	@Autowired
+	private IndexService indexService;
 
 	@RequestMapping(params = "action=listStudent")
 	public String listStudent(HttpServletRequest request, String currentPageNum) {
@@ -82,8 +86,10 @@ public class StudentController {
 		request.setAttribute("map", map);
 		return "/student/updateStudent.jsp";
 	}
+
 	@RequestMapping(params = "action=toPersonalDetail")
 	public String toPersonalDetail(HttpServletRequest request, String id) {
+		this.indexService.indexSessionData(request);
 		Map map = this.studentService.getStudentById(id);
 		request.setAttribute("map", map);
 		return "/front/student/viewStudent.jsp";

@@ -62,6 +62,25 @@
 			value="${map.column_name }" />
 		<table width="100%" border="1" class="formTable">
 			<tr>
+				<td class="fieldName" width="100">父栏目</td>
+				<td class="fieldForm" width="900"> <select name="parentId"
+					id="parentId"> 
+						<option value="0" selected="selected">一级栏目</option>
+						<c:forEach items="${list }" var="list">
+							<option value="${list.id }"
+								<c:if test="${list.id == map.parent_id }">
+									selected="selected"
+								</c:if>
+								
+								<c:if test="${list.id == map.id }">
+									style="display:none"
+								</c:if>
+							
+							>${list.columnName}</option>
+						</c:forEach>
+				</select> <span class="asterisk">*</span></td>
+			</tr>
+			<tr>
 				<td class="fieldName" width="100">栏目名:</td>
 				<td class="fieldForm" width="900"><input type="text"
 					name="columnName" id="columnName" value="${map.column_name }" /><span
