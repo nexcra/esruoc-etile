@@ -2,6 +2,7 @@ package com.tkxwz.esruocetile.webapp.controller;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.tkxwz.esruocetile.core.page.Page;
 import com.tkxwz.esruocetile.core.util.BeanUtil;
 import com.tkxwz.esruocetile.core.util.PageUtil;
-import com.tkxwz.esruocetile.webapp.entity.Article;
 import com.tkxwz.esruocetile.webapp.entity.Column;
 import com.tkxwz.esruocetile.webapp.service.ColumnService;
 import com.tkxwz.esruocetile.webapp.service.IndexService;
@@ -51,7 +51,9 @@ public class ColumnController {
 	 */
 
 	@RequestMapping(params = "action=toAddColumn")
-	public String toAddColumn() {
+	public String toAddColumn(HttpServletRequest request) {
+		List<Column> list = this.columnService.listAllColumnForColumn();
+		request.setAttribute("list", list);
 		return "/column/addColumn.jsp";
 	}
 
@@ -107,6 +109,10 @@ public class ColumnController {
 	public String toUpdateColumn(HttpServletRequest request, String id) {
 		Map map = this.columnService.getColumnById(id);
 		request.setAttribute("map", map);
+
+		List<Column> list = this.columnService.listAllColumnForColumn();
+		request.setAttribute("list", list);
+
 		return "/column/updateColumn.jsp";
 	}
 
@@ -144,6 +150,32 @@ public class ColumnController {
 					Integer.valueOf(columnId));
 			request.setAttribute("page", page);
 		}
+		return result;
+	}
+
+	@RequestMapping(params = "action=listArticleByColumnCode")
+	public String listArticleByColumnCode(HttpServletRequest request,
+			String currentPageNum, String columnCode, String columnType) {
+		this.indexService.indexSessionData(request);
+
+		String result = "/front/article/listArticle.jsp";
+
+		Page page = new Page();
+		page = new Page(PageUtil.getPageNum(currentPageNum));
+		String columnName = "";
+		if ("tzga".equalsIgnoreCase(columnCode)) {
+			columnName = "通知公告";
+		} else if ("cszn".equalsIgnoreCase(columnCode)) {
+			columnName = "测试指南";
+		}
+
+		else if ("jgsz".equalsIgnoreCase(columnCode)) {
+			columnName = "机构设置";
+		} else if ("zcwj".equalsIgnoreCase(columnCode)) {
+			columnName = "政策文件";
+		}
+		this.columnService.listArticleByColumnName(page, columnName);
+		request.setAttribute("page", page);
 		return result;
 	}
 }

@@ -54,10 +54,21 @@
 		id="addForm" method="post"> 
 		<table width="100%" border="1" class="formTable">
 			<tr>
+				<td class="fieldName" width="100">父栏目:</td>
+				<td class="fieldForm" width="900"><select name="parentId"
+					id="parentId">
+						<option value="0" selected="selected">一级栏目</option>
+						<c:forEach items="${list }" var="list">
+							<option value="${list.id }">${list.columnName}</option>
+						</c:forEach>
+				</select> <span class="asterisk">*</span></td>
+			</tr>
+			<tr>
 				<td class="fieldName" width="100">栏目名:</td>
 				<td class="fieldForm" width="900"><input type="text"
 					name="columnName" id="columnName" /><span class="asterisk">*</span></td>
 			</tr>
+			
 			<tr>
 				<td class="fieldName">在导航栏显示:</td>
 				<td class="fieldForm"><select name="showOnNav" id="showOnNav">

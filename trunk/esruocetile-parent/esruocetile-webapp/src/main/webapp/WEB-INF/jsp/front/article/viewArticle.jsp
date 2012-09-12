@@ -8,7 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>首页</title>
-<link rel="stylesheet" type="text/css" href="${ctx }/css/front.css" />
+<link rel="stylesheet" type="text/css" href="${ctx }/css/blue.css" />
 <script type="text/javascript" src="${ctx }/js/article.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 
@@ -38,8 +38,9 @@
 			<div class="path">
 				您现在所在的位置：<a href="${ctx }">首页</a>&gt;&gt; 查看文章 &gt;&gt;
 			</div>
+			<div class="column_article_list">
 			<div class="column_name">
-				<span>&gt;&gt;</span> 查看文章
+				<h2>查看文章</h2> 
 			</div>
 			<div class="article_title">${map.title }</div>
 			<c:if test="${!empty map.sub_title  }">
@@ -61,6 +62,7 @@
 				【字体： <span id="font_small" class="cursor_pointer">小</span> <span
 					id="font_big" class="cursor_pointer">大</span>】 【 <span
 					id="close_window" class="cursor_pointer">关闭窗口</span>】
+			</div>
 			</div>
 		</div>
 	</div>

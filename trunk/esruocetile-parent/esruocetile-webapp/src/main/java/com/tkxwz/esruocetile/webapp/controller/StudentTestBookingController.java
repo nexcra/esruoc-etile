@@ -42,7 +42,7 @@ public class StudentTestBookingController {
 	@RequestMapping(params = "action=listStudentTestBooking")
 	public String listStudentTestBooking(HttpServletRequest request,
 			String currentPageNum) {
-		// 显示考试名称列表
+		// 显示测试任务名称列表
 		List<Map<String, Object>> testBookingList = this.testBookingService
 				.listAllTestBooking();
 		request.setAttribute("testBookingList", testBookingList);
@@ -82,11 +82,11 @@ public class StudentTestBookingController {
 				String oldTestBookingId = String.valueOf(listForBooking.get(0)
 						.get("test_booking_id"));
 
-				// 判断学生之前预约的考试是否已截止预约（表示考试安排中或者考试已经进行完毕，则不能给学生预约）
+				// 判断学生之前预约的测试是否已截止预约（表示测试安排中或者测试已经进行完毕，则不能给学生预约）
 				boolean isStopBooking = this.studentTestBookingService
 						.isStopBooking(oldTestBookingId);
 				if (isStopBooking) {
-					message = "您预约的考试已进行或者安排考试中，不能修改或者取消本次预约!";
+					message = "您预约的测试已进行或者安排测试中，不能修改或者取消本次预约!";
 					result = "redirect:/message.do";
 				} else {
 					boolean needUpdate = !testBookingId
@@ -171,7 +171,7 @@ public class StudentTestBookingController {
 	public String searchStudentTestBooking(HttpServletRequest request,
 			String currentPageNum) throws IllegalAccessException,
 			InvocationTargetException {
-		// 显示考试名称列表
+		// 显示测试任务名称列表
 				List<Map<String, Object>> testBookingList = this.testBookingService
 						.listAllTestBooking();
 				request.setAttribute("testBookingList", testBookingList);
@@ -201,7 +201,7 @@ public class StudentTestBookingController {
 				.searchStudentTestBooking(studentTestBooking);
 		request.setAttribute("page", page);
 		request.setAttribute("bean", studentTestBooking);
-		String[] columnNames = new String[] { "考试校区", "考试名称", "学院", "年级", "学号",
+		String[] columnNames = new String[] { "考点", "测试任务名称", "学院", "年级", "学号",
 				"姓名", "性别", "民族代码", "民族", "出生日期", "身份证号", "专业名称", "行政班" };
 
 		PrintWriter writer2 = response.getWriter();
@@ -228,7 +228,7 @@ public class StudentTestBookingController {
 				cellValue = cellValue.equals("1") ? "石牌" : "大学城";
 				// writer.write(cellValue);
 				content.append(cellValue);
-				// 考试名称
+				// 测试任务名称
 
 				cellValue = (String) excelContent.get(i).get(
 						"test_booking_name");
@@ -313,7 +313,7 @@ public class StudentTestBookingController {
 			HttpServletResponse response, String currentPageNum)
 			throws IllegalAccessException, InvocationTargetException,
 			IOException {
-		// 显示考试名称列表
+		// 显示测试任务名称列表
 				List<Map<String, Object>> testBookingList = this.testBookingService
 						.listAllTestBooking();
 				request.setAttribute("testBookingList", testBookingList);
@@ -327,11 +327,11 @@ public class StudentTestBookingController {
 				.searchStudentTestBooking(studentTestBooking);
 		request.setAttribute("page", page);
 		request.setAttribute("bean", studentTestBooking);
-		String[] columnNames = new String[] { "考试校区", "考试名称", "学院", "年级", "学号",
+		String[] columnNames = new String[] { "考点", "测试任务名称", "学院", "年级", "学号",
 				"姓名", "性别", "民族代码", "民族", "出生日期", "身份证号", "专业名称", "行政班" };
 
 		String titleName = "testBooking.xls";// 不创建说明;
-		String sheetName = "学生预约考试情况";
+		String sheetName = "学生预约测试情况";
 
 		OutputStream fOut = response.getOutputStream();
 		response.setHeader("Content-Disposition", "attachment; filename="

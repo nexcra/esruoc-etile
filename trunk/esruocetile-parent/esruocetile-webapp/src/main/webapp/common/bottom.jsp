@@ -11,15 +11,15 @@
 <body>
 	<div class="clear"></div>
 	<div class="bottom">
-		<p>
+		<p style="color:white; ">
 			<a href="${ctx }">回到首页</a> | <a
-				onclick="setHome(this,window.location)" href="#">设为首页</a> | <a
+				onclick="setHome(this,window.location)" href="#">设为首页   </a> |  <a
 				href="#"
-				onclick="addFavorite(window.location, '华南师范大学普通话培训');return false">加入收藏</a>
-			| <a href="mailto:xxx@qq.com">联系我们 </a>| <a
+				onclick="addFavorite(window.location, '华南师范大学普通话培训');return false">加入收藏 </a> | 
+			  <a href="mailto:xxx@qq.com">联系我们 </a> | <a
 				href="${ctx }/login.do?action=toLogin" target="_blank">管理登录</a>
 		</p>
-		<div>
+		<div class="font-content">
 			 ${footerMap.content }
 		</div>
 	</div>

@@ -203,7 +203,7 @@
 		name="queryForm" id="queryForm" method="post">
 		<table width="100%" border="1" class="formTable" id="searchTable">
 			<tr>
-				<td class="fieldName">校区:</td>
+				<td class="fieldName">考点:</td>
 				<td class="fieldForm"><select name="campus" id="campus">
 						<option value="0">全部</option>
 						<option value="1"
@@ -215,7 +215,7 @@
 						selected = "selected "
 						</c:if>>大学城</option>
 				</select></td>
-				<td class="fieldName">考试名称:</td>
+				<td class="fieldName">测试任务名称:</td>
 				<td class="fieldForm"> 
 					<select name="testBookingName" id="testBookingName">
 						<option value="0">全部</option>
@@ -289,8 +289,8 @@
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
-				<th>考试校区</th>
-				<th>考试名称</th>
+				<th>考点</th>
+				<th>测试任务名称</th>
 				<th>学号</th>
 				<th>姓名</th>
 				<th>学院</th>

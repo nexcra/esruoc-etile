@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>首页</title>
-<link rel="stylesheet" type="text/css" href="${ctx }/css/front.css" />
+<link rel="stylesheet" type="text/css" href="${ctx }/css/blue.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -27,7 +27,7 @@
 			</div>
 			<div class="column_article_list">
 				<div class="column_name">
-					<span>&gt;&gt;</span> 预约信息
+					<h2>个人信息</h2>
 				</div>
 				<div class="article_list">
 
@@ -81,7 +81,7 @@
 
 						<tr>
 							<td class="fieldName"></td>
-							<td class="fieldForm"><input type="button" value="返回"
+							<td class="fieldForm"><input type="button" id="returnButton" value="返回"
 								class="button"  /></td>
 						</tr>
 					</table>

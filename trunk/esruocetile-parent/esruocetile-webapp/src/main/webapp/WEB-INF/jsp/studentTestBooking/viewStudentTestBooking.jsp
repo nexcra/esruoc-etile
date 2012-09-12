@@ -33,7 +33,7 @@
 <body>
 	<table width="100%" border="1" class="formTable">
 		<tr>
-			<td class="fieldName" width="20%">考试校区:</td>
+			<td class="fieldName" width="20%">考试考点:</td>
 			<td class="fieldForm" width="80%"><c:if
 					test="${map.campus ==1 }">石牌</c:if> <c:if
 					test="${map.campus ==2 }">大学城</c:if></td>

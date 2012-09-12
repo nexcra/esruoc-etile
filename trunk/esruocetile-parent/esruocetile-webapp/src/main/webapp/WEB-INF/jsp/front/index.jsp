@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>首页</title>
-<link rel="stylesheet" type="text/css" href="${ctx }/css/front.css" />
+<link rel="stylesheet" type="text/css" href="${ctx }/css/blue.css" />
 <script type="text/javascript" src="${ctx }/js/time.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="${ctx }/js/jquery.validate.min.js"></script>
@@ -19,8 +19,8 @@
 		pattern : 'mF_fscreen_tb',//风格应用的名称
 		time : 3,//切换时间间隔(秒)
 		trigger : 'click',//触发切换模式:'click'(点击)/'mouseover'(悬停)
-		width : 326,//设置图片区域宽度(像素)
-		height : 255,//设置图片区域高度(像素)
+		width : 306,//设置图片区域宽度(像素)
+		height : 250,//设置图片区域高度(像素)
 		txtHeight : '0'//文字层高度设置(像素),'default'为默认高度，0为隐藏
 	});
 </script>
@@ -28,6 +28,7 @@
 <body>
 	<%@include file="/common/top.jsp"%>
 	<div class="main">
+		<div class="justForAdjudst"></div>
 		<%@include file="/common/left.jsp"%>
 		<div class="right">
 			<%@include file="/common/frontLogin.jsp"%>
@@ -46,24 +47,24 @@
 						<div class="pic"> 
 							<ul>
 								<li><img src="${ctx }/images/skin/default/slide/02.jpg"
-									thumb="" alt="#" text="图片1更详细的描述文字" /></li>
+									thumb="" alt="#" text="" /></li>
 								<li><img src="${ctx }/images/skin/default/slide/01.jpg"
-									thumb="" alt="#" text="图片2更详细的描述文字" /></li>
+									thumb="" alt="#" text="" /></li>
 								<li><img src="${ctx }/images/skin/default/slide/03.jpg"
-									thumb="" alt="#" text="图片3更详细的描述文字" /></li>
+									thumb="" alt="#" text="" /></li>
 						</div>
 					</div>
 				</div>
 				<div class="newest_article">
-					<h2>最新消息</h2>
+					<h2> </h2>
 					<ul>
 						<c:forEach items="${recentArticleList.pageDatas }"
 							var="recentArticleList" varStatus="vs" end="6">
-							<li><a
+							<li><a title="${recentArticleList.title}"
 								href="${ctx }/article.do?action=viewArticle&id=${recentArticleList.id }">
 									<c:set value="${recentArticleList.title}" var="c" /> <c:choose>
-										<c:when test="${fn:length(c) > 17}">
-											<c:out value="${fn:substring(c, 0, 17)}...." />
+										<c:when test="${fn:length(c) > 20}">
+											<c:out value="${fn:substring(c, 0, 20)}...." />
 										</c:when>
 										<c:otherwise>
 											<c:out value="${c}" />
@@ -71,18 +72,18 @@
 									</c:choose>
 							</a></li>
 
-						</c:forEach>
+						</c:forEach> 
 					</ul>
 				</div>
 				<div class="clear"></div>
 				<div class="column_article">
 					<h2>
-						<span>&gt;&gt;</span> 测试指南
+						 <a href="${ctx }/column.do?action=listArticleByColumnCode&columnCode=cszn"> 测试指南</a>
 					</h2>
 					<ul>
 						<c:forEach items="${csznArticleList.pageDatas }" var="list"
 							varStatus="vs" end="6">
-							<li><a
+							<li><a title="${list.title}"
 								href="${ctx }/article.do?action=viewArticle&id=${list.id }">
 									<c:set value="${list.title}" var="c" /> <c:choose>
 										<c:when test="${fn:length(c) > 17}">
@@ -96,15 +97,16 @@
 
 						</c:forEach>
 					</ul>
+					<div class="column_article_bottom"></div>
 				</div>
 				<div class="column_article">
 					<h2>
-						<span>&gt;&gt;</span> 通知公告
+						 <a href="${ctx }/column.do?action=listArticleByColumnCode&columnCode=tzga">通知公告</a>
 					</h2>
 					<ul>
 						<c:forEach items="${tzggArticleList.pageDatas }" var="list"
-							varStatus="vs" end="6">
-							<li><a
+							varStatus="vs" end="5">
+							<li><a title="${list.title}"
 								href="${ctx }/article.do?action=viewArticle&id=${list.id }">
 									<c:set value="${list.title}" var="c" /> <c:choose>
 										<c:when test="${fn:length(c) > 17}">
@@ -118,6 +120,7 @@
 
 						</c:forEach>
 					</ul>
+					<div class="column_article_bottom"></div>
 				</div>
 				<div class="column_banner">
 					<div class="column_banner_div">
@@ -143,57 +146,27 @@
 					<div class="column_banner_div">
 						<h2>政策文件</h2>
 						<ul>
-							<li><a href="#">国家文件</a> |</li>
-							<li><a href="#">广东文件</a> |</li>
+							
+							<c:forEach items="${zcwjColumnList }" var="list"
+								varStatus="vs" end="6">
+								<li><a
+									href="${ctx }/column.do?action=listArticle&columnId=${list.id}&columnType=${list.columnType }">
+										<c:set value="${list.columnName}" var="c" /> <c:choose>
+											<c:when test="${fn:length(c) > 10}">
+												<c:out value="${fn:substring(c, 0, 10)}...." />
+											</c:when>
+											<c:otherwise>
+												<c:out value="${c}" />
+											</c:otherwise>
+										</c:choose>
+								</a> |</li>
+
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
 				<div class="clear"></div>
-				<div class="column_article">
-					<h2>
-						<span>&gt;&gt;</span> 常见问题
-					</h2>
-					<ul>
-						<c:forEach items="${cjwtArticleList.pageDatas }" var="list"
-							varStatus="vs" end="6">
-							<li><a
-								href="${ctx }/article.do?action=viewArticle&id=${list.id }">
-									<c:set value="${list.title}" var="c" /> <c:choose>
-										<c:when test="${fn:length(c) > 17}">
-											<c:out value="${fn:substring(c, 0, 17)}...." />
-										</c:when>
-										<c:otherwise>
-											<c:out value="${c}" />
-										</c:otherwise>
-									</c:choose>
-							</a></li>
-
-						</c:forEach>
-					</ul>
-				</div>
-				<div class="column_article">
-					<h2>
-						<span>&gt;&gt;</span> 文档下载
-					</h2>
-					<ul>
-						<c:forEach items="${wdxzArticleList.pageDatas }" var="list"
-							varStatus="vs" end="6">
-							<li><a
-								href="${ctx }/article.do?action=viewArticle&id=${list.id }">
-									<c:set value="${list.title}" var="c" /> <c:choose>
-										<c:when test="${fn:length(c) > 17}">
-											<c:out value="${fn:substring(c, 0, 17)}...." />
-										</c:when>
-										<c:otherwise>
-											<c:out value="${c}" />
-										</c:otherwise>
-									</c:choose>
-							</a></li>
-
-						</c:forEach>
-						</li>
-					</ul>
-				</div>
+				 
 			</div>
 		</div>
 	</div>

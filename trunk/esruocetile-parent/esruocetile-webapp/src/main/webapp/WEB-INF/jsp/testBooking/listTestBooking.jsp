@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>${title }>>考试预约列表</title>
+<title>${title }>>测试预约列表</title>
 <link rel="stylesheet" type="text/css" href="${ctx }/css/main.css" />
 <script type="text/javascript" src="${ctx }/js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript"
@@ -30,14 +30,14 @@
 			$(".checkList").attr("checked", !!$("#checkAll").attr("checked"));
 		});
 
-		//添加考试预约
+		//添加测试预约
 		$("#newTestBooking").click(
 				function() {
-					overrideSelectedTab('newTestBooking', '新增考试预约',
+					overrideSelectedTab('newTestBooking', '新增测试预约',
 							'testBooking.do?action=toAddTestBooking');
 				});
 
-		//删除考试预约
+		//删除测试预约
 		$("#deleteTestBooking")
 				.click(
 						function() {
@@ -74,13 +74,13 @@
 											alert(data);
 											overrideSelectedTab(
 													'listTestBooking',
-													'考试预约管理',
+													'测试预约管理',
 													'testBooking.do?action=listTestBooking');
 										}
 									});
 						});
 
-		//修改考试预约
+		//修改测试预约
 		$("#updateTestBooking")
 				.click(
 						function() {
@@ -93,7 +93,7 @@
 								alert("对不起，只能选择一项进行修改");
 								return false;
 							}
-							overrideSelectedTab('updateTestBooking', '修改考试预约',
+							overrideSelectedTab('updateTestBooking', '修改测试预约',
 									'testBooking.do?action=toUpdateTestBooking&id='
 											+ checkListValue);
 
@@ -101,7 +101,7 @@
 		//更新
 		$(".update").click(
 				function() {
-					overrideSelectedTab('updateTestBooking', '修改考试预约',
+					overrideSelectedTab('updateTestBooking', '修改测试预约',
 							'testBooking.do?action=toUpdateTestBooking&id='
 									+ $(this).attr("value"));
 				});
@@ -128,7 +128,7 @@
 											alert(data);
 											overrideSelectedTab(
 													'listTestBooking',
-													'考试预约管理',
+													'测试预约管理',
 													'testBooking.do?action=listTestBooking');
 										}
 									});
@@ -136,7 +136,7 @@
 		//查看
 		$(".view").click(
 				function() {
-					overrideSelectedTab('viewTestBooking', '查看考试预约',
+					overrideSelectedTab('viewTestBooking', '查看测试预约',
 							'testBooking.do?action=viewTestBooking&id='
 									+ $(this).attr("value"));
 				});
@@ -182,8 +182,8 @@
 		<thead>
 			<tr>
 				<th><input type="checkbox" id="checkAll" /></th>
-				<th>考试名称</th>
-				<th>校区</th>
+				<th>测试任务名称</th>
+				<th>考点</th>
 				<th>预约开始时间</th>
 				<th>预约结束时间</th>
 				<th>最大预约数</th>

@@ -357,11 +357,11 @@ body {
 }
 
 .bottom {
-	background: #f4f4f4 url(../images/skin/default/front/bottom_top_bg.gif)
-		repeat-x;
-	height: 90px;
+	background: url(../images/skin/default/front/bottom_top_bg.gif) repeat-x;
+	height: 118px;
 	text-align: center;
 	padding: 20px;
+	overflow: hidden;
 }
 
 .bottom p {
