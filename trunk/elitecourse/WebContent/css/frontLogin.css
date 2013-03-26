@@ -1,0 +1,93 @@
+@charset "utf-8";
+
+@import url("cssreset.css");
+
+@import url("validate.css");
+
+.button {
+	background: url(../images/skin/default/front/button_bg.gif) no-repeat;
+	color: #000;
+	border: none;
+	width: 73px;
+	height: 34px;
+	cursor: pointer;
+}
+
+.show {
+	display: block;
+}
+
+.hide {
+	display: none;
+}
+
+.user_login {
+	width: 420px;
+	height: 270px;
+	padding-top: 40px;
+	display: none;
+	top:12px;
+	left: -12px;
+	position: absolute;
+	z-index: 999; 
+		no-repeat;
+	float: left;
+	background: url(../images/skin/blue/front/index_login_bg.gif) no-repeat;
+}
+
+.to_login {
+	  
+	display: block; 
+	vertical-align: middle;
+	background: #fff;
+}
+
+.login_table {
+	margin-left: 0px;
+	font-size: 13px;
+	line-height: 36px;
+	margin-bottom: 20px;
+}
+
+.bookingStep a {
+	color: red;
+	font-size: 14px;
+	text-align: center;
+	width: 100px;
+	margin-left: 40px;
+}
+
+.input_text,.input_text_checkcode {
+	width: 125px;
+	height: 20px;
+	border: 1px solid #ccc;
+}
+
+.input_text_checkcode {
+	width: 50px;
+	height: 22px;
+	float: left;
+}
+
+.checkCode {
+	width: 73px;
+	margin-right: 5px;
+	vertical-align: middle;
+}
+
+.checkCodeImg {
+	cursor: pointer;
+	vertical-align: top;
+	width: 70px;
+	height: 23px;
+	margin-left: 4px;
+}
+
+.loginError {
+	color: red;
+	text-align: center;
+	font-size: 13px;
+	font-weight: bold;
+	height: 25px;
+	line-height: 25px;
+}
