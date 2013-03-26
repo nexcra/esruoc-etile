@@ -1,0 +1,280 @@
+package com.tkxgz.elitecourse.dao.base;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import org.apache.commons.lang3.StringUtils;
+
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.tkxgz.elitecourse.core.page.Page;
+import com.tkxgz.elitecourse.core.util.ListUtil;
+import com.tkxgz.elitecourse.bean.@upperBeanName@;
+import com.tkxgz.elitecourse.mapper.@upperBeanName@Mapper;
+/**
+ * @tableDescription@Dao类
+ * 
+ * @author Soyi Yao
+ */
+@Repository
+public class @upperBeanName@BaseDao extends BaseDao<@upperBeanName@> {
+
+	Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	/**
+	 * 分页查询@tableDescription@列表
+	 * 
+	 * @author Soyi Yao
+	 * @param page
+	 *        分页bean
+	 * @return @tableDescription@分页数据
+	 */
+	public Page list@upperBeanName@(Page page) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select t.* ");
+		sql.append(" from @tableName@ t ");
+		sql.append(" where 1 = 1  ");
+		sql.append(" order by t.id desc ");
+		
+		logger.info(sql.toString());
+
+		return this.queryForPage(sql.toString(), page);
+	}
+
+	/**
+	 * 添加@tableDescription@
+	 * 
+	 * @author Soyi Yao
+	 * @param @lowerBeanName@
+	 *        @tableDescription@bean
+	 * @return 影响行数
+	 */
+	public int add@upperBeanName@(@upperBeanName@ @lowerBeanName@) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" insert into @tableName@ (");
+		  @fieldsToInsert@  
+		sql.append(" ) ");
+		sql.append(" values ( ");
+		  @fieldsToInsertValue@
+
+		sql.append(" ) ");
+		Object[] values = { @values@};
+		int[] valueTypes = { @valueTypes@ };
+		
+		logger.info(sql.toString());
+
+		return this.insert(sql.toString(), values, valueTypes);
+
+	}
+
+	/**
+	 * 根据@tableDescription@id删除@tableDescription@
+	 * 
+	 * @author Soyi Yao
+	 * @param id
+	 *        @tableDescription@id
+	 * @return 影响行数
+	 */
+	public int delete@upperBeanName@ById(String id) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" delete from  @tableName@ ");
+		sql.append(" where id = ?  ");
+
+		Object[] values = { Integer.parseInt(id) };
+		int[] valueTypes = { Types.INTEGER };
+		
+		logger.info(sql.toString());
+
+		return this.insert(sql.toString(), values, valueTypes);
+	}
+
+	/**
+	 * 根据@tableDescription@查询@tableDescription@信息
+	 * 
+	 * @author Soyi Yao
+	 * @param id
+	 *        @tableDescription@id
+	 * @return @tableDescription@Map
+	 */
+	public Map get@upperBeanName@ById(String id) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append("select t.* from  @tableName@ t where t.id = ? ");
+
+		Object[] values = { Integer.parseInt(id) };
+		int[] valueTypes = { Types.INTEGER };
+		
+		logger.info(sql.toString());
+
+		return this.queryForMap(sql.toString(), values, valueTypes);
+	}
+
+	/**
+	 * 更新@tableDescription@
+	 * 
+	 * @author Soyi Yao
+	 * @param @lowerBeanName@
+	 *        @tableDescription@bean
+	 * @return 影响行数
+	 */
+	public int update@upperBeanName@(@upperBeanName@ @lowerBeanName@) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" update  @tableName@ t");
+		sql.append(" set   ");
+		@updateFields@
+		sql.append(" where t.id = ? ");
+
+		Object[] values = { @valuesForUpdate@ @lowerBeanName@.getId()};
+		int[] valueTypes = { @valueTypesForUpdate@ Types.INTEGER };
+		
+		logger.info(sql.toString());
+
+		return this.update(sql.toString(), values, valueTypes);
+	}
+
+
+	/**
+	 * 分页搜索@tableDescription@列表
+	 * 
+	 * @author Soyi Yao
+	 * @param page
+	 *        分页bean
+	 * @param @lowerBeanName@
+	 *        @tableDescription@bean
+	 * @return 分页@tableDescription@列表
+	 */
+	public Page search@upperBeanName@(Page page, @upperBeanName@ @lowerBeanName@) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select t.* from  @tableName@ t ");
+		sql.append(" where 1 = 1 ");
+
+		List<Object> valuesList = new ArrayList<Object>();
+		List<Integer> valueTypesList = new ArrayList<Integer>();
+
+		@searchCriteria@
+
+		sql.append(" order by t.id desc ");
+
+		Object[] values = ListUtil.list2objectArray(valuesList);
+		int[] valueTypes = ListUtil.list2intArray(valueTypesList);
+		
+		logger.info(sql.toString());
+
+		return this.queryForPage(sql.toString(), values, valueTypes, page);
+	}
+	
+	/**
+	 * 搜索@tableDescription@列表
+	 * 
+	 * @author Soyi Yao
+	 * @param @lowerBeanName@
+	 *        @upperBeanName@实体
+	 * @return @tableDescription@列表
+	 */
+	public List<@upperBeanName@> search@upperBeanName@ForList(@upperBeanName@ @lowerBeanName@) {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select t.* from  @tableName@ t ");
+		sql.append(" where 1 = 1 ");
+
+		List<Object> valuesList = new ArrayList<Object>();
+		List<Integer> valueTypesList = new ArrayList<Integer>();
+
+		@searchCriteria@
+
+		sql.append(" order by t.id desc ");
+
+		Object[] values = ListUtil.list2objectArray(valuesList);
+		int[] valueTypes = ListUtil.list2intArray(valueTypesList);
+		
+		logger.info(sql.toString());
+
+		return this.queryForList(sql.toString(), values, valueTypes,
+				new @upperBeanName@Mapper());
+	}
+	
+	/**
+	 * 根据@tableDescription@id获取@tableDescription@实体
+	 * 
+	 * @author Soyi Yao
+	 * @param id
+	 *        @tableDescription@id
+	 * @return @upperBeanName@实体
+	 */
+	public @upperBeanName@ find@upperBeanName@ById(String id) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select t.* from  @tableName@ t where t.id = ? ");
+
+		Object[] values = { Integer.parseInt(id) };
+		int[] valueTypes = { Types.INTEGER };
+
+		@upperBeanName@ @lowerBeanName@ = this.queryForObject(sql.toString(), values, valueTypes,
+				new @upperBeanName@Mapper());
+		
+		logger.info(sql.toString());
+
+		return @lowerBeanName@;
+	}
+
+
+	/**
+	 * 列出所有@tableDescription@
+	 * 
+	 * @author Soyi Yao
+	 * @return @tableDescription@列表
+	 */
+	public List<@upperBeanName@> listAll@upperBeanName@() {
+
+		StringBuilder sql = new StringBuilder();
+		sql.append(" select t.* ");
+		sql.append(" from @tableName@ t  ");
+		sql.append(" order by t.id desc ");
+		
+		logger.info(sql.toString());
+
+		return this.queryForList(sql.toString(), new @upperBeanName@Mapper());
+	}
+	
+    /**
+	 * 获取@tableName@表记录总数
+	 * 
+	 * @author Soyi Yao
+	 * @return @tableName@表记录总数
+	 */
+	public int getTotalRecords() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select count(1) from  @tableName@  ");
+
+		logger.info(sql.toString());
+		
+		return this.queryForInt(sql.toString());
+	}
+	
+	/**
+	 * 获取@tableName@当前最大id值
+	 * 
+	 * @author Soyi Yao
+	 * @return
+	 */
+	public int getCurrentMaxId() {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select max(id) from  @tableName@  ");
+
+		logger.info(sql.toString());
+
+		return this.queryForInt(sql.toString());
+	}
+	
+	
+}

@@ -1,0 +1,24 @@
+package com.tkxgz.elitecourse.mapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+
+import com.tkxgz.elitecourse.bean.@upperBeanName@;
+
+/**
+	 * @tableDescription@映射器内部类，用于返回范型的@tableDescription@实体
+	 * 
+	 * @author Soyi Yao
+	 */
+	public class @upperBeanName@Mapper implements RowMapper<@upperBeanName@> {
+
+		public @upperBeanName@ mapRow(ResultSet rs, int rowNum) throws SQLException {
+			@upperBeanName@ @lowerBeanName@ = new @upperBeanName@();
+			
+			@beanAllSettingMethod@
+			return @lowerBeanName@;
+		}
+	}
